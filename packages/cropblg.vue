@@ -2615,42 +2615,42 @@ export default {
             const arrs = originNativeData.handWritingUrl.split(/\n/)
             arrs.forEach(arr => {
                 arr = arr.split(/,/)
-                arr.pop();
+                arr.pop()
                 switch (arr[0]) {
-                    case "WM_LBUTTONDOWN":
-                        // 按下鼠标
-                        if (arr[8] == "2") {//曲线
-                            this.handleStart({ touches: [
-                                {
-                                    pageX: parseFloat(arr[1]),
-                                    pageY: parseFloat(arr[2])
-                                }
-                            ]})
-                        }
-                        break
-                    case "WM_MOUSEMOVE":
-                        //  移动鼠标
-                        // 曲线
-                        if (arr[8] == "2") {//曲线
-                            this.handleMove({ touches: [
-                                {
-                                    pageX: parseFloat(arr[1]),
-                                    pageY: parseFloat(arr[2])
-                                }
-                            ]})
-                        } 
-                        break
-                    case "WM_LBUTTONUP":
-                    if (arr[8] == "2") {
+                case 'WM_LBUTTONDOWN':
+                    // 按下鼠标
+                    if (arr[8] == '2') {// 曲线
+                        this.handleStart({ touches: [
+                            {
+                                pageX: parseFloat(arr[1]),
+                                pageY: parseFloat(arr[2])
+                            }
+                        ] })
+                    }
+                    break
+                case 'WM_MOUSEMOVE':
+                    //  移动鼠标
+                    // 曲线
+                    if (arr[8] == '2') {// 曲线
+                        this.handleMove({ touches: [
+                            {
+                                pageX: parseFloat(arr[1]),
+                                pageY: parseFloat(arr[2])
+                            }
+                        ] })
+                    }
+                    break
+                case 'WM_LBUTTONUP':
+                    if (arr[8] == '2') {
                         this.handleEnd({ touches: [
                             {
                                 pageX: parseFloat(arr[1]),
                                 pageY: parseFloat(arr[2])
                             }
-                        ]})
+                        ] })
                     }
-                    default:
-                        break
+                default:
+                    break
                 }
             })
         }
@@ -2685,9 +2685,6 @@ export default {
         this.ctx = ctx
         this.ctx2 = ctx2
         this.boundingClientRect = boundingClientRect
-
-
-
 
 
         /**
