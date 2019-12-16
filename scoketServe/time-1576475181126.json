@@ -1,0 +1,5618 @@
+[
+    {
+        "time": 0,
+        "data": {
+            "actionTypes": 7
+        }
+    },
+    {
+        "time": 727,
+        "data": {
+            "value": [
+                {
+                    "pageX": 382.41680908203125,
+                    "pageY": 115.68791198730469
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 749,
+        "data": {
+            "value": [
+                {
+                    "pageX": 385.00030517578125,
+                    "pageY": 113.98670959472656
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 816,
+        "data": {
+            "value": [
+                {
+                    "pageX": 389.66314697265625,
+                    "pageY": 112.3485107421875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 817,
+        "data": {
+            "value": [
+                {
+                    "pageX": 395.2081604003906,
+                    "pageY": 110.01722717285156
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 818,
+        "data": {
+            "value": [
+                {
+                    "pageX": 400.753173828125,
+                    "pageY": 108.00099182128906
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 888,
+        "data": {
+            "value": [
+                {
+                    "pageX": 405.1639709472656,
+                    "pageY": 107.181884765625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 889,
+        "data": {
+            "value": [
+                {
+                    "pageX": 408.0625,
+                    "pageY": 109.63919067382812
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 889,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 979,
+        "data": {
+            "value": [
+                {
+                    "pageX": 383.551025390625,
+                    "pageY": 136.48043823242188
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 980,
+        "data": {
+            "value": [
+                {
+                    "pageX": 383.551025390625,
+                    "pageY": 136.48043823242188
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1013,
+        "data": {
+            "value": [
+                {
+                    "pageX": 390.29327392578125,
+                    "pageY": 132.1959228515625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1033,
+        "data": {
+            "value": [
+                {
+                    "pageX": 396.9094543457031,
+                    "pageY": 129.6756134033203
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1048,
+        "data": {
+            "value": [
+                {
+                    "pageX": 402.3914794921875,
+                    "pageY": 127.53335571289062
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1062,
+        "data": {
+            "value": [
+                {
+                    "pageX": 406.046142578125,
+                    "pageY": 127.72238159179688
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1069,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 1269,
+        "data": {
+            "value": [
+                {
+                    "pageX": 358.53546142578125,
+                    "pageY": 178.00245666503906
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 1280,
+        "data": {
+            "value": [
+                {
+                    "pageX": 358.2834167480469,
+                    "pageY": 177.3723907470703
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1315,
+        "data": {
+            "value": [
+                {
+                    "pageX": 373.2171325683594,
+                    "pageY": 168.36228942871094
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1330,
+        "data": {
+            "value": [
+                {
+                    "pageX": 382.6058654785156,
+                    "pageY": 163.00665283203125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1347,
+        "data": {
+            "value": [
+                {
+                    "pageX": 391.30145263671875,
+                    "pageY": 158.15505981445312
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1363,
+        "data": {
+            "value": [
+                {
+                    "pageX": 401.25726318359375,
+                    "pageY": 154.0595703125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1395,
+        "data": {
+            "value": [
+                {
+                    "pageX": 405.92010498046875,
+                    "pageY": 152.79940795898438
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1422,
+        "data": {
+            "value": [
+                {
+                    "pageX": 407.6844482421875,
+                    "pageY": 150.78317260742188
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1424,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 1515,
+        "data": {
+            "value": [
+                {
+                    "pageX": 398.4217529296875,
+                    "pageY": 119.02732849121094
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 1531,
+        "data": {
+            "value": [
+                {
+                    "pageX": 396.783447265625,
+                    "pageY": 116.94807434082031
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1547,
+        "data": {
+            "value": [
+                {
+                    "pageX": 393.5068359375,
+                    "pageY": 121.16958618164062
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1564,
+        "data": {
+            "value": [
+                {
+                    "pageX": 390.7343444824219,
+                    "pageY": 130.74673461914062
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1582,
+        "data": {
+            "value": [
+                {
+                    "pageX": 386.2605285644531,
+                    "pageY": 143.15924072265625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1595,
+        "data": {
+            "value": [
+                {
+                    "pageX": 374.41436767578125,
+                    "pageY": 168.29928588867188
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1633,
+        "data": {
+            "value": [
+                {
+                    "pageX": 363.4503479003906,
+                    "pageY": 187.45361328125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1658,
+        "data": {
+            "value": [
+                {
+                    "pageX": 345.5550842285156,
+                    "pageY": 215.61801147460938
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1693,
+        "data": {
+            "value": [
+                {
+                    "pageX": 341.7113952636719,
+                    "pageY": 221.85577392578125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1695,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 1764,
+        "data": {
+            "value": [
+                {
+                    "pageX": 371.578857421875,
+                    "pageY": 177.56141662597656
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 1800,
+        "data": {
+            "value": [
+                {
+                    "pageX": 373.3431701660156,
+                    "pageY": 191.423095703125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1813,
+        "data": {
+            "value": [
+                {
+                    "pageX": 372.3979797363281,
+                    "pageY": 208.75018310546875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1833,
+        "data": {
+            "value": [
+                {
+                    "pageX": 372.8390808105469,
+                    "pageY": 216.81517028808594
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1848,
+        "data": {
+            "value": [
+                {
+                    "pageX": 373.6582336425781,
+                    "pageY": 220.4696044921875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1865,
+        "data": {
+            "value": [
+                {
+                    "pageX": 375.8636169433594,
+                    "pageY": 220.65863037109375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1887,
+        "data": {
+            "value": [
+                {
+                    "pageX": 377.6909484863281,
+                    "pageY": 215.74403381347656
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1896,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 1946,
+        "data": {
+            "value": [
+                {
+                    "pageX": 382.4798278808594,
+                    "pageY": 183.7361602783203
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 1988,
+        "data": {
+            "value": [
+                {
+                    "pageX": 387.8988342285156,
+                    "pageY": 166.47206115722656
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 1996,
+        "data": {
+            "value": [
+                {
+                    "pageX": 391.1754150390625,
+                    "pageY": 166.47206115722656
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 2015,
+        "data": {
+            "value": [
+                {
+                    "pageX": 395.2081604003906,
+                    "pageY": 167.606201171875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 2031,
+        "data": {
+            "value": [
+                {
+                    "pageX": 399.5559387207031,
+                    "pageY": 169.87448120117188
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 2057,
+        "data": {
+            "value": [
+                {
+                    "pageX": 405.0379638671875,
+                    "pageY": 176.1122283935547
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 2068,
+        "data": {
+            "value": [
+                {
+                    "pageX": 407.0543212890625,
+                    "pageY": 182.2869873046875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 2096,
+        "data": {
+            "value": [
+                {
+                    "pageX": 407.8104553222656,
+                    "pageY": 189.78489685058594
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 2117,
+        "data": {
+            "value": [
+                {
+                    "pageX": 406.92828369140625,
+                    "pageY": 205.15875244140625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 2146,
+        "data": {
+            "value": [
+                {
+                    "pageX": 405.54205322265625,
+                    "pageY": 213.09771728515625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 2174,
+        "data": {
+            "value": [
+                {
+                    "pageX": 404.53387451171875,
+                    "pageY": 216.37411499023438
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 2185,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 2299,
+        "data": {
+            "value": [
+                {
+                    "pageX": 381.5976867675781,
+                    "pageY": 189.02879333496094
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 2330,
+        "data": {
+            "value": [
+                {
+                    "pageX": 383.1729736328125,
+                    "pageY": 191.54910278320312
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 2348,
+        "data": {
+            "value": [
+                {
+                    "pageX": 387.9618225097656,
+                    "pageY": 193.5653533935547
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 2362,
+        "data": {
+            "value": [
+                {
+                    "pageX": 391.7425231933594,
+                    "pageY": 194.13241577148438
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 2368,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 2461,
+        "data": {
+            "value": [
+                {
+                    "pageX": 382.9209289550781,
+                    "pageY": 201.18927001953125
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 2497,
+        "data": {
+            "value": [
+                {
+                    "pageX": 383.4250183105469,
+                    "pageY": 202.0083770751953
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 2546,
+        "data": {
+            "value": [
+                {
+                    "pageX": 394.5150451660156,
+                    "pageY": 202.89047241210938
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 2557,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 2656,
+        "data": {
+            "value": [
+                {
+                    "pageX": 378.88818359375,
+                    "pageY": 227.02239990234375
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 2680,
+        "data": {
+            "value": [
+                {
+                    "pageX": 381.1565856933594,
+                    "pageY": 228.72360229492188
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 2699,
+        "data": {
+            "value": [
+                {
+                    "pageX": 387.520751953125,
+                    "pageY": 225.95126342773438
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 2718,
+        "data": {
+            "value": [
+                {
+                    "pageX": 395.460205078125,
+                    "pageY": 220.65863037109375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 2725,
+        "data": {
+            "value": [
+                {
+                    "pageX": 400.123046875,
+                    "pageY": 217.4452362060547
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 2730,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 2860,
+        "data": {
+            "value": [
+                {
+                    "pageX": 468.364501953125,
+                    "pageY": 115.05784606933594
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 2896,
+        "data": {
+            "value": [
+                {
+                    "pageX": 457.27447509765625,
+                    "pageY": 127.65936279296875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 2916,
+        "data": {
+            "value": [
+                {
+                    "pageX": 453.8088684082031,
+                    "pageY": 137.5515594482422
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3018,
+        "data": {
+            "value": [
+                {
+                    "pageX": 451.60345458984375,
+                    "pageY": 141.07998657226562
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3019,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 3029,
+        "data": {
+            "value": [
+                {
+                    "pageX": 432.06988525390625,
+                    "pageY": 165.96800231933594
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 3063,
+        "data": {
+            "value": [
+                {
+                    "pageX": 444.67218017578125,
+                    "pageY": 160.73837280273438
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3083,
+        "data": {
+            "value": [
+                {
+                    "pageX": 453.24176025390625,
+                    "pageY": 157.0209197998047
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3097,
+        "data": {
+            "value": [
+                {
+                    "pageX": 462.0003662109375,
+                    "pageY": 154.68963623046875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3120,
+        "data": {
+            "value": [
+                {
+                    "pageX": 467.3563232421875,
+                    "pageY": 154.56362915039062
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3120,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 3214,
+        "data": {
+            "value": [
+                {
+                    "pageX": 437.7409362792969,
+                    "pageY": 187.0755615234375
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 3248,
+        "data": {
+            "value": [
+                {
+                    "pageX": 432.2589111328125,
+                    "pageY": 190.6669921875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3263,
+        "data": {
+            "value": [
+                {
+                    "pageX": 440.63946533203125,
+                    "pageY": 186.697509765625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3280,
+        "data": {
+            "value": [
+                {
+                    "pageX": 458.2826843261719,
+                    "pageY": 177.43539428710938
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3298,
+        "data": {
+            "value": [
+                {
+                    "pageX": 468.9316101074219,
+                    "pageY": 170.756591796875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3316,
+        "data": {
+            "value": [
+                {
+                    "pageX": 476.42999267578125,
+                    "pageY": 165.4639434814453
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3339,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 3414,
+        "data": {
+            "value": [
+                {
+                    "pageX": 470.50689697265625,
+                    "pageY": 145.7425537109375
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 3432,
+        "data": {
+            "value": [
+                {
+                    "pageX": 464.2687683105469,
+                    "pageY": 145.80555725097656
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3447,
+        "data": {
+            "value": [
+                {
+                    "pageX": 461.7483215332031,
+                    "pageY": 152.92543029785156
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3463,
+        "data": {
+            "value": [
+                {
+                    "pageX": 458.84979248046875,
+                    "pageY": 164.51882934570312
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3484,
+        "data": {
+            "value": [
+                {
+                    "pageX": 454.0609130859375,
+                    "pageY": 178.8845672607422
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3497,
+        "data": {
+            "value": [
+                {
+                    "pageX": 447.31866455078125,
+                    "pageY": 194.8885040283203
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3518,
+        "data": {
+            "value": [
+                {
+                    "pageX": 436.35467529296875,
+                    "pageY": 216.43711853027344
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3547,
+        "data": {
+            "value": [
+                {
+                    "pageX": 431.250732421875,
+                    "pageY": 226.77037048339844
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3571,
+        "data": {
+            "value": [
+                {
+                    "pageX": 429.42340087890625,
+                    "pageY": 228.53457641601562
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3577,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 3636,
+        "data": {
+            "value": [
+                {
+                    "pageX": 449.3980407714844,
+                    "pageY": 199.99212646484375
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 3637,
+        "data": {
+            "value": [
+                {
+                    "pageX": 454.7540283203125,
+                    "pageY": 196.0856475830078
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3649,
+        "data": {
+            "value": [
+                {
+                    "pageX": 459.3538818359375,
+                    "pageY": 196.7787322998047
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3664,
+        "data": {
+            "value": [
+                {
+                    "pageX": 459.4798889160156,
+                    "pageY": 207.4900360107422
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3682,
+        "data": {
+            "value": [
+                {
+                    "pageX": 457.9676208496094,
+                    "pageY": 215.4290008544922
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3698,
+        "data": {
+            "value": [
+                {
+                    "pageX": 456.0142517089844,
+                    "pageY": 221.60374450683594
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3727,
+        "data": {
+            "value": [
+                {
+                    "pageX": 454.56500244140625,
+                    "pageY": 224.12405395507812
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3746,
+        "data": {
+            "value": [
+                {
+                    "pageX": 454.8170471191406,
+                    "pageY": 219.58749389648438
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3766,
+        "data": {
+            "value": [
+                {
+                    "pageX": 460.7401123046875,
+                    "pageY": 203.64657592773438
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3781,
+        "data": {
+            "value": [
+                {
+                    "pageX": 464.6468505859375,
+                    "pageY": 193.88038635253906
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3797,
+        "data": {
+            "value": [
+                {
+                    "pageX": 468.7425842285156,
+                    "pageY": 185.56338500976562
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3813,
+        "data": {
+            "value": [
+                {
+                    "pageX": 474.16156005859375,
+                    "pageY": 179.19961547851562
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3832,
+        "data": {
+            "value": [
+                {
+                    "pageX": 476.93408203125,
+                    "pageY": 178.63253784179688
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3849,
+        "data": {
+            "value": [
+                {
+                    "pageX": 479.39154052734375,
+                    "pageY": 180.1447296142578
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3865,
+        "data": {
+            "value": [
+                {
+                    "pageX": 481.5339050292969,
+                    "pageY": 183.04307556152344
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3884,
+        "data": {
+            "value": [
+                {
+                    "pageX": 483.2982482910156,
+                    "pageY": 187.57962036132812
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3911,
+        "data": {
+            "value": [
+                {
+                    "pageX": 484.8105163574219,
+                    "pageY": 198.16490173339844
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3937,
+        "data": {
+            "value": [
+                {
+                    "pageX": 484.05438232421875,
+                    "pageY": 215.11395263671875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3963,
+        "data": {
+            "value": [
+                {
+                    "pageX": 482.73114013671875,
+                    "pageY": 222.67486572265625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 3991,
+        "data": {
+            "value": [
+                {
+                    "pageX": 479.1394958496094,
+                    "pageY": 230.8028564453125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4017,
+        "data": {
+            "value": [
+                {
+                    "pageX": 477.75323486328125,
+                    "pageY": 229.9837646484375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4022,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 4094,
+        "data": {
+            "value": [
+                {
+                    "pageX": 462.7565002441406,
+                    "pageY": 209.3172607421875
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 4131,
+        "data": {
+            "value": [
+                {
+                    "pageX": 467.48236083984375,
+                    "pageY": 206.60792541503906
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4170,
+        "data": {
+            "value": [
+                {
+                    "pageX": 471.51507568359375,
+                    "pageY": 207.30101013183594
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4192,
+        "data": {
+            "value": [
+                {
+                    "pageX": 473.9725341796875,
+                    "pageY": 208.5611572265625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4192,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 4282,
+        "data": {
+            "value": [
+                {
+                    "pageX": 462.7565002441406,
+                    "pageY": 218.20132446289062
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 4282,
+        "data": {
+            "value": [
+                {
+                    "pageX": 465.0879211425781,
+                    "pageY": 217.19320678710938
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4299,
+        "data": {
+            "value": [
+                {
+                    "pageX": 469.81378173828125,
+                    "pageY": 215.9330596923828
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4314,
+        "data": {
+            "value": [
+                {
+                    "pageX": 473.4054260253906,
+                    "pageY": 216.05906677246094
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4328,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 4387,
+        "data": {
+            "value": [
+                {
+                    "pageX": 464.6468505859375,
+                    "pageY": 232.06301879882812
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 4467,
+        "data": {
+            "value": [
+                {
+                    "pageX": 455.5101623535156,
+                    "pageY": 244.60153198242188
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4470,
+        "data": {
+            "value": [
+                {
+                    "pageX": 458.0306396484375,
+                    "pageY": 246.7437744140625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4470,
+        "data": {
+            "value": [
+                {
+                    "pageX": 464.5838317871094,
+                    "pageY": 243.34136962890625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4471,
+        "data": {
+            "value": [
+                {
+                    "pageX": 474.0355529785156,
+                    "pageY": 237.35565185546875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4482,
+        "data": {
+            "value": [
+                {
+                    "pageX": 483.42425537109375,
+                    "pageY": 227.65248107910156
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4493,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 4607,
+        "data": {
+            "value": [
+                {
+                    "pageX": 538.559326171875,
+                    "pageY": 150.84617614746094
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 4613,
+        "data": {
+            "value": [
+                {
+                    "pageX": 542.2770385742188,
+                    "pageY": 146.49864196777344
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4632,
+        "data": {
+            "value": [
+                {
+                    "pageX": 548.4521484375,
+                    "pageY": 142.08811950683594
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4651,
+        "data": {
+            "value": [
+                {
+                    "pageX": 563.5119018554688,
+                    "pageY": 138.62269592285156
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4697,
+        "data": {
+            "value": [
+                {
+                    "pageX": 575.5470581054688,
+                    "pageY": 135.5353240966797
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4698,
+        "data": {
+            "value": [
+                {
+                    "pageX": 584.872802734375,
+                    "pageY": 133.83412170410156
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4738,
+        "data": {
+            "value": [
+                {
+                    "pageX": 579.3277587890625,
+                    "pageY": 155.8237762451172
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4764,
+        "data": {
+            "value": [
+                {
+                    "pageX": 570.0650634765625,
+                    "pageY": 167.8582305908203
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4789,
+        "data": {
+            "value": [
+                {
+                    "pageX": 550.531494140625,
+                    "pageY": 190.73001098632812
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4818,
+        "data": {
+            "value": [
+                {
+                    "pageX": 538.559326171875,
+                    "pageY": 200.37017822265625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4840,
+        "data": {
+            "value": [
+                {
+                    "pageX": 539.3784790039062,
+                    "pageY": 196.14866638183594
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4853,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 4904,
+        "data": {
+            "value": [
+                {
+                    "pageX": 558.0928955078125,
+                    "pageY": 168.36228942871094
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 4930,
+        "data": {
+            "value": [
+                {
+                    "pageX": 562.1256103515625,
+                    "pageY": 172.07974243164062
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4963,
+        "data": {
+            "value": [
+                {
+                    "pageX": 561.8735961914062,
+                    "pageY": 182.91705322265625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4995,
+        "data": {
+            "value": [
+                {
+                    "pageX": 560.2352905273438,
+                    "pageY": 200.49618530273438
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4995,
+        "data": {
+            "value": [
+                {
+                    "pageX": 559.2271118164062,
+                    "pageY": 211.0814666748047
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 4999,
+        "data": {
+            "value": [
+                {
+                    "pageX": 558.8490600585938,
+                    "pageY": 218.39035034179688
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5016,
+        "data": {
+            "value": [
+                {
+                    "pageX": 559.8572387695312,
+                    "pageY": 220.53260803222656
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5050,
+        "data": {
+            "value": [
+                {
+                    "pageX": 562.1256103515625,
+                    "pageY": 217.88629150390625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5066,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 5132,
+        "data": {
+            "value": [
+                {
+                    "pageX": 587.0151977539062,
+                    "pageY": 178.82156372070312
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 5148,
+        "data": {
+            "value": [
+                {
+                    "pageX": 588.905517578125,
+                    "pageY": 182.72804260253906
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5165,
+        "data": {
+            "value": [
+                {
+                    "pageX": 589.0945434570312,
+                    "pageY": 189.91090393066406
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5182,
+        "data": {
+            "value": [
+                {
+                    "pageX": 590.9849243164062,
+                    "pageY": 193.061279296875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5198,
+        "data": {
+            "value": [
+                {
+                    "pageX": 591.9300537109375,
+                    "pageY": 193.88038635253906
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5207,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 5356,
+        "data": {
+            "value": [
+                {
+                    "pageX": 511.1493225097656,
+                    "pageY": 166.91311645507812
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 5363,
+        "data": {
+            "value": [
+                {
+                    "pageX": 510.708251953125,
+                    "pageY": 165.96800231933594
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5385,
+        "data": {
+            "value": [
+                {
+                    "pageX": 513.2286987304688,
+                    "pageY": 165.8419952392578
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5397,
+        "data": {
+            "value": [
+                {
+                    "pageX": 520.2860107421875,
+                    "pageY": 168.67733764648438
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5414,
+        "data": {
+            "value": [
+                {
+                    "pageX": 528.66650390625,
+                    "pageY": 173.52891540527344
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5422,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 5483,
+        "data": {
+            "value": [
+                {
+                    "pageX": 520.4119873046875,
+                    "pageY": 193.1873016357422
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 5497,
+        "data": {
+            "value": [
+                {
+                    "pageX": 515.8121948242188,
+                    "pageY": 199.5510711669922
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5514,
+        "data": {
+            "value": [
+                {
+                    "pageX": 516.9464111328125,
+                    "pageY": 201.6303253173828
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5535,
+        "data": {
+            "value": [
+                {
+                    "pageX": 522.3023681640625,
+                    "pageY": 202.89047241210938
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5547,
+        "data": {
+            "value": [
+                {
+                    "pageX": 528.3514404296875,
+                    "pageY": 203.96160888671875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5566,
+        "data": {
+            "value": [
+                {
+                    "pageX": 532.3211669921875,
+                    "pageY": 205.66281127929688
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5582,
+        "data": {
+            "value": [
+                {
+                    "pageX": 531.8170776367188,
+                    "pageY": 211.5855255126953
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5600,
+        "data": {
+            "value": [
+                {
+                    "pageX": 527.2802734375,
+                    "pageY": 217.31922912597656
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5616,
+        "data": {
+            "value": [
+                {
+                    "pageX": 520.4750366210938,
+                    "pageY": 223.55697631835938
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5647,
+        "data": {
+            "value": [
+                {
+                    "pageX": 512.5985717773438,
+                    "pageY": 229.66871643066406
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5670,
+        "data": {
+            "value": [
+                {
+                    "pageX": 498.2319641113281,
+                    "pageY": 239.37188720703125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5698,
+        "data": {
+            "value": [
+                {
+                    "pageX": 498.2319641113281,
+                    "pageY": 239.37188720703125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5721,
+        "data": {
+            "value": [
+                {
+                    "pageX": 513.1026611328125,
+                    "pageY": 234.394287109375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5734,
+        "data": {
+            "value": [
+                {
+                    "pageX": 534.0855102539062,
+                    "pageY": 229.29067993164062
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5750,
+        "data": {
+            "value": [
+                {
+                    "pageX": 550.468505859375,
+                    "pageY": 225.95126342773438
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5775,
+        "data": {
+            "value": [
+                {
+                    "pageX": 566.2843627929688,
+                    "pageY": 223.05291748046875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5797,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 5973,
+        "data": {
+            "value": [
+                {
+                    "pageX": 678.6968994140625,
+                    "pageY": 98.61284637451172
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 5981,
+        "data": {
+            "value": [
+                {
+                    "pageX": 675.2312622070312,
+                    "pageY": 104.28353881835938
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 5999,
+        "data": {
+            "value": [
+                {
+                    "pageX": 662.5659790039062,
+                    "pageY": 118.96430969238281
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6014,
+        "data": {
+            "value": [
+                {
+                    "pageX": 653.17724609375,
+                    "pageY": 132.0699005126953
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6029,
+        "data": {
+            "value": [
+                {
+                    "pageX": 640.8900146484375,
+                    "pageY": 147.5697784423828
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6065,
+        "data": {
+            "value": [
+                {
+                    "pageX": 631.1232299804688,
+                    "pageY": 155.69776916503906
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6103,
+        "data": {
+            "value": [
+                {
+                    "pageX": 602.0119018554688,
+                    "pageY": 169.62245178222656
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6104,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 6136,
+        "data": {
+            "value": [
+                {
+                    "pageX": 602.7050170898438,
+                    "pageY": 163.7627410888672
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 6165,
+        "data": {
+            "value": [
+                {
+                    "pageX": 625.8932495117188,
+                    "pageY": 143.726318359375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6185,
+        "data": {
+            "value": [
+                {
+                    "pageX": 644.8597412109375,
+                    "pageY": 136.0393829345703
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6198,
+        "data": {
+            "value": [
+                {
+                    "pageX": 656.8319091796875,
+                    "pageY": 133.70809936523438
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6217,
+        "data": {
+            "value": [
+                {
+                    "pageX": 666.7247314453125,
+                    "pageY": 133.83412170410156
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6233,
+        "data": {
+            "value": [
+                {
+                    "pageX": 672.2697143554688,
+                    "pageY": 135.85035705566406
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6259,
+        "data": {
+            "value": [
+                {
+                    "pageX": 673.4669799804688,
+                    "pageY": 140.38690185546875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6269,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 6341,
+        "data": {
+            "value": [
+                {
+                    "pageX": 639.188720703125,
+                    "pageY": 173.59193420410156
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 6348,
+        "data": {
+            "value": [
+                {
+                    "pageX": 635.912109375,
+                    "pageY": 179.64065551757812
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6365,
+        "data": {
+            "value": [
+                {
+                    "pageX": 632.0684204101562,
+                    "pageY": 191.54910278320312
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6381,
+        "data": {
+            "value": [
+                {
+                    "pageX": 631.8163452148438,
+                    "pageY": 202.3234100341797
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6398,
+        "data": {
+            "value": [
+                {
+                    "pageX": 632.8875732421875,
+                    "pageY": 211.52252197265625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6416,
+        "data": {
+            "value": [
+                {
+                    "pageX": 633.7697143554688,
+                    "pageY": 219.58749389648438
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6433,
+        "data": {
+            "value": [
+                {
+                    "pageX": 633.3916625976562,
+                    "pageY": 220.2175750732422
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6458,
+        "data": {
+            "value": [
+                {
+                    "pageX": 633.265625,
+                    "pageY": 219.1464385986328
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6461,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 6525,
+        "data": {
+            "value": [
+                {
+                    "pageX": 643.6625366210938,
+                    "pageY": 181.02682495117188
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 6546,
+        "data": {
+            "value": [
+                {
+                    "pageX": 657.0209350585938,
+                    "pageY": 162.37657165527344
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6564,
+        "data": {
+            "value": [
+                {
+                    "pageX": 663.76318359375,
+                    "pageY": 164.07777404785156
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6581,
+        "data": {
+            "value": [
+                {
+                    "pageX": 668.300048828125,
+                    "pageY": 167.16514587402344
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6598,
+        "data": {
+            "value": [
+                {
+                    "pageX": 671.70263671875,
+                    "pageY": 172.39479064941406
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6617,
+        "data": {
+            "value": [
+                {
+                    "pageX": 673.3409423828125,
+                    "pageY": 180.4597625732422
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6646,
+        "data": {
+            "value": [
+                {
+                    "pageX": 672.962890625,
+                    "pageY": 191.0450439453125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6673,
+        "data": {
+            "value": [
+                {
+                    "pageX": 666.5357055664062,
+                    "pageY": 222.17080688476562
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6700,
+        "data": {
+            "value": [
+                {
+                    "pageX": 663.7001953125,
+                    "pageY": 233.51217651367188
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6728,
+        "data": {
+            "value": [
+                {
+                    "pageX": 663.7001953125,
+                    "pageY": 233.51217651367188
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6752,
+        "data": {
+            "value": [
+                {
+                    "pageX": 664.2672729492188,
+                    "pageY": 225.57322692871094
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6764,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 6819,
+        "data": {
+            "value": [
+                {
+                    "pageX": 651.9800415039062,
+                    "pageY": 188.0206756591797
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 6832,
+        "data": {
+            "value": [
+                {
+                    "pageX": 649.0184936523438,
+                    "pageY": 184.4292449951172
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6852,
+        "data": {
+            "value": [
+                {
+                    "pageX": 648.8924560546875,
+                    "pageY": 185.37435913085938
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6864,
+        "data": {
+            "value": [
+                {
+                    "pageX": 651.5389404296875,
+                    "pageY": 187.0755615234375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6880,
+        "data": {
+            "value": [
+                {
+                    "pageX": 657.14697265625,
+                    "pageY": 189.5958709716797
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6924,
+        "data": {
+            "value": [
+                {
+                    "pageX": 660.2975463867188,
+                    "pageY": 190.0999298095703
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 6925,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 6987,
+        "data": {
+            "value": [
+                {
+                    "pageX": 650.7828369140625,
+                    "pageY": 201.6303253173828
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 7013,
+        "data": {
+            "value": [
+                {
+                    "pageX": 649.0814819335938,
+                    "pageY": 208.62417602539062
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7030,
+        "data": {
+            "value": [
+                {
+                    "pageX": 658.2182006835938,
+                    "pageY": 208.6871795654297
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7050,
+        "data": {
+            "value": [
+                {
+                    "pageX": 664.8973999023438,
+                    "pageY": 204.90672302246094
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7059,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 7432,
+        "data": {
+            "value": [
+                {
+                    "pageX": 330.9364318847656,
+                    "pageY": 316.9972839355469
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 7447,
+        "data": {
+            "value": [
+                {
+                    "pageX": 338.2457580566406,
+                    "pageY": 310.1924743652344
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7466,
+        "data": {
+            "value": [
+                {
+                    "pageX": 349.58782958984375,
+                    "pageY": 308.11322021484375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7481,
+        "data": {
+            "value": [
+                {
+                    "pageX": 368.995361328125,
+                    "pageY": 309.2473449707031
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7497,
+        "data": {
+            "value": [
+                {
+                    "pageX": 379.581298828125,
+                    "pageY": 314.5400085449219
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7523,
+        "data": {
+            "value": [
+                {
+                    "pageX": 385.3153381347656,
+                    "pageY": 323.8651123046875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7561,
+        "data": {
+            "value": [
+                {
+                    "pageX": 385.69342041015625,
+                    "pageY": 354.7388610839844
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7589,
+        "data": {
+            "value": [
+                {
+                    "pageX": 376.5567626953125,
+                    "pageY": 399.4112854003906
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7614,
+        "data": {
+            "value": [
+                {
+                    "pageX": 373.3431701660156,
+                    "pageY": 409.9965515136719
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7639,
+        "data": {
+            "value": [
+                {
+                    "pageX": 370.0035705566406,
+                    "pageY": 415.2261962890625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7667,
+        "data": {
+            "value": [
+                {
+                    "pageX": 366.85296630859375,
+                    "pageY": 396.76495361328125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7698,
+        "data": {
+            "value": [
+                {
+                    "pageX": 360.6148376464844,
+                    "pageY": 377.4216003417969
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7712,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 7750,
+        "data": {
+            "value": [
+                {
+                    "pageX": 344.7989501953125,
+                    "pageY": 356.818115234375
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 7757,
+        "data": {
+            "value": [
+                {
+                    "pageX": 340.01007080078125,
+                    "pageY": 353.9197692871094
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7766,
+        "data": {
+            "value": [
+                {
+                    "pageX": 333.9609680175781,
+                    "pageY": 351.2734375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7781,
+        "data": {
+            "value": [
+                {
+                    "pageX": 334.7801208496094,
+                    "pageY": 349.82427978515625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7823,
+        "data": {
+            "value": [
+                {
+                    "pageX": 353.8096008300781,
+                    "pageY": 345.1617126464844
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7834,
+        "data": {
+            "value": [
+                {
+                    "pageX": 361.6230163574219,
+                    "pageY": 343.8385314941406
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7849,
+        "data": {
+            "value": [
+                {
+                    "pageX": 366.348876953125,
+                    "pageY": 344.9726867675781
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7861,
+        "data": {
+            "value": [
+                {
+                    "pageX": 366.348876953125,
+                    "pageY": 346.23284912109375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7901,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 7939,
+        "data": {
+            "value": [
+                {
+                    "pageX": 353.9986267089844,
+                    "pageY": 366.2692565917969
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 7939,
+        "data": {
+            "value": [
+                {
+                    "pageX": 339.4429626464844,
+                    "pageY": 381.8951416015625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7946,
+        "data": {
+            "value": [
+                {
+                    "pageX": 341.0812683105469,
+                    "pageY": 384.85650634765625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7965,
+        "data": {
+            "value": [
+                {
+                    "pageX": 347.3824157714844,
+                    "pageY": 382.46221923828125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 7982,
+        "data": {
+            "value": [
+                {
+                    "pageX": 355.19586181640625,
+                    "pageY": 377.0435791015625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8001,
+        "data": {
+            "value": [
+                {
+                    "pageX": 362.5682067871094,
+                    "pageY": 370.0497131347656
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8024,
+        "data": {
+            "value": [
+                {
+                    "pageX": 368.8693542480469,
+                    "pageY": 363.81195068359375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8047,
+        "data": {
+            "value": [
+                {
+                    "pageX": 371.578857421875,
+                    "pageY": 357.38519287109375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8056,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 8103,
+        "data": {
+            "value": [
+                {
+                    "pageX": 360.2997741699219,
+                    "pageY": 341.5702819824219
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 8108,
+        "data": {
+            "value": [
+                {
+                    "pageX": 356.1410217285156,
+                    "pageY": 340.2471008300781
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8115,
+        "data": {
+            "value": [
+                {
+                    "pageX": 351.8562316894531,
+                    "pageY": 343.1454772949219
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8134,
+        "data": {
+            "value": [
+                {
+                    "pageX": 351.54119873046875,
+                    "pageY": 351.5884704589844
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8150,
+        "data": {
+            "value": [
+                {
+                    "pageX": 352.7384033203125,
+                    "pageY": 363.118896484375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8180,
+        "data": {
+            "value": [
+                {
+                    "pageX": 353.87261962890625,
+                    "pageY": 376.5395202636719
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8204,
+        "data": {
+            "value": [
+                {
+                    "pageX": 355.3218688964844,
+                    "pageY": 401.8055725097656
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8233,
+        "data": {
+            "value": [
+                {
+                    "pageX": 356.39306640625,
+                    "pageY": 404.1368408203125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8235,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 8319,
+        "data": {
+            "value": [
+                {
+                    "pageX": 393.5698547363281,
+                    "pageY": 332.3081359863281
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 8347,
+        "data": {
+            "value": [
+                {
+                    "pageX": 409.0706787109375,
+                    "pageY": 320.39971923828125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8369,
+        "data": {
+            "value": [
+                {
+                    "pageX": 410.51995849609375,
+                    "pageY": 325.25128173828125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8382,
+        "data": {
+            "value": [
+                {
+                    "pageX": 410.7720031738281,
+                    "pageY": 329.97686767578125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8396,
+        "data": {
+            "value": [
+                {
+                    "pageX": 409.6377868652344,
+                    "pageY": 334.2613830566406
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8415,
+        "data": {
+            "value": [
+                {
+                    "pageX": 405.92010498046875,
+                    "pageY": 340.75115966796875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8442,
+        "data": {
+            "value": [
+                {
+                    "pageX": 403.90374755859375,
+                    "pageY": 344.090576171875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8468,
+        "data": {
+            "value": [
+                {
+                    "pageX": 407.4324035644531,
+                    "pageY": 346.29583740234375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8495,
+        "data": {
+            "value": [
+                {
+                    "pageX": 415.371826171875,
+                    "pageY": 347.11492919921875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8526,
+        "data": {
+            "value": [
+                {
+                    "pageX": 421.5469665527344,
+                    "pageY": 351.6514892578125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8559,
+        "data": {
+            "value": [
+                {
+                    "pageX": 417.6402587890625,
+                    "pageY": 361.2286376953125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8585,
+        "data": {
+            "value": [
+                {
+                    "pageX": 405.9831237792969,
+                    "pageY": 367.0883483886719
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8615,
+        "data": {
+            "value": [
+                {
+                    "pageX": 400.6901550292969,
+                    "pageY": 363.6859436035156
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8642,
+        "data": {
+            "value": [
+                {
+                    "pageX": 392.8767395019531,
+                    "pageY": 343.8385314941406
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8666,
+        "data": {
+            "value": [
+                {
+                    "pageX": 392.8767395019531,
+                    "pageY": 337.726806640625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8691,
+        "data": {
+            "value": [
+                {
+                    "pageX": 394.95611572265625,
+                    "pageY": 339.8060607910156
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8727,
+        "data": {
+            "value": [
+                {
+                    "pageX": 397.1614990234375,
+                    "pageY": 369.29364013671875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8732,
+        "data": {
+            "value": [
+                {
+                    "pageX": 397.1614990234375,
+                    "pageY": 385.423583984375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8750,
+        "data": {
+            "value": [
+                {
+                    "pageX": 396.27935791015625,
+                    "pageY": 399.2852478027344
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8772,
+        "data": {
+            "value": [
+                {
+                    "pageX": 396.1533203125,
+                    "pageY": 407.728271484375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8804,
+        "data": {
+            "value": [
+                {
+                    "pageX": 400.123046875,
+                    "pageY": 405.3970031738281
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8811,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 8900,
+        "data": {
+            "value": [
+                {
+                    "pageX": 440.513427734375,
+                    "pageY": 324.2431640625
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 8936,
+        "data": {
+            "value": [
+                {
+                    "pageX": 443.4749755859375,
+                    "pageY": 338.9869689941406
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8949,
+        "data": {
+            "value": [
+                {
+                    "pageX": 438.9381408691406,
+                    "pageY": 357.1331481933594
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8966,
+        "data": {
+            "value": [
+                {
+                    "pageX": 436.1026306152344,
+                    "pageY": 365.0721130371094
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 8984,
+        "data": {
+            "value": [
+                {
+                    "pageX": 433.70819091796875,
+                    "pageY": 367.5924377441406
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9003,
+        "data": {
+            "value": [
+                {
+                    "pageX": 433.70819091796875,
+                    "pageY": 366.0172424316406
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9006,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 9049,
+        "data": {
+            "value": [
+                {
+                    "pageX": 448.8939514160156,
+                    "pageY": 344.3426208496094
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 9081,
+        "data": {
+            "value": [
+                {
+                    "pageX": 468.5535583496094,
+                    "pageY": 324.81024169921875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9096,
+        "data": {
+            "value": [
+                {
+                    "pageX": 468.6795654296875,
+                    "pageY": 333.94635009765625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9116,
+        "data": {
+            "value": [
+                {
+                    "pageX": 464.331787109375,
+                    "pageY": 346.7369079589844
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9138,
+        "data": {
+            "value": [
+                {
+                    "pageX": 457.715576171875,
+                    "pageY": 362.4258117675781
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9149,
+        "data": {
+            "value": [
+                {
+                    "pageX": 451.1623840332031,
+                    "pageY": 377.9886779785156
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9166,
+        "data": {
+            "value": [
+                {
+                    "pageX": 447.129638671875,
+                    "pageY": 389.8341064453125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9198,
+        "data": {
+            "value": [
+                {
+                    "pageX": 448.26385498046875,
+                    "pageY": 396.76495361328125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9222,
+        "data": {
+            "value": [
+                {
+                    "pageX": 459.85797119140625,
+                    "pageY": 390.5271911621094
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9253,
+        "data": {
+            "value": [
+                {
+                    "pageX": 472.77532958984375,
+                    "pageY": 375.4053649902344
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9255,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 9320,
+        "data": {
+            "value": [
+                {
+                    "pageX": 477.9422607421875,
+                    "pageY": 355.43194580078125
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 9346,
+        "data": {
+            "value": [
+                {
+                    "pageX": 478.3833312988281,
+                    "pageY": 371.0578308105469
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9365,
+        "data": {
+            "value": [
+                {
+                    "pageX": 480.08465576171875,
+                    "pageY": 381.0760498046875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9382,
+        "data": {
+            "value": [
+                {
+                    "pageX": 483.2982482910156,
+                    "pageY": 389.2670593261719
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9401,
+        "data": {
+            "value": [
+                {
+                    "pageX": 490.2294921875,
+                    "pageY": 394.4336853027344
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9416,
+        "data": {
+            "value": [
+                {
+                    "pageX": 492.9389953613281,
+                    "pageY": 393.425537109375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9419,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 9534,
+        "data": {
+            "value": [
+                {
+                    "pageX": 511.9684753417969,
+                    "pageY": 340.2471008300781
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 9547,
+        "data": {
+            "value": [
+                {
+                    "pageX": 515.4971313476562,
+                    "pageY": 342.32635498046875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9565,
+        "data": {
+            "value": [
+                {
+                    "pageX": 520.1599731445312,
+                    "pageY": 344.0275573730469
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9588,
+        "data": {
+            "value": [
+                {
+                    "pageX": 529.6116943359375,
+                    "pageY": 340.8141784667969
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9598,
+        "data": {
+            "value": [
+                {
+                    "pageX": 539.25244140625,
+                    "pageY": 333.8833312988281
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9623,
+        "data": {
+            "value": [
+                {
+                    "pageX": 543.6632690429688,
+                    "pageY": 330.2289123535156
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9635,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 9722,
+        "data": {
+            "value": [
+                {
+                    "pageX": 525.263916015625,
+                    "pageY": 298.15802001953125
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 9748,
+        "data": {
+            "value": [
+                {
+                    "pageX": 515.5601196289062,
+                    "pageY": 320.84075927734375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9769,
+        "data": {
+            "value": [
+                {
+                    "pageX": 513.2916870117188,
+                    "pageY": 342.0113220214844
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9781,
+        "data": {
+            "value": [
+                {
+                    "pageX": 515.6231689453125,
+                    "pageY": 372.06597900390625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9798,
+        "data": {
+            "value": [
+                {
+                    "pageX": 518.2066040039062,
+                    "pageY": 386.7467346191406
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9819,
+        "data": {
+            "value": [
+                {
+                    "pageX": 520.8530883789062,
+                    "pageY": 396.1348876953125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9833,
+        "data": {
+            "value": [
+                {
+                    "pageX": 523.4365844726562,
+                    "pageY": 400.9234619140625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9859,
+        "data": {
+            "value": [
+                {
+                    "pageX": 527.1542358398438,
+                    "pageY": 396.00885009765625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9869,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 9954,
+        "data": {
+            "value": [
+                {
+                    "pageX": 556.5176391601562,
+                    "pageY": 301.8124694824219
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 9980,
+        "data": {
+            "value": [
+                {
+                    "pageX": 548.1370849609375,
+                    "pageY": 309.2473449707031
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 9997,
+        "data": {
+            "value": [
+                {
+                    "pageX": 538.8114013671875,
+                    "pageY": 321.65985107421875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10021,
+        "data": {
+            "value": [
+                {
+                    "pageX": 528.603515625,
+                    "pageY": 333.0642395019531
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10032,
+        "data": {
+            "value": [
+                {
+                    "pageX": 523.8146362304688,
+                    "pageY": 337.2227478027344
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10049,
+        "data": {
+            "value": [
+                {
+                    "pageX": 521.1051635742188,
+                    "pageY": 339.6800537109375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10074,
+        "data": {
+            "value": [
+                {
+                    "pageX": 520.5380249023438,
+                    "pageY": 341.12921142578125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10090,
+        "data": {
+            "value": [
+                {
+                    "pageX": 521.7352294921875,
+                    "pageY": 342.70440673828125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10102,
+        "data": {
+            "value": [
+                {
+                    "pageX": 527.34326171875,
+                    "pageY": 347.303955078125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10117,
+        "data": {
+            "value": [
+                {
+                    "pageX": 533.1403198242188,
+                    "pageY": 352.1555480957031
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10144,
+        "data": {
+            "value": [
+                {
+                    "pageX": 539.6305541992188,
+                    "pageY": 358.64532470703125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10173,
+        "data": {
+            "value": [
+                {
+                    "pageX": 554.8162841796875,
+                    "pageY": 372.7590637207031
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10203,
+        "data": {
+            "value": [
+                {
+                    "pageX": 564.7720947265625,
+                    "pageY": 375.846435546875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10214,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 10406,
+        "data": {
+            "value": [
+                {
+                    "pageX": 636.2271728515625,
+                    "pageY": 288.454833984375
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 10431,
+        "data": {
+            "value": [
+                {
+                    "pageX": 631.0602416992188,
+                    "pageY": 286.9426574707031
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10448,
+        "data": {
+            "value": [
+                {
+                    "pageX": 627.0905151367188,
+                    "pageY": 292.6763610839844
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10480,
+        "data": {
+            "value": [
+                {
+                    "pageX": 622.5536499023438,
+                    "pageY": 301.8124694824219
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10480,
+        "data": {
+            "value": [
+                {
+                    "pageX": 610.8965454101562,
+                    "pageY": 323.0460205078125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10516,
+        "data": {
+            "value": [
+                {
+                    "pageX": 600.6256713867188,
+                    "pageY": 339.2389831542969
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10548,
+        "data": {
+            "value": [
+                {
+                    "pageX": 585.0618286132812,
+                    "pageY": 358.0782775878906
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10577,
+        "data": {
+            "value": [
+                {
+                    "pageX": 588.0233764648438,
+                    "pageY": 346.67388916015625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10603,
+        "data": {
+            "value": [
+                {
+                    "pageX": 599.8695068359375,
+                    "pageY": 339.93206787109375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10637,
+        "data": {
+            "value": [
+                {
+                    "pageX": 604.2173461914062,
+                    "pageY": 345.4137268066406
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10655,
+        "data": {
+            "value": [
+                {
+                    "pageX": 605.1624755859375,
+                    "pageY": 376.6025085449219
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10684,
+        "data": {
+            "value": [
+                {
+                    "pageX": 602.6420288085938,
+                    "pageY": 388.9519958496094
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10713,
+        "data": {
+            "value": [
+                {
+                    "pageX": 601.6338500976562,
+                    "pageY": 394.6227111816406
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10736,
+        "data": {
+            "value": [
+                {
+                    "pageX": 614.4251708984375,
+                    "pageY": 360.53558349609375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10764,
+        "data": {
+            "value": [
+                {
+                    "pageX": 624.1289672851562,
+                    "pageY": 340.877197265625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10789,
+        "data": {
+            "value": [
+                {
+                    "pageX": 640.7009887695312,
+                    "pageY": 323.8651123046875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10816,
+        "data": {
+            "value": [
+                {
+                    "pageX": 641.26806640625,
+                    "pageY": 329.2837829589844
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10844,
+        "data": {
+            "value": [
+                {
+                    "pageX": 634.65185546875,
+                    "pageY": 348.5641174316406
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10875,
+        "data": {
+            "value": [
+                {
+                    "pageX": 625.38916015625,
+                    "pageY": 363.181884765625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10903,
+        "data": {
+            "value": [
+                {
+                    "pageX": 626.2083129882812,
+                    "pageY": 360.22052001953125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10926,
+        "data": {
+            "value": [
+                {
+                    "pageX": 636.8572998046875,
+                    "pageY": 344.4056091308594
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10954,
+        "data": {
+            "value": [
+                {
+                    "pageX": 648.7664794921875,
+                    "pageY": 334.8914489746094
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 10977,
+        "data": {
+            "value": [
+                {
+                    "pageX": 662.0618896484375,
+                    "pageY": 336.8446960449219
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11006,
+        "data": {
+            "value": [
+                {
+                    "pageX": 666.1576538085938,
+                    "pageY": 352.4705810546875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11034,
+        "data": {
+            "value": [
+                {
+                    "pageX": 662.8810424804688,
+                    "pageY": 366.8363342285156
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11063,
+        "data": {
+            "value": [
+                {
+                    "pageX": 657.083984375,
+                    "pageY": 378.3037109375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11086,
+        "data": {
+            "value": [
+                {
+                    "pageX": 658.0921630859375,
+                    "pageY": 364.0009765625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11113,
+        "data": {
+            "value": [
+                {
+                    "pageX": 661.9988403320312,
+                    "pageY": 346.5478820800781
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11120,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 11186,
+        "data": {
+            "value": [
+                {
+                    "pageX": 699.1756591796875,
+                    "pageY": 284.42236328125
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 11213,
+        "data": {
+            "value": [
+                {
+                    "pageX": 701.8221435546875,
+                    "pageY": 304.0807189941406
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11229,
+        "data": {
+            "value": [
+                {
+                    "pageX": 700.6879272460938,
+                    "pageY": 310.5705261230469
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11248,
+        "data": {
+            "value": [
+                {
+                    "pageX": 703.3344116210938,
+                    "pageY": 308.86932373046875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11269,
+        "data": {
+            "value": [
+                {
+                    "pageX": 708.75341796875,
+                    "pageY": 302.0644836425781
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11299,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 11326,
+        "data": {
+            "value": [
+                {
+                    "pageX": 731.941650390625,
+                    "pageY": 281.3349914550781
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 11348,
+        "data": {
+            "value": [
+                {
+                    "pageX": 735.0291748046875,
+                    "pageY": 284.5483703613281
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11364,
+        "data": {
+            "value": [
+                {
+                    "pageX": 726.648681640625,
+                    "pageY": 295.9527587890625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11385,
+        "data": {
+            "value": [
+                {
+                    "pageX": 714.1724243164062,
+                    "pageY": 308.55426025390625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11399,
+        "data": {
+            "value": [
+                {
+                    "pageX": 692.3704223632812,
+                    "pageY": 327.2675476074219
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11414,
+        "data": {
+            "value": [
+                {
+                    "pageX": 679.3270263671875,
+                    "pageY": 337.15972900390625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11435,
+        "data": {
+            "value": [
+                {
+                    "pageX": 671.5765991210938,
+                    "pageY": 342.7674255371094
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11464,
+        "data": {
+            "value": [
+                {
+                    "pageX": 670.1903686523438,
+                    "pageY": 343.7755432128906
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11499,
+        "data": {
+            "value": [
+                {
+                    "pageX": 708.8794555664062,
+                    "pageY": 316.87127685546875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11517,
+        "data": {
+            "value": [
+                {
+                    "pageX": 722.6159057617188,
+                    "pageY": 309.4363708496094
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11579,
+        "data": {
+            "value": [
+                {
+                    "pageX": 730.9334716796875,
+                    "pageY": 303.57666015625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11579,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 11662,
+        "data": {
+            "value": [
+                {
+                    "pageX": 714.676513671875,
+                    "pageY": 290.0930480957031
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 11664,
+        "data": {
+            "value": [
+                {
+                    "pageX": 714.5504760742188,
+                    "pageY": 298.3470458984375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11681,
+        "data": {
+            "value": [
+                {
+                    "pageX": 714.3614501953125,
+                    "pageY": 315.29608154296875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11697,
+        "data": {
+            "value": [
+                {
+                    "pageX": 716.81884765625,
+                    "pageY": 329.53582763671875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11715,
+        "data": {
+            "value": [
+                {
+                    "pageX": 718.3311767578125,
+                    "pageY": 332.3081359863281
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11746,
+        "data": {
+            "value": [
+                {
+                    "pageX": 718.9612426757812,
+                    "pageY": 330.73297119140625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11799,
+        "data": {
+            "value": [
+                {
+                    "pageX": 704.7206420898438,
+                    "pageY": 335.0174865722656
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11816,
+        "data": {
+            "value": [
+                {
+                    "pageX": 701.0659790039062,
+                    "pageY": 343.6495361328125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11832,
+        "data": {
+            "value": [
+                {
+                    "pageX": 699.3016967773438,
+                    "pageY": 351.9035339355469
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11847,
+        "data": {
+            "value": [
+                {
+                    "pageX": 701.570068359375,
+                    "pageY": 360.78759765625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11865,
+        "data": {
+            "value": [
+                {
+                    "pageX": 706.6740112304688,
+                    "pageY": 365.2611389160156
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11889,
+        "data": {
+            "value": [
+                {
+                    "pageX": 713.5422973632812,
+                    "pageY": 368.97857666015625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11922,
+        "data": {
+            "value": [
+                {
+                    "pageX": 728.60205078125,
+                    "pageY": 376.3504943847656
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11949,
+        "data": {
+            "value": [
+                {
+                    "pageX": 736.0374145507812,
+                    "pageY": 381.26507568359375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11971,
+        "data": {
+            "value": [
+                {
+                    "pageX": 735.974365234375,
+                    "pageY": 383.029296875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 11998,
+        "data": {
+            "value": [
+                {
+                    "pageX": 732.2567138671875,
+                    "pageY": 379.68988037109375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12014,
+        "data": {
+            "value": [
+                {
+                    "pageX": 718.8352661132812,
+                    "pageY": 358.1412658691406
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12037,
+        "data": {
+            "value": [
+                {
+                    "pageX": 717.8900756835938,
+                    "pageY": 348.62713623046875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12056,
+        "data": {
+            "value": [
+                {
+                    "pageX": 721.1036376953125,
+                    "pageY": 340.75115966796875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12088,
+        "data": {
+            "value": [
+                {
+                    "pageX": 726.7747192382812,
+                    "pageY": 334.1353759765625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12108,
+        "data": {
+            "value": [
+                {
+                    "pageX": 741.0153198242188,
+                    "pageY": 324.5581970214844
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12136,
+        "data": {
+            "value": [
+                {
+                    "pageX": 740.0701293945312,
+                    "pageY": 333.94635009765625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12164,
+        "data": {
+            "value": [
+                {
+                    "pageX": 733.2018432617188,
+                    "pageY": 344.5946350097656
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12188,
+        "data": {
+            "value": [
+                {
+                    "pageX": 703.5234375,
+                    "pageY": 374.2082214355469
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12217,
+        "data": {
+            "value": [
+                {
+                    "pageX": 689.9759521484375,
+                    "pageY": 382.5252380371094
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12242,
+        "data": {
+            "value": [
+                {
+                    "pageX": 671.765625,
+                    "pageY": 383.4073486328125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12269,
+        "data": {
+            "value": [
+                {
+                    "pageX": 684.7460327148438,
+                    "pageY": 365.1351318359375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12299,
+        "data": {
+            "value": [
+                {
+                    "pageX": 699.0496215820312,
+                    "pageY": 354.61285400390625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12324,
+        "data": {
+            "value": [
+                {
+                    "pageX": 736.2894287109375,
+                    "pageY": 334.0723571777344
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12354,
+        "data": {
+            "value": [
+                {
+                    "pageX": 745.3630981445312,
+                    "pageY": 328.33868408203125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12366,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 12457,
+        "data": {
+            "value": [
+                {
+                    "pageX": 766.471923828125,
+                    "pageY": 279.06671142578125
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 12463,
+        "data": {
+            "value": [
+                {
+                    "pageX": 762.8803100585938,
+                    "pageY": 285.87152099609375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12480,
+        "data": {
+            "value": [
+                {
+                    "pageX": 751.0341186523438,
+                    "pageY": 304.0807189941406
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12500,
+        "data": {
+            "value": [
+                {
+                    "pageX": 744.1028442382812,
+                    "pageY": 317.24932861328125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12520,
+        "data": {
+            "value": [
+                {
+                    "pageX": 742.0234985351562,
+                    "pageY": 323.8021240234375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12532,
+        "data": {
+            "value": [
+                {
+                    "pageX": 743.7877807617188,
+                    "pageY": 324.6212158203125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12552,
+        "data": {
+            "value": [
+                {
+                    "pageX": 752.7984619140625,
+                    "pageY": 320.210693359375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12565,
+        "data": {
+            "value": [
+                {
+                    "pageX": 761.80908203125,
+                    "pageY": 316.8082580566406
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12581,
+        "data": {
+            "value": [
+                {
+                    "pageX": 770.5046997070312,
+                    "pageY": 314.9810485839844
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12600,
+        "data": {
+            "value": [
+                {
+                    "pageX": 776.4907836914062,
+                    "pageY": 316.1781921386719
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12628,
+        "data": {
+            "value": [
+                {
+                    "pageX": 778.0030517578125,
+                    "pageY": 324.2431640625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12652,
+        "data": {
+            "value": [
+                {
+                    "pageX": 767.3541259765625,
+                    "pageY": 343.6495361328125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12684,
+        "data": {
+            "value": [
+                {
+                    "pageX": 750.7821044921875,
+                    "pageY": 359.8424987792969
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12709,
+        "data": {
+            "value": [
+                {
+                    "pageX": 738.620849609375,
+                    "pageY": 363.3078918457031
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12724,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 12769,
+        "data": {
+            "value": [
+                {
+                    "pageX": 733.1388549804688,
+                    "pageY": 346.67388916015625
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 12798,
+        "data": {
+            "value": [
+                {
+                    "pageX": 756.8941650390625,
+                    "pageY": 341.6962890625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12813,
+        "data": {
+            "value": [
+                {
+                    "pageX": 764.8966674804688,
+                    "pageY": 345.6027526855469
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12831,
+        "data": {
+            "value": [
+                {
+                    "pageX": 771.1978149414062,
+                    "pageY": 349.63525390625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12857,
+        "data": {
+            "value": [
+                {
+                    "pageX": 777.1838989257812,
+                    "pageY": 353.47869873046875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 12864,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 12992,
+        "data": {
+            "value": [
+                {
+                    "pageX": 816.3140258789062,
+                    "pageY": 277.7435302734375
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 13001,
+        "data": {
+            "value": [
+                {
+                    "pageX": 815.5579223632812,
+                    "pageY": 283.03619384765625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13014,
+        "data": {
+            "value": [
+                {
+                    "pageX": 810.5800170898438,
+                    "pageY": 295.00762939453125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13032,
+        "data": {
+            "value": [
+                {
+                    "pageX": 810.0128784179688,
+                    "pageY": 301.119384765625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13049,
+        "data": {
+            "value": [
+                {
+                    "pageX": 811.7142333984375,
+                    "pageY": 304.2067565917969
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13076,
+        "data": {
+            "value": [
+                {
+                    "pageX": 813.7305908203125,
+                    "pageY": 308.11322021484375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13116,
+        "data": {
+            "value": [
+                {
+                    "pageX": 818.015380859375,
+                    "pageY": 324.6212158203125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13143,
+        "data": {
+            "value": [
+                {
+                    "pageX": 820.15771484375,
+                    "pageY": 339.9950866699219
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13169,
+        "data": {
+            "value": [
+                {
+                    "pageX": 812.5963745117188,
+                    "pageY": 362.7408447265625
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13196,
+        "data": {
+            "value": [
+                {
+                    "pageX": 807.1143798828125,
+                    "pageY": 370.2387390136719
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13221,
+        "data": {
+            "value": [
+                {
+                    "pageX": 797.4736328125,
+                    "pageY": 374.7752990722656
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13248,
+        "data": {
+            "value": [
+                {
+                    "pageX": 796.150390625,
+                    "pageY": 367.1513671875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13275,
+        "data": {
+            "value": [
+                {
+                    "pageX": 806.9883422851562,
+                    "pageY": 341.1922302246094
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13292,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 13333,
+        "data": {
+            "value": [
+                {
+                    "pageX": 850.6553344726562,
+                    "pageY": 299.2291564941406
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 13336,
+        "data": {
+            "value": [
+                {
+                    "pageX": 858.2166748046875,
+                    "pageY": 293.6844787597656
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13349,
+        "data": {
+            "value": [
+                {
+                    "pageX": 880.2706909179688,
+                    "pageY": 282.3431091308594
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13364,
+        "data": {
+            "value": [
+                {
+                    "pageX": 890.982666015625,
+                    "pageY": 279.6337585449219
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13382,
+        "data": {
+            "value": [
+                {
+                    "pageX": 898.7960815429688,
+                    "pageY": 279.69677734375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13410,
+        "data": {
+            "value": [
+                {
+                    "pageX": 899.6782836914062,
+                    "pageY": 282.9731750488281
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13443,
+        "data": {
+            "value": [
+                {
+                    "pageX": 889.9744873046875,
+                    "pageY": 300.36328125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13462,
+        "data": {
+            "value": [
+                {
+                    "pageX": 880.1447143554688,
+                    "pageY": 313.846923828125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13489,
+        "data": {
+            "value": [
+                {
+                    "pageX": 851.8525390625,
+                    "pageY": 352.65960693359375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13516,
+        "data": {
+            "value": [
+                {
+                    "pageX": 838.68310546875,
+                    "pageY": 367.0883483886719
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13540,
+        "data": {
+            "value": [
+                {
+                    "pageX": 836.7927856445312,
+                    "pageY": 365.7021789550781
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13549,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 13623,
+        "data": {
+            "value": [
+                {
+                    "pageX": 878.1913452148438,
+                    "pageY": 309.2473449707031
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 13630,
+        "data": {
+            "value": [
+                {
+                    "pageX": 880.2706909179688,
+                    "pageY": 311.8936767578125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13649,
+        "data": {
+            "value": [
+                {
+                    "pageX": 882.6651611328125,
+                    "pageY": 328.77972412109375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13665,
+        "data": {
+            "value": [
+                {
+                    "pageX": 881.5939331054688,
+                    "pageY": 347.11492919921875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13684,
+        "data": {
+            "value": [
+                {
+                    "pageX": 880.396728515625,
+                    "pageY": 361.606689453125
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13698,
+        "data": {
+            "value": [
+                {
+                    "pageX": 879.1995239257812,
+                    "pageY": 376.1614685058594
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13718,
+        "data": {
+            "value": [
+                {
+                    "pageX": 879.010498046875,
+                    "pageY": 378.3667297363281
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13746,
+        "data": {
+            "value": [
+                {
+                    "pageX": 878.7584228515625,
+                    "pageY": 377.5476379394531
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13753,
+        "data": {
+            "actionTypes": 3
+        }
+    },
+    {
+        "time": 13841,
+        "data": {
+            "value": [
+                {
+                    "pageX": 906.16845703125,
+                    "pageY": 327.2675476074219
+                }
+            ],
+            "actionTypes": 1
+        }
+    },
+    {
+        "time": 13847,
+        "data": {
+            "value": [
+                {
+                    "pageX": 910.13818359375,
+                    "pageY": 330.41790771484375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13866,
+        "data": {
+            "value": [
+                {
+                    "pageX": 919.5269165039062,
+                    "pageY": 343.271484375
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13885,
+        "data": {
+            "value": [
+                {
+                    "pageX": 925.8910522460938,
+                    "pageY": 349.5722351074219
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13894,
+        "data": {
+            "value": [
+                {
+                    "pageX": 929.1046142578125,
+                    "pageY": 349.6982421875
+                }
+            ],
+            "actionTypes": 2
+        }
+    },
+    {
+        "time": 13903,
+        "data": {
+            "actionTypes": 3
+        }
+    }
+]

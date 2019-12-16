@@ -5,7 +5,7 @@
  * @Author: banlangen
  * @Date: 2019-12-06 13:28:23
  * @LastEditors: banlangen
- * @LastEditTime: 2019-12-16 10:06:41
+ * @LastEditTime: 2019-12-16 13:34:22
  -->
 
 <style lang="scss">
@@ -615,8 +615,9 @@ export default {
                 // y: this.limit(this.getInt(touch.pageY), 2, height - 2)
                 // 基于屏幕的 0 的位置
                 // 需要 算出来 当前画板的 左上角位置  减 画板位置
-                x: this.limit(touch.pageX - boundingClientRect.left, 2, width - 2),
-                y: this.limit(touch.pageY - boundingClientRect.top, 2, height - 2)
+                // 四舍五入
+                x: this.limit((touch.pageX - boundingClientRect.left).toFixed(2), 2, width),
+                y: this.limit((touch.pageY - boundingClientRect.top).toFixed(2), 2, height)
             }
             // move 到边
             return coordinate
@@ -1076,7 +1077,7 @@ export default {
 
                 // k = this.limit(k * scale, 0.5, 30)
 
-                k = this.limit(k * scale, this.minScale, this.maxScale)
+                k = this.limit(k * scale, this.minScale, this.maxScale).toFixed(2)
                 
                 //  防止 抖动
                 if (k == this.scale) return
@@ -1244,8 +1245,8 @@ export default {
 
                 if (this.geometry == 4 || this.geometry == 6 || this.geometry == 7) {
                     pointObj.centra = {
-                        x: this.circleMidpoin.x - image.x,
-                        y: this.circleMidpoin.y - image.y
+                        x: (this.circleMidpoin.x - image.x).toFixed(2),
+                        y: (this.circleMidpoin.y - image.y).toFixed(2)
                     }
                 }
             }
@@ -1553,7 +1554,7 @@ export default {
                 // 4个圈是 对的
                 // 画辅助线
                 this.drawAuxiliaryLine(ctx, this.rectControlPoint, geometry)
-            }  
+            }
         },
         /**
          * 获取控制点
@@ -1666,14 +1667,15 @@ export default {
             this.scale = scale
             const image = this.image
 
-            const width = image.clientWidth * scale
-            const height = image.clientHeight * scale
+            const width = (image.clientWidth * scale).toFixed(2)
+            const height = (image.clientHeight * scale).toFixed(2)
             if (!position) {
-                this.image.x += (image.width - width) / 2
-                this.image.y += (image.height - height) / 2
+                this.image.x = (image.x + (image.width - width) / 2).toFixed(2)
+                this.image.y = (image.y + (image.height - height) / 2).toFixed(2)
             }
             this.image.width = width
             this.image.height = height
+            console.log(this.image)
             this.renderCanvas()
         },
         removeLine(index) {
@@ -2237,7 +2239,7 @@ export default {
 
             // 是start move end 才需要记录坐标点
             if (actionTypes == 2 || actionTypes == 1) {
-                value = Array.from(e.touches).map(e => ({ pageX: e.pageX, pageY: e.pageY }))
+                value = Array.from(e.touches).map(e => ({ pageX: e.pageX.toFixed(2), pageY: e.pageY.toFixed(2) }))
             }
 
             // 优化数据结构 加快传输  我觉得没必要
@@ -2245,10 +2247,6 @@ export default {
                 // 不放进来 很多东西 要写三遍
                 value,
                 actionTypes
-            }
-            if (actionTypes == 5) {
-                // 画笔  起笔  缩放
-                data.scale = this.scale
             }
             // this.recordData.push(data)
             this.socketInstance.write({ data, event: 'message' })
