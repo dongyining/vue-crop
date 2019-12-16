@@ -2575,6 +2575,8 @@ export default {
                 }
             })
         },
+
+       
         convert(OriginOptions, currentOption) {
             // 适配屏幕 转换数据
             // 根据比例
@@ -2606,6 +2608,7 @@ export default {
             }
         },
         javaFn() {
+            // http://play.yunzuoye.net/public/aliplayer.html?src=https://xhfs2.oss-cn-hangzhou.aliyuncs.com/SB103013/smartclass/20191216/741b1600050a4078bda608b7fdcdc688.cwp&md5=E3AF927699F80A0B8CF2F390FEED2008
             const originNativeData = require('./data.json').data
             this.commitData = []
             //  解析数据
