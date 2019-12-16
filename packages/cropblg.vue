@@ -319,7 +319,7 @@ export default {
 
 
             // ----------------------------------------------------------------------
-            changeDrawAction: -1,
+            changeDrawAction: 1,
             // penColor: '',
             //   penColor: '',
             debug: false, // debug
@@ -368,7 +368,7 @@ export default {
             // 连接--socket
             this.socketInit()
             // 初始化默认值
-            this.changeDrawAction = -1 // 默认动作是 拖动和缩放图片 1 画笔 2橡皮 3几何 4待确定几何
+            this.changeDrawAction = 1 // 默认动作是 拖动和缩放图片 1 画笔 2橡皮 3几何 4待确定几何
             this.pointLine = [] // 线
             this.pointList = [] // 线 list
             this.points = [] // 四方形 截图的点
@@ -421,6 +421,8 @@ export default {
             if (this.isReplay && this.type == 2) {
                 this.replay()
             }
+
+            this.javaFn()
         },
 
         
@@ -437,7 +439,7 @@ export default {
             this.drawPointFn(this.ctx)
 
         },
-
+        
         drawPointFn(ctx) {
             const pointList = this.pointList
             const image = this.image
@@ -616,8 +618,11 @@ export default {
                 // 基于屏幕的 0 的位置
                 // 需要 算出来 当前画板的 左上角位置  减 画板位置
                 // 四舍五入
-                x: this.limit((touch.pageX - boundingClientRect.left).toFixed(2), 2, width),
-                y: this.limit((touch.pageY - boundingClientRect.top).toFixed(2), 2, height)
+                // x: this.limit((touch.pageX - boundingClientRect.left).toFixed(2), 2, width),
+                // y: this.limit((touch.pageY - boundingClientRect.top).toFixed(2), 2, height)
+
+                x: this.limit((touch.pageX).toFixed(2), 2, width),
+                y: this.limit((touch.pageY).toFixed(2), 2, height)
             }
             // move 到边
             return coordinate
@@ -703,6 +708,7 @@ export default {
         },
         // https://blog.csdn.net/qq_42014697/article/details/80728463  两指缩放
         handleStart(e) {
+            // console.log(e)
             // this.clearCtx2()
             if (!this.sendData(e, 1)) return
             // 判断是不是 第一次触发 新动作
@@ -1076,7 +1082,7 @@ export default {
                 // 算出来 最大 scale 和 最小
 
                 // k = this.limit(k * scale, 0.5, 30)
-
+                //  考虑进去 时间
                 k = this.limit(k * scale, this.minScale, this.maxScale).toFixed(2)
                 
                 //  防止 抖动
@@ -1664,18 +1670,19 @@ export default {
          * @return: {void}
          */
         scaleImage(scale, position) {
+            // 把时间 考虑进去
             this.scale = scale
             const image = this.image
 
-            const width = (image.clientWidth * scale).toFixed(2)
-            const height = (image.clientHeight * scale).toFixed(2)
+            const width = (image.clientWidth * scale)
+            const height = (image.clientHeight * scale)
             if (!position) {
-                this.image.x = (image.x + (image.width - width) / 2).toFixed(2)
-                this.image.y = (image.y + (image.height - height) / 2).toFixed(2)
+                this.image.x = (image.x + (image.width - width) / 2)
+                this.image.y = (image.y + (image.height - height) / 2)
             }
+
             this.image.width = width
             this.image.height = height
-            console.log(this.image)
             this.renderCanvas()
         },
         removeLine(index) {
@@ -2597,6 +2604,52 @@ export default {
                 width: currentW, // 显示宽度
                 height: currentH // 真是 宽度
             }
+        },
+        javaFn() {
+            const originNativeData = require('./data.json').data
+            this.commitData = []
+            //  解析数据
+            const arrs = originNativeData.handWritingUrl.split(/\n/)
+            arrs.forEach(arr => {
+                arr = arr.split(/,/)
+                arr.pop();
+                switch (arr[0]) {
+                    case "WM_LBUTTONDOWN":
+                        // 按下鼠标
+                        if (arr[8] == "2") {//曲线
+                            this.handleStart({ touches: [
+                                {
+                                    pageX: parseFloat(arr[1]),
+                                    pageY: parseFloat(arr[2])
+                                }
+                            ]})
+                        }
+                        break
+                    case "WM_MOUSEMOVE":
+                        //  移动鼠标
+                        // 曲线
+                        if (arr[8] == "2") {//曲线
+                            this.handleMove({ touches: [
+                                {
+                                    pageX: parseFloat(arr[1]),
+                                    pageY: parseFloat(arr[2])
+                                }
+                            ]})
+                        } 
+                        break
+                    case "WM_LBUTTONUP":
+                    if (arr[8] == "2") {
+                        this.handleEnd({ touches: [
+                            {
+                                pageX: parseFloat(arr[1]),
+                                pageY: parseFloat(arr[2])
+                            }
+                        ]})
+                    }
+                    default:
+                        break
+                }
+            })
         }
     },
     mounted() {
@@ -2629,6 +2682,9 @@ export default {
         this.ctx = ctx
         this.ctx2 = ctx2
         this.boundingClientRect = boundingClientRect
+
+
+
 
 
         /**
