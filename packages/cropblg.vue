@@ -5,7 +5,7 @@
  * @Author: banlangen
  * @Date: 2019-12-06 13:28:23
  * @LastEditors: banlangen
- * @LastEditTime: 2019-12-17 15:45:52
+ * @LastEditTime: 2019-12-17 17:40:43
  -->
 
 <style lang="scss">
@@ -126,6 +126,10 @@
             // background: red;
         }
     }
+    .followPen {
+        position: absolute;
+        z-index: 1000;
+    }
 
     /* .rubber {
         padding: 0 20px;
@@ -140,6 +144,7 @@
         style="overflow: hidden;"
         :style="{width: options.width + 'px', height: options.height + 'px'}"
     >
+        <img src="./img/pen.png" alt="" v-show="changeDrawAction == 1" class="followPen" :style="followPenStyle">
         <div class="draw-action-bar" :style="{width: options.width + 'px'}">
 
             <!-- 确定 取消icon -->
@@ -276,6 +281,10 @@ export default {
     ],
     data() {
         return {
+            followPenStyle: {
+                top: 0,
+                left: 0
+            },
 
             // 默认值--修改--- 都不需要触发渲染-- 都是手动渲染所以 data 都不用要
             // 颜色
@@ -777,13 +786,17 @@ export default {
             // 判断是不是 第一次触发 新动作
             const currentPoint = this.getCoordinateByEvent(e)
             const drawPoint = this.drawPoint
-
+        
                 
             /**
                  *  画笔  用的最多 放在第一个  少很多判断
                  */
             if (this.changeDrawAction == 1) {
-                    
+                this.followPenStyle = {
+                    left: currentPoint.x + 'px',
+                    top: currentPoint.y + 'px'
+                }
+                        
                 // 划线  第一个点 用beginPath
                 if (this.writing == 2 || this.writing == 4) { // 是直线
                     const ctx2 = this.ctx2
@@ -1194,6 +1207,7 @@ export default {
                 const points = this.pointLine.slice(-2)
                 ctx.quadraticCurveTo(points[0].x, points[0].y, points[1].x, points[1].y)
                 ctx.stroke()
+                this.followPenStyle.left = -100 + 'px'
                 this.addNewData()
             }
 
@@ -2735,7 +2749,8 @@ export default {
                     
 
                 //  目标对象的  屏幕大小~  考虑 通过什么传过来-- 等待老师加入 传过来
-                const { k, width, height } = this.convert({ width: cWidth, height: cHeight }, { width: clientWidth, height: clientHeight })
+                // 屏幕上下 很长
+                const { k, width, height } = this.convert({ width: cWidth, height: cHeight }, { width: clientWidth, height: clientHeight }, 'widht')
                 // const { k, width, height } = this.convert({ width: 1166, height: 828 }, { width: clientWidth, height: clientHeight })
                 this.options = { width, height }
                 this.kScale = k
