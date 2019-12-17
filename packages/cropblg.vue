@@ -5,7 +5,7 @@
  * @Author: banlangen
  * @Date: 2019-12-06 13:28:23
  * @LastEditors: banlangen
- * @LastEditTime: 2019-12-17 15:23:21
+ * @LastEditTime: 2019-12-17 15:45:52
  -->
 
 <style lang="scss">
@@ -1190,7 +1190,10 @@ export default {
             // 搜集点 进入画笔
             // this.log(this.pointLine)
             if (this.changeDrawAction == 1 && this.pointLine.length > 0) {
-                console.log('数组个数：' + this.pointLine.length)
+                const ctx = this.ctx
+                const points = this.pointLine.slice(-2)
+                ctx.quadraticCurveTo(points[0].x, points[0].y, points[1].x, points[1].y)
+                ctx.stroke()
                 this.addNewData()
             }
 
@@ -2610,8 +2613,10 @@ export default {
             // 解析数据
             // http://play.yunzuoye.net/public/aliplayer.html?src=https://xhfs2.oss-cn-hangzhou.aliyuncs.com/SB103013/smartclass/20191216/741b1600050a4078bda608b7fdcdc688.cwp&md5=E3AF927699F80A0B8CF2F390FEED2008
             const originNativeData = require('./data.json').data
+            // console.log(originNativeData.handWritingUrl)
             this.commitData = []
             const arrs = originNativeData.handWritingUrl.split(/\n/)
+            console.log(arrs)
             //  解析数据
             /* actionTypes
                     *
