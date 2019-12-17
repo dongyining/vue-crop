@@ -5,7 +5,7 @@
  * @Author: banlangen
  * @Date: 2019-12-06 13:28:23
  * @LastEditors: banlangen
- * @LastEditTime: 2019-12-16 13:34:22
+ * @LastEditTime: 2019-12-17 12:07:45
  -->
 
 <style lang="scss">
@@ -366,9 +366,10 @@ export default {
          */
         init(img) {
             // 连接--socket
-            this.socketInit()
+            // this.socketInit()
             // 初始化默认值
-            this.changeDrawAction = 1 // 默认动作是 拖动和缩放图片 1 画笔 2橡皮 3几何 4待确定几何
+            this.readyCanvas(1080, 800)
+            this.changeDrawAction = -1 // 默认动作是 拖动和缩放图片 1 画笔 2橡皮 3几何 4待确定几何
             this.pointLine = [] // 线
             this.pointList = [] // 线 list
             this.points = [] // 四方形 截图的点
@@ -418,11 +419,13 @@ export default {
 
             this.renderCanvas()
 
-            if (this.isReplay && this.type == 2) {
-                this.replay()
-            }
+            // if (this.isReplay && this.type == 2) {
+               
+            // }
 
-            this.javaFn()
+            this.formatAndroidData()
+            console.log('replay')
+            this.replay()
         },
 
         
@@ -434,7 +437,7 @@ export default {
             // // 背景 // 考虑用css 实现
             // this.fillBackground()
             //  处理出片
-            this.fillImage()
+            // this.fillImage()
             // console.timeEnd('fillImage')
             this.drawPointFn(this.ctx)
 
@@ -609,7 +612,7 @@ export default {
 
 
             // TODO: 为什么定位了  位置就不准了  我猜测是  偏移位置也需要  缩放
-            const boundingClientRect = this.boundingClientRect
+            // const boundingClientRect = this.boundingClientRect
             const touch = e.touches[0]
             const { width, height } = this.options
             const coordinate = {
@@ -2262,18 +2265,7 @@ export default {
         /**
              *  return  橡皮canvas ctx  笔记canvas ctx    canvas  getBoundingClientRect
              */
-        createCanvas() {
-            // 解决 字体模糊
-            const { mountNode } = this.$refs
-            // console.dir(mountNode.offsetHeight)
-            // console.log(mountNode)
-            // const { clientWidth, clientHeight } = mountNode
-            // p可以优化
-            // this.options = {
-            //     width: clientWidth,
-            //     height: clientHeight
-            // }
-            const { width: clientWidth, height: clientHeight } = this.options
+        createCanvas(mountNode, clientWidth, clientHeight) {
             // canvas dom
             let canvasDom = document.createElement('canvas')
             canvasDom.style.width = clientWidth + 'px'
@@ -2296,9 +2288,9 @@ export default {
 
             const canvasDom2 = canvasDom.cloneNode(true)
             canvasDom2.style.backgroundColor = '#fff'
-            canvasDom2.style.backgroundImage = 'linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%), linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%)'
-            canvasDom2.style.backgroundSize = '29px 29px'
-            canvasDom2.style.backgroundPosition = '0 0, 15px 15px'
+            // canvasDom2.style.backgroundImage = 'linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%), linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%)'
+            // canvasDom2.style.backgroundSize = '29px 29px'
+            // canvasDom2.style.backgroundPosition = '0 0, 15px 15px'
             canvasDom2.style.zIndex = 1
             // 笔记层
             
@@ -2328,12 +2320,12 @@ export default {
             return data * this.kScale
         },
         replay() {
-            if (this.type == 1) {
-                return
-            }
-            if (this.RAFID) {
-                return
-            }
+            // if (this.type == 1) {
+            //     return
+            // }
+            // if (this.RAFID) {
+            //     return
+            // }
             // if (this.RAFID) {
             //     window.cancelAnimationFrame(this.RAFID)
             //     this.RAFID = null
@@ -2345,33 +2337,34 @@ export default {
             // const dataJSON = JSON.parse(JSON.stringify(this.recordData))
             // 要捕捉所有动作
             // 初始化
-            const dataJSON = this.dataJSON
+            const dataJSON = this.commitData // this.dataJSON
             // console.log()
             const len = dataJSON.length
-            let startTime = null
+            // let startTime = null
             // console.log(dataJSON[0])
             this.replayIndex = 0 // 会迁入 初始化
             // console.log(dataJSON)
-            const step = (timestamp) => {
+            const step = () => {
                 const data = dataJSON[this.replayIndex]
-                const time = dataJSON[this.replayIndex].time
+                // const time = dataJSON[this.replayIndex].time
 
                 // 初始化时间
-                if (!startTime) startTime = timestamp
-                const progress = timestamp - startTime
+                // if (!startTime) startTime = timestamp
+                // const progress = timestamp - startTime
                 // 差时
                 // 暂停时间
-                if (
-                // true
-                    progress >= time
-                ) {
-                    this.replayIndex += 1
-                    this.socketInstance.write({ data: data.data, event: 'message' })
-                    // 分发数据
-                    this.distributeEvent(data.data)
-                }
+                // if (
+                //     true
+                //     // progress >= time
+                // ) {
+                this.replayIndex += 1
+                // this.socketInstance.write({ data: data.data, event: 'message' })
+                // 分发数据
+                this.distributeEvent(data.data)
+                // }
+
                 if (this.replayIndex >= len) {
-                    this.isReplay = false
+                    // this.isReplay = false
                     return
                 }
                 this.RAFID = window.requestAnimationFrame(step)
@@ -2576,7 +2569,6 @@ export default {
             })
         },
 
-       
         convert(OriginOptions, currentOption) {
             // 适配屏幕 转换数据
             // 根据比例
@@ -2607,91 +2599,145 @@ export default {
                 height: currentH // 真是 宽度
             }
         },
-        javaFn() {
+        formatAndroidData() {
+            // 为什么  是三层 逐渐消失 -- 用
+            // 解析数据
             // http://play.yunzuoye.net/public/aliplayer.html?src=https://xhfs2.oss-cn-hangzhou.aliyuncs.com/SB103013/smartclass/20191216/741b1600050a4078bda608b7fdcdc688.cwp&md5=E3AF927699F80A0B8CF2F390FEED2008
             const originNativeData = require('./data.json').data
             this.commitData = []
-            //  解析数据
             const arrs = originNativeData.handWritingUrl.split(/\n/)
+            //  解析数据
+            /* actionTypes
+                    *
+                    * 1 start {touches: []}
+                    * 2 move {touches: []}
+                    * 3 end  {touches: []}
+                    * 4 delete线  { index: number }
+                    * 5 scale 缩放 { scale: number }
+                    * 6 橡皮 ''
+                    * 7 画笔 ''
+                    * 8 调色板
+                    * 9 线段风格
+                    * 10 笔颜色
+                    * 11 笔粗细
+                    */
+            let currentAction = -1
+            // const actionTypesMap = {
+            //     '2': 1,
+            //     '7': 6
+            // }
             arrs.forEach(arr => {
+                // console.log(arr)
                 arr = arr.split(/,/)
                 arr.pop()
                 switch (arr[0]) {
-                case 'WM_LBUTTONDOWN':
-                    // 按下鼠标
-                    if (arr[8] == '2') {// 曲线
-                        this.handleStart({ touches: [
-                            {
-                                pageX: parseFloat(arr[1]),
-                                pageY: parseFloat(arr[2])
+                case 'WM_LBUTTONDOWN': {
+                    console.log(arr[8])
+                    if (arr[8] == '7' && currentAction != '7') {
+                        currentAction = arr[8]
+                        this.commitData.push({
+                            time: 2917,
+                            data: {
+                                actionTypes: 6
                             }
-                        ] })
+                        })
+                    } else if (arr[8] == '2' && currentAction != '2') {
+                        currentAction = arr[8]
+                        this.commitData.push({
+                            time: 2917,
+                            data: {
+                                actionTypes: 7
+                            }
+                        })
                     }
+
+                    this.commitData.push({
+                        time: 2917,
+                        data: {
+                            value: [
+                                {
+                                    pageX: parseFloat(arr[1]),
+                                    pageY: parseFloat(arr[2])
+                                }
+                            ],
+                            actionTypes: 1
+                        }
+                    })
+                }
                     break
                 case 'WM_MOUSEMOVE':
                     //  移动鼠标
                     // 曲线
-                    if (arr[8] == '2') {// 曲线
-                        this.handleMove({ touches: [
-                            {
-                                pageX: parseFloat(arr[1]),
-                                pageY: parseFloat(arr[2])
-                            }
-                        ] })
-                    }
+                    this.commitData.push({
+                        time: 2917,
+                        data: {
+                            value: [
+                                {
+                                    pageX: parseFloat(arr[1]),
+                                    pageY: parseFloat(arr[2])
+                                }
+                            ],
+                            actionTypes: 2
+                        }
+                    })
                     break
                 case 'WM_LBUTTONUP':
-                    if (arr[8] == '2') {
-                        this.handleEnd({ touches: [
-                            {
-                                pageX: parseFloat(arr[1]),
-                                pageY: parseFloat(arr[2])
-                            }
-                        ] })
-                    }
+                    this.commitData.push({
+                        time: 2917,
+                        data: {
+                            value: [
+                                {
+                                    pageX: parseFloat(arr[1]),
+                                    pageY: parseFloat(arr[2])
+                                }
+                            ],
+                            actionTypes: 3
+                        }
+                    })
+                    break
                 default:
+                    console.log('没有相关类型')
                     break
                 }
             })
+        },
+        /**
+         * @param {number} cWidth  原始 屏幕宽
+         * @param {number} cHeight 原始 屏幕高
+         */
+        readyCanvas(cWidth, cHeight) {
+            const { mountNode } = this.$refs
+            const { clientWidth, clientHeight } = mountNode
+            // console.log(mountNode)
+            // 录屏 不能 写死
+            console.log('mountNode 宽高')
+            console.log({ clientWidth, clientHeight })
+            if (this.type == 2) {
+                this.options = { width: clientWidth, height: clientHeight }
+            } else {
+                // mountNode
+                // 获取屏幕宽高
+                // 屏幕分辨率的高： window.screen.height
+                // 屏幕分辨率的宽： window.screen.width
+                // 屏幕可用工作区高度： window.screen.availHeight
+                // 屏幕可用工作区宽度： window.screen.availWidth
+                    
+
+                //  目标对象的  屏幕大小~  考虑 通过什么传过来-- 等待老师加入 传过来
+                const { k, width, height } = this.convert({ width: cWidth, height: cHeight }, { width: clientWidth, height: clientHeight })
+                // const { k, width, height } = this.convert({ width: 1166, height: 828 }, { width: clientWidth, height: clientHeight })
+                this.options = { width, height }
+                this.kScale = k
+            }
+
+            const [ctx, ctx2, boundingClientRect] = this.createCanvas(mountNode, this.options.width, this.options.height)
+            this.ctx = ctx
+            this.ctx2 = ctx2
+            this.boundingClientRect = boundingClientRect
+
         }
     },
     mounted() {
-        const { mountNode } = this.$refs
-        const { clientWidth, clientHeight } = mountNode
-        // console.log(mountNode)
-        // 录屏 不能 写死
-        console.log('mountNode 宽高')
-        console.log({ clientWidth, clientHeight })
-        if (this.type == 2) {
-            this.options = { width: clientWidth, height: clientHeight }
-            // console.log(this.options)
-        } else {
-            // mountNode
-            // 获取屏幕宽高
-            // 屏幕分辨率的高： window.screen.height
-            // 屏幕分辨率的宽： window.screen.width
-            // 屏幕可用工作区高度： window.screen.availHeight
-            // 屏幕可用工作区宽度： window.screen.availWidth
-                
-
-            //  目标对象的  屏幕大小~  考虑 通过什么传过来-- 等待老师加入 传过来
-            const { k, width, height } = this.convert({ width: 1024, height: 744 }, { width: clientWidth, height: clientHeight })
-            // const { k, width, height } = this.convert({ width: 1166, height: 828 }, { width: clientWidth, height: clientHeight })
-            this.options = { width, height }
-            this.kScale = k
-        }
-
-        const [ctx, ctx2, boundingClientRect] = this.createCanvas()
-        this.ctx = ctx
-        this.ctx2 = ctx2
-        this.boundingClientRect = boundingClientRect
-
-
-        /**
-             *  回放功能
-             */
-
-        //
         // this.log(this.$slots.initial[0].data.attrs.src)
         if (this.defaultImgUrl || this.$slots.defaultImgUrl) {
             const src = this.defaultImgUrl ? this.defaultImgUrl : this.$slots.defaultImgUrl[0].data.attrs.src
@@ -2702,8 +2748,6 @@ export default {
             getImage: this.getImage,
             changeImage: this.changeImage
         })
-
-
     }
 }
 </script>
