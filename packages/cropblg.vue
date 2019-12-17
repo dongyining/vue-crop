@@ -5,7 +5,7 @@
  * @Author: banlangen
  * @Date: 2019-12-06 13:28:23
  * @LastEditors: banlangen
- * @LastEditTime: 2019-12-17 12:07:45
+ * @LastEditTime: 2019-12-17 15:23:21
  -->
 
 <style lang="scss">
@@ -529,11 +529,31 @@ export default {
                 }
 
 
-                const originPoint = this.restPoint(points[0], image, scale)
-                ctx.moveTo(originPoint.x, originPoint.y)
-                for (let i = 1; i < points.length; i++) {
-                    const originPoint = this.restPoint(points[i], image, scale)
-                    ctx.lineTo(originPoint.x, originPoint.y)
+                // const originPoint = this.restPoint(points[0], image, scale)
+                // ctx.moveTo(originPoint.x, originPoint.y)
+                // for (let i = 1; i < points.length; i++) {
+                //     const originPoint = this.restPoint(points[i], image, scale)
+                //     ctx.lineTo(originPoint.x, originPoint.y)
+                // }
+                const numPoints = points.length
+                for (let i = 0; i < numPoints; i++) {
+                    const originPointFirst = this.restPoint(points[i], image, scale)
+                    if (i == 0) {
+                        ctx.moveTo(originPointFirst.x, originPointFirst.y)
+                    } else if (numPoints < 3) {// (el.writing == 2 || el.writing == 4) {
+                    // 直线
+                        ctx.lineTo(originPointFirst.x, originPointFirst.y)
+                    } else if (i < numPoints - 2) {
+                        const originPointSecond = this.restPoint(points[i + 1], image, scale)
+                        const ctrlPoint = {
+                            x: (originPointFirst.x + originPointSecond.x) / 2,
+                            y: (originPointFirst.y + originPointSecond.y) / 2
+                        }
+                        ctx.quadraticCurveTo(originPointFirst.x, originPointFirst.y, ctrlPoint.x, ctrlPoint.y)
+                    } else if (i < numPoints - 1) {
+                        const originPointSecond = this.restPoint(points[i + 1], image, scale)
+                        ctx.quadraticCurveTo(originPointFirst.x, originPointFirst.y, originPointSecond.x, originPointSecond.y)
+                    }
                 }
 
                 // 矩形
@@ -730,7 +750,7 @@ export default {
             const lineWidth = this.weight // this.limit(this.weight, 1, 15)
             const color = this.color
             const ctx = this.ctx
-            ctx.lineWidth = lineWidth - 0.68 // 加粗 原因   写东西的时候 不停 store 导致线条变粗  为了和谐  减去这个值
+            ctx.lineWidth = lineWidth // 加粗 原因   写东西的时候 不停 store 导致线条变粗  为了和谐  减去这个值
             ctx.strokeStyle = color
 
             const ctx2 = this.ctx2
@@ -741,7 +761,7 @@ export default {
             if (this.changeDrawAction == 1 || this.changeDrawAction == 3) {
                 // console.log('不是普通')
                 // 上次肯定会被清掉
-                this.pointLine = []
+                this.pointLine = [this.drawPoint]
                 // 如果是直线 需要永远知道第一个点  在什么位置
                 this.firstPoint = this.drawPoint
             }
@@ -799,46 +819,36 @@ export default {
                     // 解决 突然同步-- 这两个属性化石上个回放的属性 还有 笔的  很多问题  突然杀入  应尽量避免这个问题
                        
                     const ctx = this.ctx
-                    if (this.pointLine.length == 0) {
-                        if (this.writing == 3) {
-                            ctx.setLineDash([5, 10])
-                        } else {
-                            ctx.setLineDash([])
+
+                   
+                    if (this.writing == 3) {
+                        ctx.setLineDash([5, 10])
+                    } else {
+                        ctx.setLineDash([])
+                    }
+                    // if (this.pointLine.length == 1) {
+                    //     // 第一个移动的 的
+                    //     this.drawPoint = currentPoint
+                    // }
+                    this.pointLine.push(currentPoint)
+            
+
+                    const drawLine = this.pointLine
+                    if (drawLine.length > 2) {
+                        const lastTwoPoints = drawLine.slice(-2)
+                        // console.log(lastTwoPoints)
+                        const controlPoint = lastTwoPoints[0]
+                        const endPoint = {
+                            x: (parseInt(controlPoint.x) + parseInt(lastTwoPoints[1].x)) / 2,
+                            y: (parseInt(controlPoint.y) + parseInt(lastTwoPoints[1].y)) / 2
                         }
                         ctx.beginPath()
                         ctx.moveTo(drawPoint.x, drawPoint.y)
-                        ctx.lineTo(currentPoint.x, currentPoint.y)
-                    } else {
-                        ctx.lineTo(currentPoint.x, currentPoint.y)
-                    }
-
-                    // 计算  两点之间的距离  比渲染ctx.stroke()  省时间
-                    if (this.getDistance({ pageX: this.firstPoint.x, pageY: this.firstPoint.y }, { pageX: currentPoint.x, pageY: currentPoint.y }) > 3) {
+                        ctx.quadraticCurveTo(controlPoint.x, controlPoint.y, endPoint.x, endPoint.y)
                         ctx.stroke()
-                        //  划线用不上 firstPoint 暂时  那这个 替代 prev
-                        this.firstPoint = currentPoint
+                        this.drawPoint = endPoint
                     }
-                    // ctx.stroke()
-
-                    //  this.drawPoint  用这个变量的原因是  起点和最后一点 都不在 move事件上 // end  上的 最后一笔 时最准确的
-                    this.pointLine.push(drawPoint)
-
-
-                    // 2 屏幕 渲染 笔记 知识渲染笔记 这个不可能比  第一个快 这个也要  不停的  ctx2.stroke()
-                    // this.clearCtx2()
-                    // const ctx2 = this.ctx2
-                    // ctx2.beginPath()
-                    // ctx2.moveTo(this.pointLine[0].x, this.pointLine[0].y)
-                    // for (let i = 1; i < this.pointLine.length; i++) {
-                    //     const elem = this.pointLine[i]
-                    //     ctx2.lineTo(elem.x, elem.y)
-                    // }
-                    // ctx2.stroke()
-                
-
                 }
-
-                this.drawPoint = currentPoint
                 return
             }
                 
@@ -1180,11 +1190,7 @@ export default {
             // 搜集点 进入画笔
             // this.log(this.pointLine)
             if (this.changeDrawAction == 1 && this.pointLine.length > 0) {
-                const drawPoint = this.drawPoint
-                this.pointLine.push({
-                    x: drawPoint.x,
-                    y: drawPoint.y
-                })
+                console.log('数组个数：' + this.pointLine.length)
                 this.addNewData()
             }
 
