@@ -69,7 +69,7 @@
         height: 200px;
         background: #3c3838;
         border-radius: 5px;
-        box-shadow: 5px 10px 15px 2px rgba(0,0,0, .4); //1.水平阴影  2.垂直阴影 3.模糊距离，改虚实 4.阴影尺寸
+        box-shadow: 5px 10px 15px 2px rgba(0,0,0, .4); // 1.水平阴影  2.垂直阴影 3.模糊距离，改虚实 4.阴影尺寸
         & > div {
             flex: 1;
             border-left: 1px solid rgba(162, 153, 162, 0.3);
@@ -79,7 +79,7 @@
         }
     }
     .writing-style {
-         display: flex;
+        display: flex;
         align-items: center;
         flex-wrap: wrap;
         justify-content: center;
@@ -116,8 +116,10 @@
         }
     }
     .draw-mount-node {
+        border: 1px solid red;
         position: relative;
         overflow: hidden;
+        margin: 0;
         .mask {
             width: 100%;
             height: 100%;
@@ -147,138 +149,140 @@
     } */
 </style>
 <template>
-    <div ref="mountNode"
-        class="draw-mount-node"
-        @touchstart.stop="handleStart($event)"
-        @touchmove.stop="handleMove($event)"
-        @touchend.stop="handleEnd($event)"
-        :style="mountNodeStyle"
-    >
-        <div id="interface"/>
+    <!-- <div> -->
+        <div ref="mountNode"
+            class="draw-mount-node"
+            @touchstart.stop="handleStart($event)"
+            @touchmove.stop="handleMove($event)"
+            @touchend.stop="handleEnd($event)"
+            :style="mountNodeStyle"
+        >
+            <div id="interface"/>
 
-       
-        <img src="./img/pen.png" alt="" v-show="changeDrawAction == 1" class="followPen" :style="followPenStyle">
-        <div class="draw-action-bar" :style="{width: options.width + 'px'}">
+        
+            <img src="./img/pen.png" alt="" v-show="changeDrawAction == 1" class="followPen" :style="followPenStyle">
+            <div class="draw-action-bar" :style="{width: options.width + 'px'}">
 
-            <!-- 确定 取消icon -->
-            <img src="./img/ok.jpg"  style="display:none" id="draw-ok-icon" alt="">
-            <img src="./img/cancel.jpg" style="display:none"  id="draw-cancel-icon" alt="">
-            <!-- <svg style="display:none" id="draw-ok-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1026" width="128" height="128"><path d="M512 64C262.4 64 64 262.4 64 512s198.4 448 448 448 448-198.4 448-448-198.4-448-448-448z m256 339.2l-288 288c-6.4 12.8-19.2 12.8-32 12.8s-19.2 0-32-12.8L313.6 588.8c-12.8-12.8-12.8-32 0-44.8s32-12.8 44.8 0L448 633.6l275.2-275.2c12.8-12.8 32-12.8 44.8 0 12.8 12.8 12.8 38.4 0 44.8z" fill="" p-id="1027"></path></svg>
-            <svg  style="display:none"  id="draw-cancel-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1159" width="128" height="128"><path d="M499.2 64c-249.6 0-448 198.4-448 448s198.4 448 448 448 448-198.4 448-448-198.4-448-448-448z m179.2 582.4c12.8 12.8 12.8 32 0 44.8-12.8 12.8-32 12.8-44.8 0L499.2 556.8l-134.4 134.4c-12.8 12.8-32 12.8-44.8 0s-12.8-32 0-44.8L454.4 512 320 377.6c-12.8-12.8-12.8-32 0-44.8s32-12.8 44.8 0l134.4 134.4 134.4-134.4c12.8-12.8 32-12.8 44.8 0 12.8 12.8 12.8 32 0 44.8L544 512l134.4 134.4z" fill="" p-id="1160"></path></svg> -->
-            <!-- <button @touchstart="clickHandle">1213 </button> -->
-            <div class="draw-icon-wrap"
-            @touchstart.stop="()=>{}"
-            @touchmove.stop="()=>{}"
-            @touchend.stop="()=>{}">
-                <div class="draw-icon-list">
-                    <svg
-                        @touchstart="handleMatching($event)"
-                        class="draw-icon matching"
-                        :style="{fill: showMatching == 1 ? color: ''}"
-                        t="1573621984209"  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1926" width="128" height="128"><path d="M810.666667 384a128 128 0 0 0-120.32 85.333333H128a42.666667 42.666667 0 0 0 0 85.333334h562.346667A128 128 0 1 0 810.666667 384zM128 298.666667h50.346667a128 128 0 0 0 240.64 0H896a42.666667 42.666667 0 0 0 0-85.333334H418.986667a128 128 0 0 0-240.64 0H128a42.666667 42.666667 0 0 0 0 85.333334zM896 725.333333h-306.346667a128 128 0 0 0-240.64 0H128a42.666667 42.666667 0 0 0 0 85.333334h221.013333a128 128 0 0 0 240.64 0H896a42.666667 42.666667 0 0 0 0-85.333334z" p-id="1927"></path></svg>
-                    <svg
-                        @touchstart="handlePen($event)"
-                        class="draw-icon pen"
-                        :style="{fill: changeDrawAction == 1 ? color: ''}"
-                        t="1573031834722"  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4617" width="128" height="128"><path d="M79.36 916.48h343.04v51.2H79.36z" fill="" p-id="4618"></path><path d="M550.4 916.48h376.32v51.2H550.4z" fill="" p-id="4619"></path><path d="M629.76 158.72l215.04 215.04L373.76 844.8l-215.04-215.04L629.76 158.72z m0 0" fill="" p-id="4620"></path><path d="M716.8 74.24l215.04 215.04-64 64-215.04-215.04L716.8 74.24z m0 0" fill="" p-id="4621"></path><path d="M138.24 652.8l215.04 215.04L51.2 952.32l87.04-299.52z m0 0"  p-id="4622"></path><path  d="M798.72 71.68L931.84 204.8c23.04 23.04 20.48 58.88-2.56 81.92-23.04 23.04-61.44 25.6-81.92 2.56l-133.12-133.12c-23.04-20.48-23.04-58.88 2.56-81.92 23.04-23.04 58.88-25.6 81.92-2.56z m0 0"  p-id="4623"></path></svg>
-                    <svg
-                        @touchstart="handleRubber($event)"
-                        class="draw-icon rubber"
-                        :style="{fill: changeDrawAction == 2 ? color: ''}"
-                        t="1573032058097"  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5340" width="128" height="128"><path d="M604.536246 736.222443l288.794439-282.693148-287.777557-270.999007-270.999007 283.201589z m-72.70705 71.181728L264.389275 539.455809 145.922542 660.973188l164.734856 164.734856a50.844091 50.844091 0 0 0 36.099305 14.744786h107.789474a101.688183 101.688183 0 0 0 71.181728-28.981132z m109.314796 35.082423h254.220457a50.844091 50.844091 0 0 1 0 101.688183H346.248262a152.532274 152.532274 0 0 1-107.789474-44.742801l-164.734856-164.734856a101.688183 101.688183 0 0 1 0-142.363456l457.596823-480.476663a101.688183 101.688183 0 0 1 143.380337-3.559086l287.269117 270.999007a101.688183 101.688183 0 0 1 4.067527 143.888778l-3.050646 3.050646z" p-id="5341"></path></svg>
-                    <svg
-                        @touchend="handleGeometry"
-                        :style="{fill: changeDrawAction == 3 ||  changeDrawAction == 4 ? color: ''}"
-                        class="draw-icon geometry "
-                        viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2410" width="128" height="128"><path d="M512 955.733333H85.333333a17.066667 17.066667 0 0 1-17.066666-17.066666V512a17.066667 17.066667 0 0 1 17.066666-17.066667h426.666667a17.066667 17.066667 0 0 1 17.066667 17.066667v426.666667a17.066667 17.066667 0 0 1-17.066667 17.066666zM102.4 921.6h392.533333V529.066667H102.4v392.533333z m665.6-51.2c-51.712 0-96.546133-18.619733-133.239467-55.3472C598.596267 778.9056 580.266667 734.3616 580.266667 682.666667c0-51.6096 18.295467-96.4096 54.408533-133.137067 18.158933-17.5616 37.973333-30.7712 59.204267-39.5776 22.528-9.966933 47.4624-15.018667 74.120533-15.018667 51.677867 0 96.221867 18.3296 132.386133 54.493867C937.1136 586.1376 955.733333 630.971733 955.733333 682.666667c0 51.7632-18.670933 96.3584-55.4496 132.5056C864.341333 851.746133 819.746133 870.4 768 870.4z m-153.6-187.733333c0 42.922667 14.557867 78.318933 44.4928 108.253866C689.390933 821.435733 725.060267 836.266667 768 836.266667c42.8544 0 78.2336-14.7968 108.151467-45.243734C906.8032 760.900267 921.6 725.538133 921.6 682.666667c0-42.922667-14.830933-78.592-45.346133-109.1072C846.301867 543.624533 810.9056 529.066667 768 529.066667c-21.9136 0-42.257067 4.096-60.450133 12.168533l-0.1536 0.068267-0.3584 0.1536c-17.288533 7.150933-33.553067 18.0224-48.3328 32.324266C628.974933 604.0064 614.4 639.709867 614.4 682.666667z" p-id="2411"></path><path d="M768 716.8H256a34.116267 34.116267 0 0 1-31.351467-47.616l73.386667-170.666667v-0.017066L480.6144 71.901867a34.133333 34.133333 0 0 1 62.7712-0.017067L731.9552 512.170667l67.413333 157.013333A34.133333 34.133333 0 0 1 768 716.8z m-170.666667-68.266667h118.869334l-46.984534-109.4144a0.136533 0.136533 0 0 0-0.034133-0.068266L512 172.066133l-151.210667 353.297067-0.0512 0.136533-52.906666 123.050667H597.333333z" p-id="2412"></path></svg>
-                    <svg
-                        v-if="isReplay"
-                        @touchend="replay()"
-                        class="draw-icon replay"
-                        :style="{fill: isReplay ? color: ''}"
-                        t="1573194950939"  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1781" width="128" height="128"><path d="M462.272 312.896l0 298.624 248.896 0L711.168 528.576 541.952 528.576l0-215.68L462.272 312.896zM512 64C403.776 64 304.448 102.4 227.008 166.336l21.376-82.048L175.168 64l-40.96 157.056L113.856 299.52l73.28 20.224 155.712 42.88 20.416-78.528-90.56-24.96C335.168 200.064 419.264 163.52 512 163.52c192.448 0 348.48 156.032 348.48 348.48S704.448 860.416 512 860.416 163.648 704.448 163.648 512c0-9.856 2.048-19.136 2.88-28.8L65.92 474.816C64.96 487.104 64 499.456 64 512c0 247.424 200.576 448 448 448s448-200.576 448-448S759.424 64 512 64z" p-id="1782"></path></svg>
-                    <svg
-                        v-else
-                        :style="{fill: !isReplay ? color: ''}"
-                        @touchend="finish()"
-                        class="draw-icon finish"
-                        t="1573621583188"  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1055" width="128" height="128"><path d="M678.528 642.304c0 17.6-14.4 32-32 32h-268.992a32 32 0 0 1-32-32V381.696a32 32 0 0 1 32-32h268.992c17.6 0 32 14.4 32 32v260.608z" p-id="1056"></path><path d="M1015.552 512.128a502.656 502.656 0 0 0-503.68-503.68 502.208 502.208 0 0 0-356.096 147.264 502.016 502.016 0 0 0-147.328 356.416 500.288 500.288 0 0 0 146.816 356.736 499.584 499.584 0 0 0 356.544 146.688c277.312-2.816 503.744-226.24 503.744-503.424z m-947.968 0a444.288 444.288 0 0 1 444.288-444.544c246.976 0 447.296 200.128 447.296 444.544 0 244.032-200.32 444.416-447.296 444.416a442.304 442.304 0 0 1-444.288-444.416z" p-id="1057"></path></svg>
-                    <!-- 三角形 -->
-                    <div  v-show="showMatching || showGeometry" class="triangle" :style="{left: triangleLeft + 'px'}"></div>
-                    <!-- 颜色  直线 虚线   粗细 -->
-                    <div v-show="showMatching" class="draw-matching-wrap">
-                        <div class="writing-style">
-                            <span
-                            v-for="item of penWriting"
-                            :key="item.lable"
-                            @touchstart="handlePenWriting($event,item.value)"
-                            :class="{active: writing == item.value}"
-                            > {{item.lable}}</span>
-                        </div>
-
-                        <div class="colors">
-                            <span
-                                v-for="item of penColor"
-                                :key="item"
-                                @touchstart="handlePenColor($event,item)"
-                                :class="{active: color == item}"
-                            >
-                                <i :style="{background: item}"></i>
-                            </span>
-                        </div>
-
-                        <div class="pen-weight">
-                            <span
-                                v-for="item of penWeight"
+                <!-- 确定 取消icon -->
+                <img src="./img/ok.jpg"  style="display:none" id="draw-ok-icon" alt="">
+                <img src="./img/cancel.jpg" style="display:none"  id="draw-cancel-icon" alt="">
+                <!-- <svg style="display:none" id="draw-ok-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1026" width="128" height="128"><path d="M512 64C262.4 64 64 262.4 64 512s198.4 448 448 448 448-198.4 448-448-198.4-448-448-448z m256 339.2l-288 288c-6.4 12.8-19.2 12.8-32 12.8s-19.2 0-32-12.8L313.6 588.8c-12.8-12.8-12.8-32 0-44.8s32-12.8 44.8 0L448 633.6l275.2-275.2c12.8-12.8 32-12.8 44.8 0 12.8 12.8 12.8 38.4 0 44.8z" fill="" p-id="1027"></path></svg>
+                <svg  style="display:none"  id="draw-cancel-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1159" width="128" height="128"><path d="M499.2 64c-249.6 0-448 198.4-448 448s198.4 448 448 448 448-198.4 448-448-198.4-448-448-448z m179.2 582.4c12.8 12.8 12.8 32 0 44.8-12.8 12.8-32 12.8-44.8 0L499.2 556.8l-134.4 134.4c-12.8 12.8-32 12.8-44.8 0s-12.8-32 0-44.8L454.4 512 320 377.6c-12.8-12.8-12.8-32 0-44.8s32-12.8 44.8 0l134.4 134.4 134.4-134.4c12.8-12.8 32-12.8 44.8 0 12.8 12.8 12.8 32 0 44.8L544 512l134.4 134.4z" fill="" p-id="1160"></path></svg> -->
+                <!-- <button @touchstart="clickHandle">1213 </button> -->
+                <div class="draw-icon-wrap"
+                @touchstart.stop="()=>{}"
+                @touchmove.stop="()=>{}"
+                @touchend.stop="()=>{}">
+                    <div class="draw-icon-list">
+                        <svg
+                            @touchstart="handleMatching($event)"
+                            class="draw-icon matching"
+                            :style="{fill: showMatching == 1 ? color: ''}"
+                            t="1573621984209"  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1926" width="128" height="128"><path d="M810.666667 384a128 128 0 0 0-120.32 85.333333H128a42.666667 42.666667 0 0 0 0 85.333334h562.346667A128 128 0 1 0 810.666667 384zM128 298.666667h50.346667a128 128 0 0 0 240.64 0H896a42.666667 42.666667 0 0 0 0-85.333334H418.986667a128 128 0 0 0-240.64 0H128a42.666667 42.666667 0 0 0 0 85.333334zM896 725.333333h-306.346667a128 128 0 0 0-240.64 0H128a42.666667 42.666667 0 0 0 0 85.333334h221.013333a128 128 0 0 0 240.64 0H896a42.666667 42.666667 0 0 0 0-85.333334z" p-id="1927"></path></svg>
+                        <svg
+                            @touchstart="handlePen($event)"
+                            class="draw-icon pen"
+                            :style="{fill: changeDrawAction == 1 ? color: ''}"
+                            t="1573031834722"  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4617" width="128" height="128"><path d="M79.36 916.48h343.04v51.2H79.36z" fill="" p-id="4618"></path><path d="M550.4 916.48h376.32v51.2H550.4z" fill="" p-id="4619"></path><path d="M629.76 158.72l215.04 215.04L373.76 844.8l-215.04-215.04L629.76 158.72z m0 0" fill="" p-id="4620"></path><path d="M716.8 74.24l215.04 215.04-64 64-215.04-215.04L716.8 74.24z m0 0" fill="" p-id="4621"></path><path d="M138.24 652.8l215.04 215.04L51.2 952.32l87.04-299.52z m0 0"  p-id="4622"></path><path  d="M798.72 71.68L931.84 204.8c23.04 23.04 20.48 58.88-2.56 81.92-23.04 23.04-61.44 25.6-81.92 2.56l-133.12-133.12c-23.04-20.48-23.04-58.88 2.56-81.92 23.04-23.04 58.88-25.6 81.92-2.56z m0 0"  p-id="4623"></path></svg>
+                        <svg
+                            @touchstart="handleRubber($event)"
+                            class="draw-icon rubber"
+                            :style="{fill: changeDrawAction == 2 ? color: ''}"
+                            t="1573032058097"  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5340" width="128" height="128"><path d="M604.536246 736.222443l288.794439-282.693148-287.777557-270.999007-270.999007 283.201589z m-72.70705 71.181728L264.389275 539.455809 145.922542 660.973188l164.734856 164.734856a50.844091 50.844091 0 0 0 36.099305 14.744786h107.789474a101.688183 101.688183 0 0 0 71.181728-28.981132z m109.314796 35.082423h254.220457a50.844091 50.844091 0 0 1 0 101.688183H346.248262a152.532274 152.532274 0 0 1-107.789474-44.742801l-164.734856-164.734856a101.688183 101.688183 0 0 1 0-142.363456l457.596823-480.476663a101.688183 101.688183 0 0 1 143.380337-3.559086l287.269117 270.999007a101.688183 101.688183 0 0 1 4.067527 143.888778l-3.050646 3.050646z" p-id="5341"></path></svg>
+                        <svg
+                            @touchend="handleGeometry"
+                            :style="{fill: changeDrawAction == 3 ||  changeDrawAction == 4 ? color: ''}"
+                            class="draw-icon geometry "
+                            viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2410" width="128" height="128"><path d="M512 955.733333H85.333333a17.066667 17.066667 0 0 1-17.066666-17.066666V512a17.066667 17.066667 0 0 1 17.066666-17.066667h426.666667a17.066667 17.066667 0 0 1 17.066667 17.066667v426.666667a17.066667 17.066667 0 0 1-17.066667 17.066666zM102.4 921.6h392.533333V529.066667H102.4v392.533333z m665.6-51.2c-51.712 0-96.546133-18.619733-133.239467-55.3472C598.596267 778.9056 580.266667 734.3616 580.266667 682.666667c0-51.6096 18.295467-96.4096 54.408533-133.137067 18.158933-17.5616 37.973333-30.7712 59.204267-39.5776 22.528-9.966933 47.4624-15.018667 74.120533-15.018667 51.677867 0 96.221867 18.3296 132.386133 54.493867C937.1136 586.1376 955.733333 630.971733 955.733333 682.666667c0 51.7632-18.670933 96.3584-55.4496 132.5056C864.341333 851.746133 819.746133 870.4 768 870.4z m-153.6-187.733333c0 42.922667 14.557867 78.318933 44.4928 108.253866C689.390933 821.435733 725.060267 836.266667 768 836.266667c42.8544 0 78.2336-14.7968 108.151467-45.243734C906.8032 760.900267 921.6 725.538133 921.6 682.666667c0-42.922667-14.830933-78.592-45.346133-109.1072C846.301867 543.624533 810.9056 529.066667 768 529.066667c-21.9136 0-42.257067 4.096-60.450133 12.168533l-0.1536 0.068267-0.3584 0.1536c-17.288533 7.150933-33.553067 18.0224-48.3328 32.324266C628.974933 604.0064 614.4 639.709867 614.4 682.666667z" p-id="2411"></path><path d="M768 716.8H256a34.116267 34.116267 0 0 1-31.351467-47.616l73.386667-170.666667v-0.017066L480.6144 71.901867a34.133333 34.133333 0 0 1 62.7712-0.017067L731.9552 512.170667l67.413333 157.013333A34.133333 34.133333 0 0 1 768 716.8z m-170.666667-68.266667h118.869334l-46.984534-109.4144a0.136533 0.136533 0 0 0-0.034133-0.068266L512 172.066133l-151.210667 353.297067-0.0512 0.136533-52.906666 123.050667H597.333333z" p-id="2412"></path></svg>
+                        <svg
+                            v-if="isReplay"
+                            @touchend="replay()"
+                            class="draw-icon replay"
+                            :style="{fill: isReplay ? color: ''}"
+                            t="1573194950939"  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1781" width="128" height="128"><path d="M462.272 312.896l0 298.624 248.896 0L711.168 528.576 541.952 528.576l0-215.68L462.272 312.896zM512 64C403.776 64 304.448 102.4 227.008 166.336l21.376-82.048L175.168 64l-40.96 157.056L113.856 299.52l73.28 20.224 155.712 42.88 20.416-78.528-90.56-24.96C335.168 200.064 419.264 163.52 512 163.52c192.448 0 348.48 156.032 348.48 348.48S704.448 860.416 512 860.416 163.648 704.448 163.648 512c0-9.856 2.048-19.136 2.88-28.8L65.92 474.816C64.96 487.104 64 499.456 64 512c0 247.424 200.576 448 448 448s448-200.576 448-448S759.424 64 512 64z" p-id="1782"></path></svg>
+                        <svg
+                            v-else
+                            :style="{fill: !isReplay ? color: ''}"
+                            @touchend="finish()"
+                            class="draw-icon finish"
+                            t="1573621583188"  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1055" width="128" height="128"><path d="M678.528 642.304c0 17.6-14.4 32-32 32h-268.992a32 32 0 0 1-32-32V381.696a32 32 0 0 1 32-32h268.992c17.6 0 32 14.4 32 32v260.608z" p-id="1056"></path><path d="M1015.552 512.128a502.656 502.656 0 0 0-503.68-503.68 502.208 502.208 0 0 0-356.096 147.264 502.016 502.016 0 0 0-147.328 356.416 500.288 500.288 0 0 0 146.816 356.736 499.584 499.584 0 0 0 356.544 146.688c277.312-2.816 503.744-226.24 503.744-503.424z m-947.968 0a444.288 444.288 0 0 1 444.288-444.544c246.976 0 447.296 200.128 447.296 444.544 0 244.032-200.32 444.416-447.296 444.416a442.304 442.304 0 0 1-444.288-444.416z" p-id="1057"></path></svg>
+                        <!-- 三角形 -->
+                        <div  v-show="showMatching || showGeometry" class="triangle" :style="{left: triangleLeft + 'px'}"></div>
+                        <!-- 颜色  直线 虚线   粗细 -->
+                        <div v-show="showMatching" class="draw-matching-wrap">
+                            <div class="writing-style">
+                                <span
+                                v-for="item of penWriting"
                                 :key="item.lable"
-                                @touchstart="handlePenWeight($event, item.value)"
-                                :class="{active: weight == item.value}"
+                                @touchstart="handlePenWriting($event,item.value)"
+                                :class="{active: writing == item.value}"
                                 > {{item.lable}}</span>
-                        </div>
-                    </div>
-                     <!-- 矩形 -->
-                    <div v-show="showGeometry" class="draw-matching-wrap">
+                            </div>
 
-                        <div class="writing-style">
-                            <span
-                            v-for="item of geometryList"
-                            :key="item.lable"
-                            @touchstart="handleChoiceGeometry($event, item.value)"
-                            :class="{active: geometry == item.value}"
-                            > {{item.lable}}</span>
+                            <div class="colors">
+                                <span
+                                    v-for="item of penColor"
+                                    :key="item"
+                                    @touchstart="handlePenColor($event,item)"
+                                    :class="{active: color == item}"
+                                >
+                                    <i :style="{background: item}"></i>
+                                </span>
+                            </div>
+
+                            <div class="pen-weight">
+                                <span
+                                    v-for="item of penWeight"
+                                    :key="item.lable"
+                                    @touchstart="handlePenWeight($event, item.value)"
+                                    :class="{active: weight == item.value}"
+                                    > {{item.lable}}</span>
+                            </div>
+                        </div>
+                        <!-- 矩形 -->
+                        <div v-show="showGeometry" class="draw-matching-wrap">
+
+                            <div class="writing-style">
+                                <span
+                                v-for="item of geometryList"
+                                :key="item.lable"
+                                @touchstart="handleChoiceGeometry($event, item.value)"
+                                :class="{active: geometry == item.value}"
+                                > {{item.lable}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!--  蒙层 -->
-        <div class="mask"
-            :style="{width: options.width + 'px', height: options.height + 'px'}"
-            @touchstart.stop="handleMask($event)"
-            @touchmove.stop="()=>{}"
-            @touchend.stop="()=>{}"
-            v-show="showMatching || showGeometry"
-        >
-        </div>
-         <!-- style=" overflow: hidden;" -->
-        <!--  不能绑在wrap 上=== 这样子任何点击都会计算 -后期优化-->
-        <div v-show="noImage" @click.stop="inputHandle" class="no-image-file" style="position: relative; z-index: 6;background: #f6f6f6;
-        height: 100%; display: flex;justify-content: center;align-items: center;flex-wrap: wrap;"
-        @touchstart.stop="()=>{}" @touchmove.stop="()=>{}" @touchend.stop="()=>{}">
-            <!-- <span>暂时没有图片,请选择图像</span> -->
-            <slot name="placeholder"><span>暂时没有图片,请选择图像</span></slot>
-            <div style="display:none" @click.stop="()=>{}">
-                <input
-                    @change="uploadImg"
-                    type="file"
-                    :multiple="false"
-                    id="file-input"
-                    accept="image/*"
-                >
-                <slot name="defaultImgUrl"></slot>
+            <!--  蒙层 -->
+            <div class="mask"
+                :style="{width: options.width + 'px', height: options.height + 'px'}"
+                @touchstart.stop="handleMask($event)"
+                @touchmove.stop="()=>{}"
+                @touchend.stop="()=>{}"
+                v-show="showMatching || showGeometry"
+            >
+            </div>
+            <!-- style=" overflow: hidden;" -->
+            <!--  不能绑在wrap 上=== 这样子任何点击都会计算 -后期优化-->
+            <div v-show="noImage" @click.stop="inputHandle" class="no-image-file" style="position: relative; z-index: 6;background: #f6f6f6;
+            height: 100%; display: flex;justify-content: center;align-items: center;flex-wrap: wrap;"
+            @touchstart.stop="()=>{}" @touchmove.stop="()=>{}" @touchend.stop="()=>{}">
+                <!-- <span>暂时没有图片,请选择图像</span> -->
+                <slot name="placeholder"><span>暂时没有图片,请选择图像</span></slot>
+                <div style="display:none" @click.stop="()=>{}">
+                    <input
+                        @change="uploadImg"
+                        type="file"
+                        :multiple="false"
+                        id="file-input"
+                        accept="image/*"
+                    >
+                    <slot name="defaultImgUrl"></slot>
+                </div>
             </div>
         </div>
-    </div>
+    <!-- <div> -->
 </template>
 <script>
 import { getImageDirection, correctImage } from './util'
@@ -356,8 +360,7 @@ export default {
             
             // ctx: null,
             options: {
-                width: 0,
-                height: 0
+               
             },
             // pixelRatio: null,
             // scale: 1,
@@ -401,7 +404,7 @@ export default {
          */
         init(img) {
             // 连接--socket
-            // this.socketInit()
+            this.socketInit()
             // 初始化默认值
             this.readyCanvas(1080, 800)
             this.changeDrawAction = -1 // 默认动作是 拖动和缩放图片 1 画笔 2橡皮 3几何 4待确定几何
@@ -2351,6 +2354,7 @@ export default {
                 
         },
         dataScale(data) {
+            return data
             // const scale = this.scale / el.scale
             //     const lineWidth = this.limit(el.lineWidth * scale, 1, 15)
             //     ctx.beginPath()
@@ -2628,31 +2632,33 @@ export default {
             const { width: clientW, height: clientH } = currentOption // 当前
             const { width, height } = OriginOptions // 原始
 
-            let currentW, currentH, k
+            let currentW, currentH, k, filled
  
             if (clientH / clientW > height / width) {
                 // 把宽铺满
                 currentW = clientW
-
                 k = clientW / width
                 currentH = currentW * (height / width)
+                filled = 'width'
             } else {
                 // 把高铺满
                 currentH = clientH
                 k = clientH / height
                 currentW = currentH * (width / height)
+                filled = 'height'
             }
             return {
                 k,
                 width: this.getInt(currentW), // 显示宽度
-                height: this.getInt(currentH) // 真是 宽度
+                height: this.getInt(currentH), // 真是 宽度
+                filled
             }
         },
         formatAndroidData() {
             // 为什么  是三层 逐渐消失 -- 用
             // 解析数据
             // http://play.yunzuoye.net/public/aliplayer.html?src=https://xhfs2.oss-cn-hangzhou.aliyuncs.com/SB103013/smartclass/20191216/741b1600050a4078bda608b7fdcdc688.cwp&md5=E3AF927699F80A0B8CF2F390FEED2008
-            const originNativeData = require('./data.json').data
+            const originNativeData = require('./jq2.json').data
             // console.log(originNativeData.handWritingUrl)
             this.commitData = []
             const arrs = originNativeData.handWritingUrl.split(/\n/)
@@ -2757,15 +2763,17 @@ export default {
          * @param {number} cHeight 原始 屏幕高
          */
         readyCanvas(cWidth, cHeight) {
-            const { mountNode } = this.$refs
-            const { clientWidth, clientHeight } = mountNode
+            let canvsWidht = 0
+            const { clientWidth, clientHeight } = this.$el
             // console.log(mountNode)
             // 录屏 不能 写死
             console.log('mountNode 宽高')
             console.log({ clientWidth, clientHeight })
             if (this.type == 2) {
                 this.options = { width: clientWidth, height: clientHeight }
+                canvsWidht = clientWidth
             } else {
+                canvsWidht = cWidth
                 // mountNode
                 // 获取屏幕宽高
                 // 屏幕分辨率的高： window.screen.height
@@ -2777,64 +2785,41 @@ export default {
                 //  目标对象的  屏幕大小~  考虑 通过什么传过来-- 等待老师加入 传过来
                 // 屏幕上下 很长
                 // 当前窗口大小  内部另外计算
-                const { k, width, height } = this.convert({ width: cWidth, height: cHeight }, { width: clientWidth, height: clientHeight })
+                // const { k, width, height } = this.convert({ width: cWidth, height: cHeight }, { width: clientWidth, height: clientHeight })
 
                 // const { k, width, height } = this.convert({ width: 1166, height: 828 }, { width: clientWidth, height: clientHeight })
-                this.options = { width, height }
-                this.kScale = k
+                this.options = { width: cWidth, height: cHeight }
+                
+                const { k, filled } = this.convert({ width: cWidth, height: cHeight }, { width: clientWidth, height: clientHeight })
+
+                // 一种是widht  最大
+                // 一种是 height 最大
+                this.scaleStyle = filled == 'width' ? {
+                    transform: 'scale(' + k + ')',
+                    'transform-origin': '0 0',
+                    top: '50%',
+                    'margin-top': -((cHeight * k) / 2) + 'px',
+                    left: 0,
+                    'margin-left': 0
+            
+                } : {
+                    transform: 'scale(' + k + ')',
+                    'transform-origin': '0 0',
+                    left: '50%',
+                    'margin-left': -((cWidth * k) / 2) + 'px',
+                    top: 0,
+                    'margin-top': 0
+                }
             }
             //  const [ctx, ctx2, boundingClientRect] = this.createCanvas(mountNode, this.options.width, this.options.height)
             const interfaceDom = document.getElementById('interface')
-            const [ctx, ctx2, boundingClientRect] = this.createCanvas(interfaceDom, interfaceDom.clientWidth, interfaceDom.clientHeight)
+            const [ctx, ctx2, boundingClientRect] = this.createCanvas(interfaceDom, canvsWidht, interfaceDom.clientHeight)
 
             // 对 interface  进行缩放
 
             this.ctx = ctx
             this.ctx2 = ctx2
             this.boundingClientRect = boundingClientRect
-
-            // var w = 1280
-            // var h = 800
-            // var scale = w / h
-            // const scale = this.kScale
-            // const { widht, height } = this.options
-            // if (scale > interfaceDom.clientWidth / interfaceDom.clientHeight) {
-            const { width, height } = this.options
-            this.scaleStyle = {
-                transform: 'scale(' + this.kScale + ')',
-                'transform-origin': '0 0',
-                left: '50%',
-                'margin-left': -((width * this.kScale) / 2) + 'px',
-                top: 0,
-                'margin-top': ''
-
-                // transform: 'scale(' + this.kScale + ')',
-                // 'transform-origin': '0 0',
-                // top: '50%',
-                // 'margin-top': -((height * this.kScale) / 2) + 'px',
-                // left: 0,
-                // 'margin-left': ''
-
-           
-            }
-
-            //     const scalePercent = interfaceDom.clientWidth / widht
-            //     // 把interfaceDom  缩放掉
-            //     $('.playContent').css('transform', 'scale(' + scalePercent + ')')
-            //         .css('transform-origin', '0 0')
-            //         .css('top', '50%')
-            //         .css('margin-top', -(800 * scalePercent) / 2 + 'px')
-            //         .css('left', '0').css('margin-left', '0px')
-            // } else {
-            //     const scalePercent = parseInt($.XHPlay.content.css('height')) / height
-            //     $('.playContent')
-            //         .css('transform', 'scale(' + scalePercent + ')')
-            //         .css('transform-origin', '0 0')
-            //         .css('left', '50%')
-            //         .css('margin-left', -(1280 * scalePercent) / 2 + 'px')
-            //         .css('top', '0')
-            //         .css('margin-top', '0px')
-            // }
 
         }
     },

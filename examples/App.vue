@@ -1,7 +1,8 @@
 <template>
     <div id="app">
         <crop
-            style="width:100%;height:100%;background-color: #f1f3f5;"
+            style="background-color: #f1f3f5;"
+            class="wrap"
             @change="change"
             :type="type"
             :isReplay="false"
@@ -72,6 +73,15 @@ export default {
 </script>
 
 <style>
+    .wrap {
+        width:100%;height:100%;
+        overflow: hidden;
+    }
+    div {
+        margin: 0;
+        padding: 0;
+
+    }
     body,html {
         /* width: 100%; */
         height: 100vh;
@@ -81,6 +91,7 @@ export default {
         margin: 0;
     }
     #app {
+        overflow: hidden;
         height: 100vh;
         font-size: 10px;
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
