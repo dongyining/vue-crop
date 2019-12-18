@@ -157,10 +157,10 @@
             @touchend.stop="handleEnd($event)"
             :style="mountNodeStyle"
         >
-            <div id="interface"/>
+            <div id="interface" :style="interfaceStyle">
+                <img src="./img/pen.png" alt="" v-show="changeDrawAction == 1" class="followPen" :style="followPenStyle">
+            </div>
 
-        
-            <img src="./img/pen.png" alt="" v-show="changeDrawAction == 1" class="followPen" :style="followPenStyle">
             <div class="draw-action-bar" :style="{width: options.width + 'px'}">
 
                 <!-- 确定 取消icon -->
@@ -298,6 +298,9 @@ export default {
     ],
     data() {
         return {
+            interfaceStyle: {
+
+            },
             scaleStyle: {
                 
             },
@@ -468,7 +471,7 @@ export default {
 
         
         renderCanvas() {
-            const { width, height } = this.options
+            const { width, height } = this.canvasWH
             // 避免预览到背景
             // canvas init
             this.ctx.clearRect(0, 0, width, height)
@@ -682,8 +685,8 @@ export default {
                 // x: this.limit((touch.pageX - boundingClientRect.left).toFixed(2), 2, width),
                 // y: this.limit((touch.pageY - boundingClientRect.top).toFixed(2), 2, height)
 
-                x: this.limit((touch.pageX).toFixed(2), 2, width),
-                y: this.limit((touch.pageY).toFixed(2), 2, height)
+                x: this.limit(this.getInt(touch.pageX), 2, width),
+                y: this.getInt(touch.pageY)
             }
             // move 到边
             return coordinate
@@ -1236,7 +1239,7 @@ export default {
                 const points = this.pointLine.slice(-2)
                 ctx.quadraticCurveTo(points[0].x, points[0].y, points[1].x, points[1].y)
                 ctx.stroke()
-                this.followPenStyle.left = -100 + 'px'
+                // this.followPenStyle.left = -100 + 'px'
                 this.addNewData()
             }
 
@@ -1756,7 +1759,7 @@ export default {
         },
         // 第二 画布 清屏
         clearCtx2() {
-            const { width, height } = this.options
+            const { width, height } = this.canvasWH
             // 避免预览到背景
             // canvas init
             this.ctx2.clearRect(0, 0, width, height)
@@ -2393,28 +2396,28 @@ export default {
             const dataJSON = this.commitData // this.dataJSON
             // console.log()
             const len = dataJSON.length
-            // let startTime = null
+            let startTime = null
             // console.log(dataJSON[0])
             this.replayIndex = 0 // 会迁入 初始化
             // console.log(dataJSON)
-            const step = () => {
+            const step = (timestamp) => {
                 const data = dataJSON[this.replayIndex]
-                // const time = dataJSON[this.replayIndex].time
+                const time = dataJSON[this.replayIndex].time
 
                 // 初始化时间
-                // if (!startTime) startTime = timestamp
-                // const progress = timestamp - startTime
+                if (!startTime) startTime = timestamp
+                const progress = timestamp - startTime
                 // 差时
                 // 暂停时间
-                // if (
-                //     true
-                //     // progress >= time
-                // ) {
-                this.replayIndex += 1
-                // this.socketInstance.write({ data: data.data, event: 'message' })
-                // 分发数据
-                this.distributeEvent(data.data)
-                // }
+                if (
+                    // true
+                    progress >= time
+                ) {
+                    this.replayIndex += 1
+                    // this.socketInstance.write({ data: data.data, event: 'message' })
+                    // 分发数据
+                    this.distributeEvent(data.data)
+                }
 
                 if (this.replayIndex >= len) {
                     // this.isReplay = false
@@ -2504,6 +2507,13 @@ export default {
             case 14:
                 this.log('空白地方', '#f60rrr', 3)
                 this.handleMask()
+                break
+            case 20:
+                this.log('上下滚动', '#f60rrr', 3)
+                this.interfaceStyle = {
+                    top: value.top + 'px',
+                    left: value.left + 'px'
+                }
                 break
             default:
                 break
@@ -2658,7 +2668,7 @@ export default {
             // 为什么  是三层 逐渐消失 -- 用
             // 解析数据
             // http://play.yunzuoye.net/public/aliplayer.html?src=https://xhfs2.oss-cn-hangzhou.aliyuncs.com/SB103013/smartclass/20191216/741b1600050a4078bda608b7fdcdc688.cwp&md5=E3AF927699F80A0B8CF2F390FEED2008
-            const originNativeData = require('./jq2.json').data
+            const originNativeData = require('./jq3.json').data
             // console.log(originNativeData.handWritingUrl)
             this.commitData = []
             const arrs = originNativeData.handWritingUrl.split(/\n/)
@@ -2688,28 +2698,67 @@ export default {
                 arr = arr.split(/,/)
                 arr.pop()
                 switch (arr[0]) {
+                case 'WM_GEOMETRIC_VIEW':
+                    // 几何图形
+                    const pointLocation = arr[26].split('#')[3].split('_')
+                    console.log(arr)
+                    break
+                case 'WM_VSCROLL':
+                    // if (arr[0] == 'WM_VSCROLL' && currentAction != 'WM_VSCROLL') {
+                    //     currentAction = arr[0]
+                    //     this.commitData.push({
+                    //         time: 2917,
+                    //         data: {
+                    //             actionTypes: 7
+                    //         }
+                    //     })
+                    // }
+                    // $('#interface').css('left', arr[5] + 'px').css('top', -arr[6] + 'px')
+                    this.commitData.push({
+                        time: arr[13],
+                        data: {
+                            value: {
+                                left: arr[5],
+                                top: -arr[6]
+                            },
+                            actionTypes: 20
+                        }
+                    })
+                    break
                 case 'WM_LBUTTONDOWN': {
                     console.log(arr[8])
+                    // 橡皮
                     if (arr[8] == '7' && currentAction != '7') {
                         currentAction = arr[8]
                         this.commitData.push({
-                            time: 2917,
+                            time: arr[13],
                             data: {
                                 actionTypes: 6
                             }
                         })
-                    } else if (arr[8] == '2' && currentAction != '2') {
-                        currentAction = arr[8]
+                    } else if ((arr[8] == '2' || arr[8] == '10') && currentAction != '2') {
+
+                        // 画笔  直线 或者 曲线
+                        currentAction = '2'
                         this.commitData.push({
-                            time: 2917,
+                            time: arr[13],
                             data: {
                                 actionTypes: 7
                             }
                         })
                     }
 
+                    // 判断是不是曲线
+                    if (currentAction == '2') {
+                        // ==
+                    }
+                    
+
+                    // 10 是直线
+ 
+
                     this.commitData.push({
-                        time: 2917,
+                        time: arr[13],
                         data: {
                             value: [
                                 {
@@ -2814,7 +2863,10 @@ export default {
             //  const [ctx, ctx2, boundingClientRect] = this.createCanvas(mountNode, this.options.width, this.options.height)
             const interfaceDom = document.getElementById('interface')
             const [ctx, ctx2, boundingClientRect] = this.createCanvas(interfaceDom, canvsWidht, interfaceDom.clientHeight)
-
+            this.canvasWH = {
+                width: canvsWidht,
+                height: interfaceDom.clientHeight
+            }
             // 对 interface  进行缩放
 
             this.ctx = ctx
