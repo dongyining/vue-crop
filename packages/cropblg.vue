@@ -4,8 +4,8 @@
  * @version: 0.0.1
  * @Author: banlangen
  * @Date: 2019-12-06 13:28:23
- * @LastEditors: banlangen
- * @LastEditTime: 2019-12-17 17:40:43
+ * @LastEditors  : banlangen
+ * @LastEditTime : 2019-12-18 09:14:07
  -->
 
 <style lang="scss">
@@ -116,6 +116,8 @@
         }
     }
     .draw-mount-node {
+        position: relative;
+        overflow: hidden;
         .mask {
             width: 100%;
             height: 100%;
@@ -131,6 +133,15 @@
         z-index: 1000;
     }
 
+    // 内部框
+    #interface {
+        top: 0;
+        left: 0;
+        position: absolute;
+        min-width: 100%;
+        min-height: 3968px;
+    }
+
     /* .rubber {
         padding: 0 20px;
     } */
@@ -141,9 +152,11 @@
         @touchstart.stop="handleStart($event)"
         @touchmove.stop="handleMove($event)"
         @touchend.stop="handleEnd($event)"
-        style="overflow: hidden;"
-        :style="{width: options.width + 'px', height: options.height + 'px'}"
+        :style="mountNodeStyle"
     >
+        <div id="interface"/>
+
+       
         <img src="./img/pen.png" alt="" v-show="changeDrawAction == 1" class="followPen" :style="followPenStyle">
         <div class="draw-action-bar" :style="{width: options.width + 'px'}">
 
@@ -281,6 +294,9 @@ export default {
     ],
     data() {
         return {
+            scaleStyle: {
+                
+            },
             followPenStyle: {
                 top: 0,
                 left: 0
@@ -366,6 +382,16 @@ export default {
             // 矩形
             showGeometry: false,
             geometry: 6 // 矩形
+        }
+    },
+    computed: {
+        mountNodeStyle() {
+            const { width, height } = this.options
+            return {
+                width: width + 'px',
+                height: height + 'px',
+                ...this.scaleStyle
+            }
         }
     },
     methods: {
@@ -878,9 +904,9 @@ export default {
                 this.clearCtx2()
                 this.renderRubber(x, y, radius)
 
-                if (this.type == 1 || this.isReplay) { // 回放 或则 读  橡皮不做判断
-                    return
-                }
+                // if (this.type == 1 || this.isReplay) { // 回放 或则 读  橡皮不做判断
+                //     return
+                // }
 
                 const pointList = this.pointList
                 const image = this.image
@@ -1716,15 +1742,15 @@ export default {
             this.renderCanvas()
         },
         //  取整、、
-        // getInt(num) {
-        //     let rounded;
-        //     rounded = (0.5 + num) | 0
-        //     // A double bitwise not.
-        //     rounded = ~~ (0.5 + num)
-        //     // Finally, a left bitwise shift.
-        //     rounded = (0.5 + num) << 0
-        //     return rounded
-        // },
+        getInt(num) {
+            let rounded
+            rounded = (0.5 + num) | 0
+            // A double bitwise not.
+            rounded = ~~(0.5 + num)
+            // Finally, a left bitwise shift.
+            rounded = (0.5 + num) << 0
+            return rounded
+        },
         // 第二 画布 清屏
         clearCtx2() {
             const { width, height } = this.options
@@ -2618,8 +2644,8 @@ export default {
             }
             return {
                 k,
-                width: currentW, // 显示宽度
-                height: currentH // 真是 宽度
+                width: this.getInt(currentW), // 显示宽度
+                height: this.getInt(currentH) // 真是 宽度
             }
         },
         formatAndroidData() {
@@ -2750,16 +2776,65 @@ export default {
 
                 //  目标对象的  屏幕大小~  考虑 通过什么传过来-- 等待老师加入 传过来
                 // 屏幕上下 很长
-                const { k, width, height } = this.convert({ width: cWidth, height: cHeight }, { width: clientWidth, height: clientHeight }, 'widht')
+                // 当前窗口大小  内部另外计算
+                const { k, width, height } = this.convert({ width: cWidth, height: cHeight }, { width: clientWidth, height: clientHeight })
+
                 // const { k, width, height } = this.convert({ width: 1166, height: 828 }, { width: clientWidth, height: clientHeight })
                 this.options = { width, height }
                 this.kScale = k
             }
+            //  const [ctx, ctx2, boundingClientRect] = this.createCanvas(mountNode, this.options.width, this.options.height)
+            const interfaceDom = document.getElementById('interface')
+            const [ctx, ctx2, boundingClientRect] = this.createCanvas(interfaceDom, interfaceDom.clientWidth, interfaceDom.clientHeight)
 
-            const [ctx, ctx2, boundingClientRect] = this.createCanvas(mountNode, this.options.width, this.options.height)
+            // 对 interface  进行缩放
+
             this.ctx = ctx
             this.ctx2 = ctx2
             this.boundingClientRect = boundingClientRect
+
+            // var w = 1280
+            // var h = 800
+            // var scale = w / h
+            // const scale = this.kScale
+            // const { widht, height } = this.options
+            // if (scale > interfaceDom.clientWidth / interfaceDom.clientHeight) {
+            const { width, height } = this.options
+            this.scaleStyle = {
+                transform: 'scale(' + this.kScale + ')',
+                'transform-origin': '0 0',
+                left: '50%',
+                'margin-left': -((width * this.kScale) / 2) + 'px',
+                top: 0,
+                'margin-top': ''
+
+                // transform: 'scale(' + this.kScale + ')',
+                // 'transform-origin': '0 0',
+                // top: '50%',
+                // 'margin-top': -((height * this.kScale) / 2) + 'px',
+                // left: 0,
+                // 'margin-left': ''
+
+           
+            }
+
+            //     const scalePercent = interfaceDom.clientWidth / widht
+            //     // 把interfaceDom  缩放掉
+            //     $('.playContent').css('transform', 'scale(' + scalePercent + ')')
+            //         .css('transform-origin', '0 0')
+            //         .css('top', '50%')
+            //         .css('margin-top', -(800 * scalePercent) / 2 + 'px')
+            //         .css('left', '0').css('margin-left', '0px')
+            // } else {
+            //     const scalePercent = parseInt($.XHPlay.content.css('height')) / height
+            //     $('.playContent')
+            //         .css('transform', 'scale(' + scalePercent + ')')
+            //         .css('transform-origin', '0 0')
+            //         .css('left', '50%')
+            //         .css('margin-left', -(1280 * scalePercent) / 2 + 'px')
+            //         .css('top', '0')
+            //         .css('margin-top', '0px')
+            // }
 
         }
     },
