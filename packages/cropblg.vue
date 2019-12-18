@@ -492,11 +492,11 @@ export default {
             for (let index = 0; index < pointList.length; index++) {
                 const el = pointList[index]
     
-                const scale = this.scale / el.scale
+                // const scale = this.scale / el.scale
                     
                 // 图片已经 缩放过了 -- 到 笔记这里 再缩放-- 就有问题了-- 可以解决
                 // 存一下 厨师 缩放 比例--为基准--然后计算缩放比
-                ctx.lineWidth = this.limit(el.lineWidth * scale, 1, 15)
+                ctx.lineWidth = el.lineWidth
                 //  * 1.3 是解决 store 点堆积 会造成线  加粗
                 // 为什么还是 会变细 画的线
                 // ctx.lineWidth = this.limit(el.lineWidth, 1, 15)
@@ -524,7 +524,7 @@ export default {
                     const maxX = image.x + el.maxX * scale
                     const minX = image.x + el.minX * scale
                     const radius = (maxX - minX) / 2 - el.offset
-                    const originM = this.restPoint(el.centra, image, scale)
+                    const originM = el.centra
                     this.geometryArc(ctx, originM, radius)
                     continue
                 }
@@ -532,16 +532,16 @@ export default {
                      *  单 箭头
                      */
                 if (geometry && geometry == 5) {
-                    const originPointFirst = this.restPoint(points[0], image, scale)
-                    const originPointSecond = this.restPoint(points[1], image, scale)
+                    const originPointFirst = points[0]
+                    const originPointSecond = points[1]
                     ctx.fillStyle = el.color
                     this.geometryLineArrow(ctx, originPointFirst, originPointSecond, 20)
                     continue
                 }
                 if (geometry && geometry == 6) {
  
-                    const left = this.restPoint(points[0], image, scale)
-                    const right = this.restPoint(points[1], image, scale)
+                    const left = points[0]
+                    const right = points[1]
                     const originM = this.restPoint(el.centra, image, scale)
                     ctx.fillStyle = el.color
 
@@ -554,8 +554,8 @@ export default {
                     // const top = this.restPoint(points[0], image, scale)
                     // const bottom = this.restPoint(points[2], image, scale)
 
-                    const [top, right, bottom, left] = points.map(e => this.restPoint(e, image, scale))
-                    const originM = this.restPoint(el.centra, image, scale)
+                    const [top, right, bottom, left] = points
+                    const originM = el.centra
 
                     this.geometryLineArrow(ctx, left, right, 15, originM, 'x', scale)
                     this.geometryLineArrow(ctx, top, bottom, 15, originM, 'y', scale)
@@ -578,21 +578,22 @@ export default {
                 // }
                 const numPoints = points.length
                 for (let i = 0; i < numPoints; i++) {
-                    const originPointFirst = this.restPoint(points[i], image, scale)
+                    const originPointFirst = points[i]
                     if (i == 0) {
                         ctx.moveTo(originPointFirst.x, originPointFirst.y)
                     } else if (numPoints < 3) {// (el.writing == 2 || el.writing == 4) {
-                    // 直线
+                        // console.log('直线----------------------------------')
+                        // 直线
                         ctx.lineTo(originPointFirst.x, originPointFirst.y)
                     } else if (i < numPoints - 2) {
-                        const originPointSecond = this.restPoint(points[i + 1], image, scale)
+                        const originPointSecond = points[i + 1]
                         const ctrlPoint = {
                             x: (originPointFirst.x + originPointSecond.x) / 2,
                             y: (originPointFirst.y + originPointSecond.y) / 2
                         }
                         ctx.quadraticCurveTo(originPointFirst.x, originPointFirst.y, ctrlPoint.x, ctrlPoint.y)
                     } else if (i < numPoints - 1) {
-                        const originPointSecond = this.restPoint(points[i + 1], image, scale)
+                        const originPointSecond = points[i + 1]
                         ctx.quadraticCurveTo(originPointFirst.x, originPointFirst.y, originPointSecond.x, originPointSecond.y)
                     }
                 }
@@ -859,6 +860,7 @@ export default {
                     if (this.pointLine.length === 0) {
                         this.pointLine.push(drawPoint)
                     }
+                    this.drawPoint = currentPoint
                 } else {
                     // 划线
                     // 解决 突然同步-- 这两个属性化石上个回放的属性 还有 笔的  很多问题  突然杀入  应尽量避免这个问题
@@ -1234,9 +1236,13 @@ export default {
             }
             // 搜集点 进入画笔
             // this.log(this.pointLine)
-            if (this.changeDrawAction == 1 && this.pointLine.length > 0) {
+            if ((this.writing == 1 || this.writing == 3) && this.changeDrawAction == 1 && this.pointLine.length > 0) {
+                // this.writing == 2 || this.writing == 4
+                //  不是曲线不用走这里
                 const ctx = this.ctx
                 const points = this.pointLine.slice(-2)
+
+                
                 ctx.quadraticCurveTo(points[0].x, points[0].y, points[1].x, points[1].y)
                 ctx.stroke()
                 // this.followPenStyle.left = -100 + 'px'
@@ -1255,6 +1261,9 @@ export default {
 
             // 直线的 橡皮画在-- 第二个canvas上
             if (this.changeDrawAction == 1 && (this.writing == 2 || this.writing == 4)) {
+                // console.log('直线---=====重新渲染画布---')
+                this.pointLine.push(this.drawPoint)
+                this.addNewData()
                 this.clearCtx2()
                 this.renderCanvas()
             }
@@ -1270,16 +1279,7 @@ export default {
             //  加个 maxX maxY  minX minY
             // 会有 明明在范围内 检测不到--- 范围太小了 加一点
             const offset = 4
-
-
-            // 记录相对于 图片的 位置
-            const image = this.image
-            let points = this.pointLine.map(e => {
-                return {
-                    x: e.x - image.x,
-                    y: e.y - image.y
-                }
-            })
+            let points = this.pointLine
             // 三角形  正方形 和 梯形 --- 和点线一样的 判断
             if (this.changeDrawAction == 3) {
                 //  加一个 点--- 尾头相连
@@ -1309,8 +1309,8 @@ export default {
 
                 if (this.geometry == 4 || this.geometry == 6 || this.geometry == 7) {
                     pointObj.centra = {
-                        x: (this.circleMidpoin.x - image.x).toFixed(2),
-                        y: (this.circleMidpoin.y - image.y).toFixed(2)
+                        x: this.circleMidpoin.x.toFixed(2),
+                        y: this.circleMidpoin.y.toFixed(2)
                     }
                 }
             }
@@ -2688,7 +2688,8 @@ export default {
                     * 10 笔颜色
                     * 11 笔粗细
                     */
-            let currentAction = -1
+            let currentAction = -1 // 当前动作
+            let currentPen = 1 // 曲线 直线
             // const actionTypesMap = {
             //     '2': 1,
             //     '7': 6
@@ -2700,7 +2701,7 @@ export default {
                 switch (arr[0]) {
                 case 'WM_GEOMETRIC_VIEW':
                     // 几何图形
-                    const pointLocation = arr[26].split('#')[3].split('_')
+                    // const pointLocation = arr[26].split('#')[3].split('_')
                     console.log(arr)
                     break
                 case 'WM_VSCROLL':
@@ -2751,6 +2752,25 @@ export default {
                     // 判断是不是曲线
                     if (currentAction == '2') {
                         // ==
+                        if (currentPen != 1 && arr[8] == '2') {
+                            currentPen = 1
+                            this.commitData.push({
+                                time: arr[13],
+                                data: {
+                                    value: 1,
+                                    actionTypes: 9
+                                }
+                            })
+                        } else if (currentPen != 2 && arr[8] == '10') {
+                            currentPen = 2
+                            this.commitData.push({
+                                time: arr[13],
+                                data: {
+                                    value: 2,
+                                    actionTypes: 9
+                                }
+                            })
+                        }
                     }
                     
 
