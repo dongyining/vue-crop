@@ -143,6 +143,11 @@
         min-width: 100%;
         min-height: 3968px;
     }
+    .pptIframe {
+        // position: 
+        width: 100%;
+        height: 100%;
+    }
 
     /* .rubber {
         padding: 0 20px;
@@ -157,6 +162,8 @@
             @touchend.stop="handleEnd($event)"
             :style="mountNodeStyle"
         >
+            <iframe class="pptIframe" src="http://xuehai2.whytouch.com/ppt/a00356300036516191218115338087e/index.html" frameborder="0" ></iframe>
+
             <div id="interface" :style="interfaceStyle">
                 <img src="./img/pen.png" alt="" v-show="changeDrawAction == 1" class="followPen" :style="followPenStyle">
             </div>
@@ -522,9 +529,10 @@ export default {
                 }
                 if (geometry && geometry == 4) {
                     const maxX = el.maxX
-                    const minX = minX
+                    const minX = el.minX
                     const radius = (maxX - minX) / 2 - el.offset
                     const originM = el.centra
+                    // console.log(originM, radius)
                     this.geometryArc(ctx, originM, radius)
                     continue
                 }
@@ -1305,9 +1313,10 @@ export default {
             if (isGeometry) {
                 // 特殊解构
                 // delete pointObj.pointLine
-                pointObj.geometry = this.geometry
+                const geometry = this.geometry
+                pointObj.geometry = geometry
 
-                if (this.geometry == 4 || this.geometry == 6 || this.geometry == 7) {
+                if (geometry == 4 || geometry == 6 || geometry == 7) {
                     pointObj.centra = {
                         x: this.circleMidpoin.x,
                         y: this.circleMidpoin.y
@@ -1420,7 +1429,7 @@ export default {
         geometryAxis(ctx, p1, p2, midpoin, Axis, k = 1) {
             // 圆心到终点位置
             const bulge = this.limit(5 * k, 2, 50) // 左边位置
-            const interval = 48 * (this.type == 2 ? k : this.kScale * k) // 左边间隔
+            const interval = 50 // 左边间隔
             // 如何兼容 y 轴
             let from, to
             if (p1[Axis] < p2[Axis]) {
@@ -2340,7 +2349,7 @@ export default {
             
 
             const canvasDom2 = canvasDom.cloneNode(true)
-            canvasDom2.style.backgroundColor = '#fff'
+            // canvasDom2.style.backgroundColor = '#fff'
             // canvasDom2.style.backgroundImage = 'linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%), linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%)'
             // canvasDom2.style.backgroundSize = '29px 29px'
             // canvasDom2.style.backgroundPosition = '0 0, 15px 15px'
@@ -2517,8 +2526,10 @@ export default {
                 break
             case 21:
                 this.log('直画几何图形', '#f60rrr', 3)
-                this.pointLine = value.points
-                this.geometry = value.geometryType
+                console.log(value.pointLine)
+                this.pointLine = value.pointLine
+                this.geometry = value.geometry
+                this.circleMidpoin = value.circleMidpoin || null
                 this.addNewData(true)
                 this.renderCanvas()
                 break
@@ -2677,7 +2688,7 @@ export default {
             // http://play.yunzuoye.net/public/aliplayer.html?src=https://xhfs2.oss-cn-hangzhou.aliyuncs.com/SB103013/smartclass/20191216/741b1600050a4078bda608b7fdcdc688.cwp&md5=E3AF927699F80A0B8CF2F390FEED2008
             
             // http://xhfs2.oss-cn-hangzhou.aliyuncs.com/SB103013/smartclass/20191219/49ea340cfa0044b787cf6691327646a5.cwp
-            const originNativeData = require('./jq4.json').data
+            const originNativeData = require('./jq7.json').data
             // console.log(originNativeData.handWritingUrl)
             this.commitData = []
             const arrs = originNativeData.handWritingUrl.split(/\n/)
@@ -2703,41 +2714,100 @@ export default {
             //     '2': 1,
             //     '7': 6
             // }
+            // url=http://xhfs4.oss-cn-hangzhou.aliyuncs.com/SB103013/smartclass/20191219/3440eaf91ace4714bd161d9b40461479.cwp
             arrs.forEach(arr => {
                 // console.log(arr)
                 arr = arr.split(/,/)
                 arr.pop()
                 switch (arr[0]) {
-                case 'WM_GEOMETRIC_VIEW':
+                case 'WM_GEOMETRIC_VIEW': {
+                    
+                    console.log(arr[8])
+                    // this.pointLine = value.pointLine
+                    // this.geometry = value.geometry
+                    // this.circleMidpoin = value.circleMidpoin || null
 
                     // if (currentAction != '3') {
                     //     currentAction = '3'
                     //     // 修改为 矩形模式
                     // }
+                    let pointLine = arr[26].split('#')[2].split(';').map(e => {
+                        const point = e.split('_')
+                        return {
+                            x: Number(point[0]),
+                            y: Number(point[1])
+                        }
+                        
+                    })
                     if (arr[8] == '11' || arr[8] == '12' || arr[8] == '13') { // 矩形
                         // 4个点坐标
-                        const points = arr[26].split('#')[2].split(';').map(e => {
-                            const point = e.split('_')
-                            return {
-                                x: point[0],
-                                y: point[1]
-                            }
-                            
-                        })
+                        
                         // 直接画 矩形
                         this.commitData.push({
                             time: arr[13],
                             data: {
                                 value: {
-                                    points,
-                                    geometryType: 2 // 暂时写死 矩形
+                                    pointLine,
+                                    geometry: 2 // 暂时写死 矩形
                                 },
                                 actionTypes: 21
                             }
                         })
+                    } else if (arr[8] == '18') {
+                        // gei  4个点
+
+                        // 要求自己根据
+                        // 把圆心 求出来
+                        const circleMidpoin = this.getMidpoint(pointLine[0], pointLine[2])
+                        this.commitData.push({
+                            time: arr[13],
+                            data: {
+                                value: {
+                                    pointLine,
+                                    geometry: 4,
+                                    circleMidpoin
+                                },
+                                actionTypes: 21
+                            }
+                        })
+
+                    } else if (arr[8] == '15') {
+                        // 坐标
+
+                        // 要求自己根据
+                        // 把圆心 求出来
+                        const circleMidpoin = pointLine.pop()
+                        this.commitData.push({
+                            time: arr[13],
+                            data: {
+                                value: {
+                                    pointLine,
+                                    geometry: 7,
+                                    circleMidpoin
+                                },
+                                actionTypes: 21
+                            }
+                        })
+
+                    } else if (arr[8] == '16') {
+                        // 要求自己根据
+                        // 把圆心 求出来
+                        const circleMidpoin = pointLine.pop()
+                        this.commitData.push({
+                            time: arr[13],
+                            data: {
+                                value: {
+                                    pointLine,
+                                    geometry: 6,
+                                    circleMidpoin
+                                },
+                                actionTypes: 21
+                            }
+                        })
+
                     }
 
-
+                }
                     // 没有过程
                     break
                 case 'WM_VSCROLL':
@@ -2885,7 +2955,16 @@ export default {
                 // const { k, width, height } = this.convert({ width: 1166, height: 828 }, { width: clientWidth, height: clientHeight })
                 this.options = { width: cWidth, height: cHeight }
                 
-                const { k, filled } = this.convert({ width: cWidth, height: cHeight }, { width: clientWidth, height: clientHeight })
+                const { k, filled, width, height } = this.convert({ width: cWidth, height: cHeight }, { width: clientWidth, height: clientHeight })
+
+
+                this.iframeStyle = {
+                    width: width + 'px',
+                    height: height + 'px',
+                    left: 0,
+                    top: 0
+                    // po
+                }
 
                 // 一种是widht  最大
                 // 一种是 height 最大

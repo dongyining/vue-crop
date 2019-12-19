@@ -363,7 +363,7 @@ $(document).ready(function () {
                         var scale = w / h
                         if (scale > (parseInt($.XHPlay.content.css('width')) / parseInt($.XHPlay.content.css('height')))) {
                             scalePercent = parseInt($.XHPlay.content.css('width')) / 1280
-                            $('.playContent').css('transform', 'scale(' + scalePercent + ')').css('transform-origin', '0 0').css('top', '50%').css('margin-top', -(800 * scalePercent) / 2 + 'px').css('left', '0').css('margin-left', '0px')
+                            $('.    ').css('transform', 'scale(' + scalePercent + ')').css('transform-origin', '0 0').css('top', '50%').css('margin-top', -(800 * scalePercent) / 2 + 'px').css('left', '0').css('margin-left', '0px')
                         } else {
                             scalePercent = parseInt($.XHPlay.content.css('height')) / 800
                             $('.playContent').css('transform', 'scale(' + scalePercent + ')').css('transform-origin', '0 0').css('left', '50%').css('margin-left', -(1280 * scalePercent) / 2 + 'px').css('top', '0').css('margin-top', '0px')
@@ -897,7 +897,7 @@ $(document).ready(function () {
                     case 'WM_GEOMETRIC_VIEW':// 插入几何图形
                         if (isKeep) {
                             var pointLocation = arr[26].split('#')[3].split('_')
-                            $.XHPlay.drawTools(pointLocation[2], pointLocation[3], 'pen')// 几何图形插入时penImg的定位
+                            $.XHPlay.drawTools(pointLocation[2], pointLocation[3], 'pen') // 几何图形插入时penImg的定位
                             switch (arr[8]) {
                             case '11':
                             case '12':
