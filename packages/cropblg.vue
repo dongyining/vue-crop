@@ -326,7 +326,7 @@ export default {
                 'green',
                 'greenyellow',
                 'orange',
-                'red'
+                '#47d8be'
             ],
             // 笔的粗细
             penWeight: [
@@ -424,7 +424,7 @@ export default {
             this.lines = [] // 四方形 截图的线
             this.isReplay = this.isReplay || false // 是否是回放
             this.recordData = [] //  记录
-            this.color = 'blue' //  颜色
+            this.color = '#47d8be' //  颜色
 
             this.meaninglessm = false // 无意义事件- icon 点击 只需要start move 和 end  都不需要执行
             // 确定 取消 icon
@@ -472,7 +472,7 @@ export default {
             // }
 
             this.formatAndroidData()
-            console.log('replay')
+
             this.replay()
         },
 
@@ -2688,7 +2688,7 @@ export default {
             // http://play.yunzuoye.net/public/aliplayer.html?src=https://xhfs2.oss-cn-hangzhou.aliyuncs.com/SB103013/smartclass/20191216/741b1600050a4078bda608b7fdcdc688.cwp&md5=E3AF927699F80A0B8CF2F390FEED2008
             
             // http://xhfs2.oss-cn-hangzhou.aliyuncs.com/SB103013/smartclass/20191219/49ea340cfa0044b787cf6691327646a5.cwp
-            const originNativeData = require('./jq7.json').data
+            const originNativeData = require('./jq5.json').data
             // console.log(originNativeData.handWritingUrl)
             this.commitData = []
             const arrs = originNativeData.handWritingUrl.split(/\n/)
