@@ -141,7 +141,7 @@
         left: 0;
         position: absolute;
         min-width: 100%;
-        min-height: 3968px;
+        min-height:  100vh// 3968px;  // 太长会 很卡 很卡
     }
     .pptIframe {
         // position: 
@@ -885,17 +885,32 @@ export default {
                     //     // 第一个移动的 的
                     //     this.drawPoint = currentPoint
                     // }
+
+
                     this.pointLine.push(currentPoint)
-            
+
+                    // if (this.pointLine.length < 3) {
+                    //     ctx.beginPath()
+                    //     ctx.moveTo(this.pointLine[0].x, this.pointLine[0].y)
+                    //     ctx.lineTo(this.pointLine[1].x, this.pointLine[1].y)
+                    // } else {
+                    //     ctx.lineTo(currentPoint.x, currentPoint.y)
+                    // }
+                    
+                    // 计算  两点之间的距离  比渲染ctx.stroke()  省时间
+                    // if (this.getDistance({ pageX: this.firstPoint.x, pageY: this.firstPoint.y }, { pageX: currentPoint.x, pageY: currentPoint.y }) > 3) {
+                    //     ctx.stroke()
+                    //     //  划线用不上 firstPoint 暂时  那这个 替代 prev
+                    //     this.firstPoint = currentPoint
+                    // }
 
                     const drawLine = this.pointLine
                     if (drawLine.length > 2) {
                         const lastTwoPoints = drawLine.slice(-2)
-                        // console.log(lastTwoPoints)
                         const controlPoint = lastTwoPoints[0]
                         const endPoint = {
-                            x: (parseInt(controlPoint.x) + parseInt(lastTwoPoints[1].x)) / 2,
-                            y: (parseInt(controlPoint.y) + parseInt(lastTwoPoints[1].y)) / 2
+                            x: (Number(controlPoint.x) + Number(lastTwoPoints[1].x)) / 2,
+                            y: (Number(controlPoint.y) + Number(lastTwoPoints[1].y)) / 2
                         }
                         ctx.beginPath()
                         ctx.moveTo(drawPoint.x, drawPoint.y)
@@ -2688,7 +2703,7 @@ export default {
             // http://play.yunzuoye.net/public/aliplayer.html?src=https://xhfs2.oss-cn-hangzhou.aliyuncs.com/SB103013/smartclass/20191216/741b1600050a4078bda608b7fdcdc688.cwp&md5=E3AF927699F80A0B8CF2F390FEED2008
             
             // http://xhfs2.oss-cn-hangzhou.aliyuncs.com/SB103013/smartclass/20191219/49ea340cfa0044b787cf6691327646a5.cwp
-            const originNativeData = require('./jq5.json').data
+            const originNativeData = require('./data.json').data
             // console.log(originNativeData.handWritingUrl)
             this.commitData = []
             const arrs = originNativeData.handWritingUrl.split(/\n/)
