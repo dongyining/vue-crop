@@ -2677,11 +2677,11 @@ export default {
             // http://play.yunzuoye.net/public/aliplayer.html?src=https://xhfs2.oss-cn-hangzhou.aliyuncs.com/SB103013/smartclass/20191216/741b1600050a4078bda608b7fdcdc688.cwp&md5=E3AF927699F80A0B8CF2F390FEED2008
             
             // http://xhfs2.oss-cn-hangzhou.aliyuncs.com/SB103013/smartclass/20191219/49ea340cfa0044b787cf6691327646a5.cwp
-            const originNativeData = require('./jq5.json').data
+            const originNativeData = require('./jq4.json').data
             // console.log(originNativeData.handWritingUrl)
             this.commitData = []
             const arrs = originNativeData.handWritingUrl.split(/\n/)
-            console.log(arrs)
+            // console.log(arrs)
             //  解析数据
             /* actionTypes
                     *
