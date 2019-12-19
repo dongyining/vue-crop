@@ -417,7 +417,7 @@ export default {
             this.lines = [] // 四方形 截图的线
             this.isReplay = this.isReplay || false // 是否是回放
             this.recordData = [] //  记录
-            this.color = '#f14864' //  颜色
+            this.color = 'blue' //  颜色
 
             this.meaninglessm = false // 无意义事件- icon 点击 只需要start move 和 end  都不需要执行
             // 确定 取消 icon
@@ -486,7 +486,7 @@ export default {
         
         drawPointFn(ctx) {
             const pointList = this.pointList
-            const image = this.image
+            // const image = this.image
             if (pointList.length == 0) return
             // ctx.lineCap = 'round'
             for (let index = 0; index < pointList.length; index++) {
@@ -521,8 +521,8 @@ export default {
                     ctx.fillStyle = el.color
                 }
                 if (geometry && geometry == 4) {
-                    const maxX = image.x + el.maxX * scale
-                    const minX = image.x + el.minX * scale
+                    const maxX = el.maxX
+                    const minX = minX
                     const radius = (maxX - minX) / 2 - el.offset
                     const originM = el.centra
                     this.geometryArc(ctx, originM, radius)
@@ -542,10 +542,10 @@ export default {
  
                     const left = points[0]
                     const right = points[1]
-                    const originM = this.restPoint(el.centra, image, scale)
+                    const originM = el.centra
                     ctx.fillStyle = el.color
 
-                    this.geometryLineArrow(ctx, left, right, 15, originM, 'x', scale)
+                    this.geometryLineArrow(ctx, left, right, 15, originM, 'x')
                     continue
                 }
                 if (geometry && geometry == 7) {
@@ -557,8 +557,8 @@ export default {
                     const [top, right, bottom, left] = points
                     const originM = el.centra
 
-                    this.geometryLineArrow(ctx, left, right, 15, originM, 'x', scale)
-                    this.geometryLineArrow(ctx, top, bottom, 15, originM, 'y', scale)
+                    this.geometryLineArrow(ctx, left, right, 15, originM, 'x')
+                    this.geometryLineArrow(ctx, top, bottom, 15, originM, 'y')
                     continue
                 }
                 // 矩形处理 end
@@ -581,7 +581,7 @@ export default {
                     const originPointFirst = points[i]
                     if (i == 0) {
                         ctx.moveTo(originPointFirst.x, originPointFirst.y)
-                    } else if (numPoints < 3) {// (el.writing == 2 || el.writing == 4) {
+                    } else if (numPoints < 3 || geometry) {// (el.writing == 2 || el.writing == 4) {
                         // console.log('直线----------------------------------')
                         // 直线
                         ctx.lineTo(originPointFirst.x, originPointFirst.y)
@@ -917,7 +917,7 @@ export default {
                 // }
 
                 const pointList = this.pointList
-                const image = this.image
+                // const image = this.image
                 this.log('进入橡皮先生' + '我是写' + '--type:' + this.type)
                 const time = new Date().getTime()
                 for (let index = 0; index < pointList.length; index++) {
@@ -928,8 +928,8 @@ export default {
                     const lineDis = element.lineWidth / 2 + radius
                     const lineLength = pointLine.length
                     // 还原最大 最小值
-                    const maxPonit = this.restPoint({ x: element.maxX, y: element.maxY }, image, scale)
-                    const minPonit = this.restPoint({ x: element.minX, y: element.minY }, image, scale)
+                    const maxPonit = { x: element.maxX, y: element.maxY }
+                    const minPonit = { x: element.minX, y: element.minY }
                     //  直线如果距离太小也会 被拦下来  处理放在了 计算 min和max 了
                     const time1 = new Date().getTime()
                     if (
@@ -942,11 +942,12 @@ export default {
                             '' + (new Date().getTime() - time1) + 'ms')
                         continue
                     }
+                    // http://xhfs1.oss-cn-hangzhou.aliyuncs.com/SB103013/smartclass/20191219/cbf4595e64ec4c3eb1bde7d334db2e3c.cwp
                     // 圆 特殊处理
                     const geometry = element.geometry
                     if (geometry && geometry == 4) {
                         const radius = (maxPonit.x - minPonit.x) / 2 - element.offset
-                        const originM = this.restPoint(element.centra, image, scale)
+                        const originM = element.centra
                         const dis = this.getDistance({ pageX: x, pageY: y }, { pageX: originM.x, pageY: originM.y })
                         // dis < lineDis ||
                         if (Math.abs(dis - radius) < lineDis) {
@@ -959,7 +960,7 @@ export default {
                     if (geometry && geometry == 7) {
                         // const points = element.
                         // 点到 线的 距离
-                        const dis = this.distanceOfPoint2Line(this.restPoint(pointLine[3], image, scale), this.restPoint(pointLine[1], image, scale), { x, y })
+                        const dis = this.distanceOfPoint2Line(pointLine[3], pointLine[1], { x, y })
                         // 点到 线的 距离
                         if (dis <= lineDis) {
                             this.removeLine(index)
@@ -967,7 +968,7 @@ export default {
                             // 尽量少算一个
                             continue
                         }
-                        const dis2 = this.distanceOfPoint2Line(this.restPoint(pointLine[0], image, scale), this.restPoint(pointLine[2], image, scale), { x, y })
+                        const dis2 = this.distanceOfPoint2Line(pointLine[0], pointLine[2], { x, y })
                         if (dis2 <= lineDis) {
                             this.removeLine(index)
                             this.sendData(e, 4, index)
@@ -982,7 +983,7 @@ export default {
                         const item = pointLine[j]
                         // const len = pointLine.length
                         // 点 复原坐标 1
-                        const originPoint = this.restPoint(item, image, scale)
+                        const originPoint = item
                         // 首先用点检测
                         if (Math.abs(x - originPoint.x) < lineDis && Math.abs(y - originPoint.y) < lineDis) {
                             this.removeLine(index)
@@ -996,7 +997,7 @@ export default {
                         // 如果 离上一个点差的很远 ---  用线 检测
                         if (geometry || this.getDistance({ pageX: item.x, pageY: item.y }, { pageX: secondItem.x, pageY: secondItem.y }) > lineDis) {
                             // this.log('差的很远的的一条线 橡皮离这个线的距离')
-                            const dis = this.distanceOfPoint2Line(originPoint, this.restPoint(secondItem, image, scale), { x, y })
+                            const dis = this.distanceOfPoint2Line(originPoint, secondItem, { x, y })
                             // this.log('点到线的距离为： ' + dis)
                             if (dis < lineDis) {
                                 this.removeLine(index)
@@ -1097,7 +1098,7 @@ export default {
                     break
                 }
 
-                this.renderGeometry(points, 8, false)
+                this.renderGeometry(points, 8, false, this.geometry)
 
                 this.pointLine = points
 
@@ -1231,12 +1232,12 @@ export default {
                 //  待确认状态
                 this.changeDrawAction = 4
                 // 获取可滑动的 控制点
-                this.renderGeometry(this.pointLine, radius, true)
+                this.renderGeometry(this.pointLine, radius, true, this.geometry)
                 return
             }
             // 搜集点 进入画笔
             // this.log(this.pointLine)
-            if ((this.writing == 1 || this.writing == 3) && this.changeDrawAction == 1 && this.pointLine.length > 0) {
+            if ((this.writing == 1 || this.writing == 3) && this.changeDrawAction == 1 && this.pointLine.length > 2) {
                 // this.writing == 2 || this.writing == 4
                 //  不是曲线不用走这里
                 const ctx = this.ctx
@@ -1292,7 +1293,6 @@ export default {
 
             let pointObj = {
                 pointLine: points,
-                scale: this.scale, //  e.scale || this.scale, 为什么 e.scale
                 lineWidth: this.weight,
                 color: this.color,
                 writing: this.writing,
@@ -1309,8 +1309,8 @@ export default {
 
                 if (this.geometry == 4 || this.geometry == 6 || this.geometry == 7) {
                     pointObj.centra = {
-                        x: this.circleMidpoin.x.toFixed(2),
-                        y: this.circleMidpoin.y.toFixed(2)
+                        x: this.circleMidpoin.x,
+                        y: this.circleMidpoin.y
                     }
                 }
             }
@@ -1512,7 +1512,7 @@ export default {
          * @param {Boolean}  isAuxiliary  是否画辅助线
          * @return: {void}
          */
-        renderGeometry(points, radius, isAuxiliary) {
+        renderGeometry(points, radius, isAuxiliary, geometry) {
             const ctx = this.ctx2
             this.clearCtx2()
                  
@@ -1524,7 +1524,7 @@ export default {
             //    矩形
             // 给每个角 上个圆圈
             // const radius = 10 //  半径
-            const geometry = this.geometry
+            // const geometry = this.geometry
             ctx.strokeStyle = this.color
             ctx.lineWidth = this.weight
             ctx.fillStyle = this.color
@@ -1604,8 +1604,6 @@ export default {
                 
             // 辅助线
             if (isAuxiliary && geometry !== 5) { //  箭头是没有控制点的
-
-
                 this.rectControlPoint = this.getControlPoint(points)
                 // 画4个控制点
                 for (let index = 0; index < this.rectControlPoint.length; index++) {
@@ -2130,7 +2128,7 @@ export default {
             // --
             // 控制点
             // this.lin
-            this.renderGeometry(this.pointLine, 8, true)
+            this.renderGeometry(this.pointLine, 8, true, this.geometry)
 
             //  最小值 ==
                
@@ -2164,11 +2162,11 @@ export default {
             }
             // relativePoint  //  每个点的 相对于 虚线的位置
             this.pointLine = this.relativePoint.map(e => ({ x: e.x + newAL.x, y: e.y + newAL.y }))
-            this.renderGeometry(this.pointLine, 8, true)
+            this.renderGeometry(this.pointLine, 8, true, this.geometry)
         },
         // 求两点的中点
         getMidpoint(p1, p2) {
-            return { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 }
+            return { x: this.getInt((p1.x + p2.x) / 2), y: this.getInt((p1.y + p2.y) / 2) }
         },
         // 求两点之间的 距离
         getDistance(p1, p2) {
@@ -2371,9 +2369,9 @@ export default {
             /**
                  *  如果是写的话 --  直接返回 data  就好了  不需要计算
                  */
-            if (this.type == 2) return data
-            if (Array.isArray(data)) return data.map(item => ({ pageX: item.pageX * this.kScale, pageY: item.pageY * this.kScale }))
-            return data * this.kScale
+            // if (this.type == 2) return data
+            // if (Array.isArray(data)) return data.map(item => ({ pageX: item.pageX * this.kScale, pageY: item.pageY * this.kScale }))
+            // return data * this.kScale
         },
         replay() {
             // if (this.type == 1) {
@@ -2397,6 +2395,7 @@ export default {
             // console.log()
             const len = dataJSON.length
             let startTime = null
+            let currentTime = 0
             // console.log(dataJSON[0])
             this.replayIndex = 0 // 会迁入 初始化
             // console.log(dataJSON)
@@ -2406,12 +2405,12 @@ export default {
 
                 // 初始化时间
                 if (!startTime) startTime = timestamp
-                const progress = timestamp - startTime
+                currentTime = timestamp - startTime
                 // 差时
                 // 暂停时间
                 if (
                     // true
-                    progress >= time
+                    currentTime >= time
                 ) {
                     this.replayIndex += 1
                     // this.socketInstance.write({ data: data.data, event: 'message' })
@@ -2429,6 +2428,7 @@ export default {
             return () => {
                 window.cancelAnimationFrame(this.RAFID)
                 this.RAFID = null
+                return currentTime // 当前暂停时间
                 // return
             }
         },
@@ -2498,7 +2498,7 @@ export default {
                 break
             case 12:
                 this.log('选择几何图形板', '#f60rrr', 3)
-                this.handleGeometry({}, value)
+                this.handleGeometry({})
                 break
             case 13:
                 this.log('选择几何图形', '#f60rrr', 3)
@@ -2514,6 +2514,13 @@ export default {
                     top: value.top + 'px',
                     left: value.left + 'px'
                 }
+                break
+            case 21:
+                this.log('直画几何图形', '#f60rrr', 3)
+                this.pointLine = value.points
+                this.geometry = value.geometryType
+                this.addNewData(true)
+                this.renderCanvas()
                 break
             default:
                 break
@@ -2623,7 +2630,7 @@ export default {
                             this.offsetLeft = this.dataScale(originData.showGeometry)
 
                             const data = originData.pointLine.map(item => ({ x: item.x * this.kScale, y: item.y * this.kScale }))
-                            this.renderGeometry(data, 8, true)
+                            this.renderGeometry(data, 8, true, this.geometry)
                         }
                             
                             
@@ -2668,7 +2675,9 @@ export default {
             // 为什么  是三层 逐渐消失 -- 用
             // 解析数据
             // http://play.yunzuoye.net/public/aliplayer.html?src=https://xhfs2.oss-cn-hangzhou.aliyuncs.com/SB103013/smartclass/20191216/741b1600050a4078bda608b7fdcdc688.cwp&md5=E3AF927699F80A0B8CF2F390FEED2008
-            const originNativeData = require('./jq3.json').data
+            
+            // http://xhfs2.oss-cn-hangzhou.aliyuncs.com/SB103013/smartclass/20191219/49ea340cfa0044b787cf6691327646a5.cwp
+            const originNativeData = require('./jq5.json').data
             // console.log(originNativeData.handWritingUrl)
             this.commitData = []
             const arrs = originNativeData.handWritingUrl.split(/\n/)
@@ -2700,21 +2709,38 @@ export default {
                 arr.pop()
                 switch (arr[0]) {
                 case 'WM_GEOMETRIC_VIEW':
-                    // 几何图形
-                    // const pointLocation = arr[26].split('#')[3].split('_')
-                    console.log(arr)
+
+                    // if (currentAction != '3') {
+                    //     currentAction = '3'
+                    //     // 修改为 矩形模式
+                    // }
+                    if (arr[8] == '11' || arr[8] == '12' || arr[8] == '13') { // 矩形
+                        // 4个点坐标
+                        const points = arr[26].split('#')[2].split(';').map(e => {
+                            const point = e.split('_')
+                            return {
+                                x: point[0],
+                                y: point[1]
+                            }
+                            
+                        })
+                        // 直接画 矩形
+                        this.commitData.push({
+                            time: arr[13],
+                            data: {
+                                value: {
+                                    points,
+                                    geometryType: 2 // 暂时写死 矩形
+                                },
+                                actionTypes: 21
+                            }
+                        })
+                    }
+
+
+                    // 没有过程
                     break
                 case 'WM_VSCROLL':
-                    // if (arr[0] == 'WM_VSCROLL' && currentAction != 'WM_VSCROLL') {
-                    //     currentAction = arr[0]
-                    //     this.commitData.push({
-                    //         time: 2917,
-                    //         data: {
-                    //             actionTypes: 7
-                    //         }
-                    //     })
-                    // }
-                    // $('#interface').css('left', arr[5] + 'px').css('top', -arr[6] + 'px')
                     this.commitData.push({
                         time: arr[13],
                         data: {
@@ -2727,9 +2753,9 @@ export default {
                     })
                     break
                 case 'WM_LBUTTONDOWN': {
-                    console.log(arr[8])
                     // 橡皮
                     if (arr[8] == '7' && currentAction != '7') {
+
                         currentAction = arr[8]
                         this.commitData.push({
                             time: arr[13],
@@ -2738,9 +2764,10 @@ export default {
                             }
                         })
                     } else if ((arr[8] == '2' || arr[8] == '10') && currentAction != '2') {
-
+                        // console.log('之前是什么：' + currentAction)
                         // 画笔  直线 或者 曲线
                         currentAction = '2'
+                        //  改成画笔
                         this.commitData.push({
                             time: arr[13],
                             data: {
@@ -2775,7 +2802,6 @@ export default {
                     
 
                     // 10 是直线
- 
 
                     this.commitData.push({
                         time: arr[13],
@@ -2822,7 +2848,7 @@ export default {
                     })
                     break
                 default:
-                    console.log('没有相关类型')
+                    console.log('没有相关类型:' + arr[0])
                     break
                 }
             })
