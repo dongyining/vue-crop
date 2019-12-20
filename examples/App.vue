@@ -1,7 +1,6 @@
 <template>
     <div id="app">
         <crop
-            style="background-color: #f1f3f5;"
             class="wrap"
             @change="change"
             :type="type"

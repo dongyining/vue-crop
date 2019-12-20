@@ -5,7 +5,7 @@
  * @Author: banlangen
  * @Date: 2019-12-06 13:28:23
  * @LastEditors  : banlangen
- * @LastEditTime : 2019-12-18 09:14:07
+ * @LastEditTime : 2019-12-20 17:50:52
  -->
 
 <style lang="scss">
@@ -118,7 +118,8 @@
     .draw-mount-node {
         border: 1px solid red;
         position: relative;
-        overflow: hidden;
+        // overflow: hidden;
+        overflow: auto;
         margin: 0;
         .mask {
             width: 100%;
@@ -130,23 +131,27 @@
             // background: red;
         }
     }
+    ::-webkit-scrollbar {
+        display:none
+    }
+    // 内部框
+    #interface {
+        // top: 0;
+        // left: 0;
+        position: absolute;
+        min-width: 100%;
+        min-height: 100vh; // 3968px;  // 太长会 很卡 很卡
+    }
+    .pptIframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
     .followPen {
         position: absolute;
         z-index: 1000;
-    }
-
-    // 内部框
-    #interface {
-        top: 0;
-        left: 0;
-        position: absolute;
-        min-width: 100%;
-        min-height:  100vh// 3968px;  // 太长会 很卡 很卡
-    }
-    .pptIframe {
-        // position: 
-        width: 100%;
-        height: 100%;
     }
 
     /* .rubber {
@@ -351,9 +356,9 @@ export default {
                 { lable: '圆形', value: 4 },
                 { lable: '箭头', value: 5 },
                 { lable: '数轴', value: 6 },
-                { lable: '坐标轴', value: 7 }
-                // {lable: '椭圆', value: 8},
-                // {lable: '弧形', value: 9}
+                { lable: '坐标轴', value: 7 },
+                { lable: '椭圆', value: 8 },
+                { lable: '弧形', value: 9 }
             ],
 
 
@@ -473,7 +478,7 @@ export default {
 
             this.formatAndroidData()
 
-            this.replay()
+            // this.replay()
         },
 
         
@@ -945,8 +950,6 @@ export default {
                 const time = new Date().getTime()
                 for (let index = 0; index < pointList.length; index++) {
                     const element = pointList[index]
-                        
-                    const scale = this.scale / element.scale
                     const pointLine = element.pointLine
                     const lineDis = element.lineWidth / 2 + radius
                     const lineLength = pointLine.length
@@ -1101,6 +1104,7 @@ export default {
                     break
                 case 4: // 圆
                 case 5: // 箭头
+                case 9: // 弧形
 
                     points = [firstPoint, point]
                     break
@@ -1481,13 +1485,9 @@ export default {
                 if (Axis == 'x') {
                     const p1 = { x: start, y: midpoin.y }
                     mark(p1, { x: start, y: midpoin.y - bulge })
-
-                    // ctx.fillText( '-' + index , p1.x - 5 * (index.toString().length + 1) * k, p1.y + 18 * k)
                 } else {
                     const p1 = { x: midpoin.x, y: start }
                     mark(p1, { x: midpoin.x + bulge, y: start })
-
-                    // ctx.fillText( index , p1.x - 15 * k, p1.y + 6 * k)
                 }
                     
             }
@@ -1497,13 +1497,9 @@ export default {
                 if (Axis == 'x') {
                     const p1 = { x: start, y: midpoin.y }
                     mark(p1, { x: start, y: midpoin.y - bulge })
-
-                    // ctx.fillText(index , p1.x - 5 * index.toString().length * k, p1.y + 18 * k)
                 } else {
                     const p1 = { x: midpoin.x, y: start }
                     mark(p1, { x: midpoin.x + bulge, y: start })
-
-                    // ctx.fillText('-' + index , p1.x - 20 * k, p1.y + 6 * k)
                 }
             }
             ctx.stroke()
@@ -1527,6 +1523,34 @@ export default {
             context.restore()
 
         },
+        /**
+         * 弧度  圆规
+         * @param {Element} ctx canvs2d
+         *  @param {{x:number, y:number}} point 圆心坐标
+         * @param {number} radius 半径
+         * @param {PI} startAngle  弧度
+         * @param {PI} endAngle 弧度
+         * @param {x:number, y:number}} secondPoint 连接线终点位置
+         * @return: {void}
+         */
+        compasses(ctx, point, radius, startAngle, endAngle, secondPoint) {
+
+            if (secondPoint) {
+                ctx.setLineDash([5, 10])
+                ctx.moveTo(point.x, point.y)
+                ctx.lineTo(secondPoint.x, secondPoint.y)
+                ctx.stroke()
+                ctx.setLineDash([])
+                ctx.beginPath()
+                ctx.arc(point.x, point.y, 2, 0, 2 * Math.PI)
+                ctx.fill()
+                ctx.stroke()
+                ctx.beginPath()
+            }
+            ctx.arc(point.x, point.y, radius, startAngle, endAngle, true)
+            ctx.stroke()
+
+        },
 
 
         /**
@@ -1539,7 +1563,11 @@ export default {
         renderGeometry(points, radius, isAuxiliary, geometry) {
             const ctx = this.ctx2
             this.clearCtx2()
-                 
+
+            // 不是  辅助线 一律 10°
+            if (!isAuxiliary) {
+                this.degrees = 10
+            }
 
             // 画圆
             // if (condition) {
@@ -1553,6 +1581,23 @@ export default {
             ctx.lineWidth = this.weight
             ctx.fillStyle = this.color
             ctx.beginPath()
+
+            if (geometry == 9) {
+                const firstPoint = points[0]
+                const secondPoint = points[1]
+
+                //  计算一次
+                const angle = this.angle =  this.getAngle(firstPoint, secondPoint) 
+                const radius = this.circleRadius = this.getDistance({ pageX: firstPoint.x, pageY: firstPoint.y }, { pageX: secondPoint.x, pageY: secondPoint.y })
+                // const angle = '12132'
+                // 理论上这个  只需要计算一次就好了
+               
+                const oneAngle = Math.PI / 180 // 一度
+                const degrees = this.degrees
+                const startAngle = (angle + degrees) * oneAngle
+                const endAngle = (angle - degrees) * oneAngle
+                this.compasses(ctx, firstPoint, radius, startAngle, endAngle, secondPoint)
+            } else
             if (geometry == 8) {
                 const firstPoint = points[3]
                 const secondPoint = points[1]
@@ -1639,6 +1684,10 @@ export default {
                 }
                 // 4个圈是 对的
                 // 画辅助线
+                if (geometry == 9) {
+                    this.drawAuxiliaryLine(ctx, points, geometry)
+                    return
+                }
                 this.drawAuxiliaryLine(ctx, this.rectControlPoint, geometry)
             }
         },
@@ -1650,11 +1699,11 @@ export default {
         getControlPoint(points) {
             const radius = 10
             // 画图
-            if (this.geometry == 4) {
+            const geometry = this.geometry
+            if (geometry == 4) {
                 // 圆形 都要特殊处理
                 const midpoin = this.circleMidpoin
                 const circleRadius = this.circleRadius
-
                 const arr = [
                     { x: midpoin.x, y: midpoin.y - circleRadius, width: radius * 2, height: radius * 2 },
                     { x: midpoin.x + circleRadius, y: midpoin.y, width: radius * 2, height: radius * 2 },
@@ -1663,7 +1712,21 @@ export default {
                 ]
                 this.pointLine = arr
                 return arr
-
+            }
+            if (geometry == 9) {
+                // 获取控制点
+                // 没一度 的大小位置 找到控制点
+                // 获取
+                // 下边那个 控制点
+                const startAngle = (this.degrees + this.angle) * Math.PI / 180
+                return [
+                    {
+                        x: this.getInt(points[0].x + Math.cos(startAngle) * this.circleRadius),
+                        y: this.getInt(points[0].y + Math.sin(startAngle) * this.circleRadius), // 注意此处是“-”号，因为我们要得到的Y是相对于（0,0）而言的。
+                        width: radius * 2,
+                        height: radius * 2
+                    }
+                ]
             }
 
                
@@ -1677,8 +1740,37 @@ export default {
             // import okIcon from './img/ok.png'
             // import cancelIcon from './img/cancel.png'
             //  怎么用上这个矩形  能不根据 矩形 反推 图形
-            const { minX, minY, maxX, maxY } = this.getCritica(points, 8)
-            //
+
+            // 弧形
+            if (geometry == 9) {
+                // 构造point
+                const arr = []
+                const start = this.angle + this.degrees
+                const end = this.angle - this.degrees
+                const center = points[0]
+                for (let index = end; index <= start; index++) {
+                    arr.push({
+                        x: center.x + Math.cos(index * Math.PI / 180) * this.circleRadius,
+                        y: center.y + Math.sin(index * Math.PI / 180) * this.circleRadius // 注意此处是“-”号，因为我们要得到的Y是相对于（0,0）而言的。
+                    })
+                }
+                points = arr
+            }
+
+            let { minX, minY, maxX, maxY } = this.getCritica(points, 8)
+
+            // 弧形
+            if (geometry == 9) {
+                const minWidth = 34
+                const width = maxX - minX
+                if (width < minWidth) {
+                    const offset = minWidth - width
+                    minX -= offset
+                    maxX += offset
+                }
+            }
+
+
             const AL = {
                 x: minX,
                 y: minY,
@@ -1686,7 +1778,7 @@ export default {
                 height: maxY - minY
             }
             // 不符合最小 矩形
-            if (AL.width < 46 || (geometry != 6 && AL.height < 46)) {
+            if ((AL.width < 46 || ((geometry != 6) && AL.height < 46)) && geometry != 9) {
                 // 当前已经是  end 后了
                 this.recoveryThree()
                 return
@@ -1839,9 +1931,9 @@ export default {
         checkRegion(x, y, target) {
             // 添加个误差
             return x + 2 > target.x &&
-                    x - 2 < target.x + target.width &&
-                    y + 2 > target.y &&
-                    y - 2 < target.y + target.height
+                x - 2 < target.x + target.width &&
+                y + 2 > target.y &&
+                y - 2 < target.y + target.height
         },
         // getRange() {
 
@@ -1863,7 +1955,10 @@ export default {
             const image = this.image
             let t = {}
             let index = 0 // 第几个控制点
-            if (this.changeDrawAction == 4 && this.checkRegion(x, y, this.cancelIcon)) {
+            const changeDrawAction = this.changeDrawAction
+            console.log(this.rectControlPoint)
+            console.log({ x, y })
+            if (changeDrawAction == 4 && this.checkRegion(x, y, this.cancelIcon)) {
                 this.log('cancelIcon', '#f60rrr', 3)
                 /**
                      * 问题--  控制方 有时候-- 点击 会点不上
@@ -1874,7 +1969,7 @@ export default {
                 this.recoveryThree()
                 this.meaninglessm = true
 
-            } else if (this.changeDrawAction == 4 && this.checkRegion(x, y, this.okIcon)) {
+            } else if (changeDrawAction == 4 && this.checkRegion(x, y, this.okIcon)) {
                 // console.log('okIcon')
                 this.log('okIcon', '#f60rrr', 3)
 
@@ -1884,7 +1979,7 @@ export default {
                 this.addNewData(true)
                 this.renderCanvas()
                 this.meaninglessm = true
-            } else if (this.changeDrawAction == 4 && this.rectControlPoint.some((point, i) => {
+            } else if (changeDrawAction == 4 && this.rectControlPoint.some((point, i) => {
                 index = i
                 // 要构造一个小 正方形
                 return this.checkRegion(x, y, { ...point, x: point.x - 8, y: point.y - 8 })
@@ -1895,7 +1990,7 @@ export default {
                 this.index = index
 
 
-            } else if (this.changeDrawAction == 4 && this.checkRegion(x, y, this.auxiliaryLine)) {
+            } else if (changeDrawAction == 4 && this.checkRegion(x, y, this.auxiliaryLine)) {
                 // 矩形拖动
                 t.type = 'handleGeometryMove'
 
@@ -1915,7 +2010,7 @@ export default {
                 // this.oldPointLine = this.pointLine.slice()
                     
                 // console.log(this.oldPointLine)
-            } else if (this.changeDrawAction == -1 && this.checkRegion(x, y, image)) {
+            } else if (changeDrawAction == -1 && this.checkRegion(x, y, image)) {
                 // 图片
                 t.offsetX = x - image.x
                 t.offsetY = y - image.y
@@ -1962,6 +2057,7 @@ export default {
                 x: this.limit(x, 9, width - 9),
                 y: this.limit(y, 28, height - 9)
             }
+            const geometry = this.geometry
 
             // 图形最小值
 
@@ -1976,7 +2072,13 @@ export default {
 
                     
             // 1三角 2四边 3梯形
-            if (this.geometry == 7) {
+            if (geometry == 9) {
+                //  曲线 修改他的 最大值
+                this.degrees += 1
+                console.log('121313====弧形控制点变化')
+                
+
+            } else if (geometry == 7) {
                 const circleMidpoin = this.circleMidpoin
                 switch (this.index) {
                 case 0:
@@ -2000,7 +2102,7 @@ export default {
                     break
                 }
                     
-            } else if (this.geometry == 6) {
+            } else if (geometry == 6) {
                 const circleMidpoin = this.circleMidpoin
                 //  中间点  point  点中哪个点
                 const changePoint = this.getAxisCritical(circleMidpoin, point, 'x', this.index == 0)
@@ -2009,7 +2111,7 @@ export default {
                 }
                 // const y = this.circleMidpoin.y // y 是不会变的
                 this.pointLine.splice(this.index, 1, changePoint)
-            } else if (this.geometry == 4) {
+            } else if (geometry == 4) {
                 // console.log(this.geometry)
                 // 这个圆形和 四边形一样的逻辑
                 const currentPoint = this.pointLine[this.index]
@@ -2057,7 +2159,7 @@ export default {
                 }
                     
 
-            } else if (this.geometry == 2 || this.geometry == 3) {
+            } else if (geometry == 2 || geometry == 3) {
                 //  || this.geometry == 4
                 //  相邻 两个控制点 要变
                 // 2 3   矩形 梯形
@@ -2123,7 +2225,7 @@ export default {
                     //     x: this.limit(x, before.x + 50, width - 9),
                     //     y: this.limit(y, after.y + 50, height - 9)
                     // }
-                    if (this.geometry == 2) {
+                    if (geometry == 2) {
                         this.pointLine.splice(afterIndex, 1, { x: point.x, y: after.y })
                     }
                     this.pointLine.splice(beforeIndex, 1, { x: before.x, y: point.y })
@@ -2133,7 +2235,7 @@ export default {
                     //     y: this.limit(y, before.y + 50, height - 9)
                     // }
                     //  矩形影响 两个点
-                    if (this.geometry == 2) {
+                    if (geometry == 2) {
                         this.pointLine.splice(beforeIndex, 1, { x: point.x, y: before.y })
                     }
                     // 修改 后一个点
@@ -2152,7 +2254,7 @@ export default {
             // --
             // 控制点
             // this.lin
-            this.renderGeometry(this.pointLine, 8, true, this.geometry)
+            this.renderGeometry(this.pointLine, 8, true, geometry)
 
             //  最小值 ==
                
@@ -2201,11 +2303,30 @@ export default {
         /*
             * 两点的夹角
             */
+        // getAngle(p1, p2) {
+        //     const x = p1.x - p2.x
+        //     const y = p1.y - p2.y
+        //     return Math.atan2(y, x) * 180 / Math.PI
+        // },
+        
+        /**
+         * 计算从x1y1到x2y2的直线，与水平线形成的夹角
+         * 计算规则为顺时针从左侧0°到与该直线形成的夹角
+         * @param {Object} x1
+         * @param {Object} y1
+         * @param {Object} x2
+         * @param {Object} y2
+         */
         getAngle(p1, p2) {
-            var x = p1.pageX - p2.pageX,
-                y = p1.pageY - p2.pageY
-            return Math.atan2(y, x) * 180 / Math.PI
+            const x = p1.x - p2.x
+            const y = p1.y - p2.y
+            if (!x && !y) {
+                return 0
+            }
+            // const angle = (180 +  * 180 / Math.PI + 360) % 360
+            return Math.atan2(-y, -x) / (Math.PI / 180) // 返回的是 °
         },
+
 
         /**
          * 限定范围值
@@ -2408,8 +2529,6 @@ export default {
             //     window.cancelAnimationFrame(this.RAFID)
             //     this.RAFID = null
             // }
-                 
-
             // 先克隆数据  然后 初始化 所有状态
             // -----
             // const dataJSON = JSON.parse(JSON.stringify(this.recordData))
@@ -2534,10 +2653,12 @@ export default {
                 break
             case 20:
                 this.log('上下滚动', '#f60rrr', 3)
-                this.interfaceStyle = {
-                    top: value.top + 'px',
-                    left: value.left + 'px'
-                }
+                // this.interfaceStyle = {
+                //     top: value.top + 'px',
+                //     left: value.left + 'px'
+                // }
+                // document.querySelector("main").scrollTop = 20
+                this.$el.scrollTop = value.top
                 break
             case 21:
                 this.log('直画几何图形', '#f60rrr', 3)
@@ -2703,7 +2824,7 @@ export default {
             // http://play.yunzuoye.net/public/aliplayer.html?src=https://xhfs2.oss-cn-hangzhou.aliyuncs.com/SB103013/smartclass/20191216/741b1600050a4078bda608b7fdcdc688.cwp&md5=E3AF927699F80A0B8CF2F390FEED2008
             
             // http://xhfs2.oss-cn-hangzhou.aliyuncs.com/SB103013/smartclass/20191219/49ea340cfa0044b787cf6691327646a5.cwp
-            const originNativeData = require('./data.json').data
+            const originNativeData = require('./jq7.json').data
             // console.log(originNativeData.handWritingUrl)
             this.commitData = []
             const arrs = originNativeData.handWritingUrl.split(/\n/)
@@ -2831,7 +2952,7 @@ export default {
                         data: {
                             value: {
                                 left: arr[5],
-                                top: -arr[6]
+                                top: arr[6]
                             },
                             actionTypes: 20
                         }
