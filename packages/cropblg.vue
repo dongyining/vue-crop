@@ -140,7 +140,7 @@
         // left: 0;
         position: absolute;
         min-width: 100%;
-        min-height: 100vh; // 3968px;  // 太长会 很卡 很卡
+        min-height: 200vh; // 3968px;  // 太长会 很卡 很卡
     }
     .pptIframe {
         position: absolute;
@@ -1310,7 +1310,7 @@ export default {
             let points = this.pointLine
             // 三角形  正方形 和 梯形 --- 和点线一样的 判断
             if (this.changeDrawAction == 3) {
-                //  加一个 点--- 尾头相连
+                //  加一个 点--- 尾头相连this.angle + this.degrees
                 if ((this.geometry == 1 || this.geometry == 2 || this.geometry == 3)) {
                     points = points.slice(-1).concat(points)
                 }
@@ -1585,10 +1585,11 @@ export default {
             if (geometry == 9) {
                 const firstPoint = points[0]
                 const secondPoint = points[1]
-
+                this.circleMidpoin = firstPoint
                 //  计算一次
-                const angle = this.angle =  this.getAngle(firstPoint, secondPoint) 
+                const angle = this.angle = this.getAngle(firstPoint, secondPoint) 
                 const radius = this.circleRadius = this.getDistance({ pageX: firstPoint.x, pageY: firstPoint.y }, { pageX: secondPoint.x, pageY: secondPoint.y })
+                
                 // const angle = '12132'
                 // 理论上这个  只需要计算一次就好了
                
@@ -1745,9 +1746,19 @@ export default {
             if (geometry == 9) {
                 // 构造point
                 const arr = []
-                const start = this.angle + this.degrees
-                const end = this.angle - this.degrees
+                const degrees = this.degrees
+                let start = this.angle + degrees //  可能会出现负值
+                let end = this.angle - degrees
                 const center = points[0]
+                // if (start < end) {
+                //     const temp = start
+                //     // 变成负数了
+                //     start = end
+                //     end = temp
+                // }
+                console.log('变化的角度：=%d' + degrees)
+                // console.log('====================%d', degrees)
+                // console.log('start: %d,  end: %d', start, end)
                 for (let index = end; index <= start; index++) {
                     arr.push({
                         x: center.x + Math.cos(index * Math.PI / 180) * this.circleRadius,
@@ -1869,6 +1880,9 @@ export default {
             rounded = ~~(0.5 + num)
             // Finally, a left bitwise shift.
             rounded = (0.5 + num) << 0
+            if (rounded < 0) {
+                rounded -= 1
+            }
             return rounded
         },
         // 第二 画布 清屏
@@ -1956,8 +1970,6 @@ export default {
             let t = {}
             let index = 0 // 第几个控制点
             const changeDrawAction = this.changeDrawAction
-            console.log(this.rectControlPoint)
-            console.log({ x, y })
             if (changeDrawAction == 4 && this.checkRegion(x, y, this.cancelIcon)) {
                 this.log('cancelIcon', '#f60rrr', 3)
                 /**
@@ -2074,10 +2086,29 @@ export default {
             // 1三角 2四边 3梯形
             if (geometry == 9) {
                 //  曲线 修改他的 最大值
-                this.degrees += 1
-                console.log('121313====弧形控制点变化')
-                
-
+                // this.degrees += 1
+                // 当前角度
+                // console.log('121313====弧形控制点变化')
+                //  角度
+                // const angle = this.getAngle(this.circleMidpoin, { x, y })
+                // console.log(this.getAngle(this.circleMidpoin, { x, y }))
+                // 想办法 以 起点为 0角
+                // if (this.angle > 180) {
+                //     // 这个值是负值
+                //     360 - this.angle
+                    
+                // }
+                const finalaAgle = this.getAngle(this.circleMidpoin, { x, y }) - this.angle
+                // const finalaAgle = this.getAngle(this.circleMidpoin, { x, y }) - this.angle
+                // 如果 可能是负值
+                console.log(finalaAgle)
+                console.log('曲线初始指向角度：=' + this.angle)
+                if (finalaAgle > 180 && this.angle <= 180) {
+                    // 第3 4  象限
+                    // return
+                    // 对 180 不管了 还是等于以前的角度
+                }
+                this.degrees = this.limit(finalaAgle, 10, 180)
             } else if (geometry == 7) {
                 const circleMidpoin = this.circleMidpoin
                 switch (this.index) {
@@ -2324,7 +2355,13 @@ export default {
                 return 0
             }
             // const angle = (180 +  * 180 / Math.PI + 360) % 360
-            return Math.atan2(-y, -x) / (Math.PI / 180) // 返回的是 °
+
+            // 全部返回正整数
+            const angle = this.getInt(Math.atan2(-y, -x) / (Math.PI / 180)) // 返回的是 °
+            if (angle < 0) {
+                return 360 - angle * -1
+            }
+            return angle
         },
 
 
@@ -2525,10 +2562,10 @@ export default {
             // if (this.RAFID) {
             //     return
             // }
-            // if (this.RAFID) {
-            //     window.cancelAnimationFrame(this.RAFID)
-            //     this.RAFID = null
-            // }
+            if (this.RAFID) {
+                window.cancelAnimationFrame(this.RAFID)
+                this.RAFID = null
+            }
             // 先克隆数据  然后 初始化 所有状态
             // -----
             // const dataJSON = JSON.parse(JSON.stringify(this.recordData))
