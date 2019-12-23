@@ -5,7 +5,7 @@
  * @Author: banlangen
  * @Date: 2019-12-06 13:28:23
  * @LastEditors  : banlangen
- * @LastEditTime : 2019-12-20 17:50:52
+ * @LastEditTime : 2019-12-23 17:36:50
  -->
 
 <style lang="scss">
@@ -1102,12 +1102,13 @@ export default {
                 }
                            
                     break
-                case 4: // 圆
+                case 4:
                 case 5: // 箭头
                 case 9: // 弧形
 
                     points = [firstPoint, point]
                     break
+               
                 case 6: // 数轴
                 case 7: // 坐标轴轴
                 case 8: {
@@ -1128,7 +1129,6 @@ export default {
                 this.renderGeometry(points, 8, false, this.geometry)
 
                 this.pointLine = points
-
                 return
             }
 
@@ -1197,7 +1197,7 @@ export default {
                 return
             }
             //  结束对 延迟的 感知很小-- 可以把计算量大的都移动到 这部分来
-            const radius = 7 // 辅助的 圆球半径
+            const radius = 8 // 辅助的 圆球半径
 
             // 有两种 动作  画笔 和 橡皮
 
@@ -1210,11 +1210,13 @@ export default {
                     this.renderCanvas()
                     return
                 }
-                if (this.geometry == 7) {
+                // 4个点 得 坐标 数轴 圆形
+                const fourPoint = [7, 6]
+                if (fourPoint.includes(this.geometry)) {
+                    // 坐标轴  和  数轴大量 一样
                     const left = this.pointLine[3]
                     const right = this.pointLine[1]
-                    const top = this.pointLine[0]
-                    const bottom = this.pointLine[2]
+                   
                     if (Math.abs(left.x - right.x) < 80) {
                         this.clearCtx2()
                         return
@@ -1226,35 +1228,24 @@ export default {
                         arr[3] = right
                         arr[1] = left
                     }
-
-                    if (top.y > bottom.y) {
-                        arr[2] = top
-                        arr[0] = bottom
-                    }
-                    this.pointLine = arr
                     // 更新 偏移量
                     this.offsetLeft = this.circleMidpoin.x - this.pointLine[3].x
-                }
-                if (this.geometry == 6) {
-                    const left = this.pointLine[3]
-                    const right = this.pointLine[1]
-                    // const top = this.pointLine[0]
-                    // const bottom = this.pointLine[2]
-                    if (Math.abs(left.x - right.x) < 80) {
-                        this.clearCtx2()
-                        return
+                    // 6  7  公共部分
+
+                    if (this.geometry == 6) {
+                        // 数轴 2个控制点
+                        this.pointLine = [arr[3], arr[1]]
                     }
-                    //  如果  两个点 小于 80 --- 不给保留
-                    // 如果出现 起点变终点--- 对调一下-- 可以省 很多判断-----但是 有点局限了
-                    if (left.x < right.x) {
-                        this.pointLine = [left, right]
-                    } else {
-                        this.pointLine = [right, left]
+                    if (this.geometry == 7 || this.geometry == 4) {
+                        // 坐标轴 4个 控制点
+                        const top = this.pointLine[0]
+                        const bottom = this.pointLine[2]
+                        if (top.y > bottom.y) {
+                            arr[2] = top
+                            arr[0] = bottom
+                        }
+                        this.pointLine = arr
                     }
-                    // 更新 偏移量
-                    this.offsetLeft = this.circleMidpoin.x - this.pointLine[0].x
-                   
-                            
                 }
                 //  待确认状态
                 this.changeDrawAction = 4
@@ -1505,10 +1496,9 @@ export default {
             ctx.stroke()
         },
         geometryEllipse(context, x, y, a, b) { // 椭圆
-            // 关键是bezierCurveTo中两个控制点的设置
-            // 0.5和0.6是两个关键系数（在本函数中为试验而得）
-            var ox = 0.5 * a,
-                oy = 0.6 * b
+            // x表示x轴坐标，y表示y轴坐标，a表示长轴，b表示短轴
+            const ox = 0.5 * a
+            const oy = 0.6 * b
             context.save()
             context.translate(x, y)
             context.beginPath()
@@ -1521,6 +1511,16 @@ export default {
             context.closePath()
             context.stroke()
             context.restore()
+            //  压缩园 得到  椭圆
+            // context.save()
+            // const r = (a > b) ? a : b
+            // const ratioX = a / r
+            // const ratioY = b / r
+            // context.scale(ratioX, ratioY)
+            // context.beginPath()
+            // context.arc(x / ratioX, y / ratioY, r, 0, 2 * Math.PI, false)
+            // context.stroke()
+            // context.restore()
 
         },
         /**
@@ -1551,8 +1551,6 @@ export default {
             ctx.stroke()
 
         },
-
-
         /**
          * 渲染几何图形
          * @param {{x: number, y: number }}  points  坐标
@@ -1566,7 +1564,7 @@ export default {
 
             // 不是  辅助线 一律 10°
             if (!isAuxiliary) {
-                this.degrees = 10
+                this.degrees = 5
             }
 
             // 画圆
@@ -1587,7 +1585,7 @@ export default {
                 const secondPoint = points[1]
                 this.circleMidpoin = firstPoint
                 //  计算一次
-                const angle = this.angle = this.getAngle(firstPoint, secondPoint) 
+                const angle = this.angle = this.getAngle(firstPoint, secondPoint)
                 const radius = this.circleRadius = this.getDistance({ pageX: firstPoint.x, pageY: firstPoint.y }, { pageX: secondPoint.x, pageY: secondPoint.y })
                 
                 // const angle = '12132'
@@ -1602,9 +1600,15 @@ export default {
             if (geometry == 8) {
                 const firstPoint = points[3]
                 const secondPoint = points[1]
-                const m = this.getMidpoint(firstPoint, secondPoint)
-                const a = m.x - points[3].x
+                // const midpoin = this.circleMidpoin
+                // const circleRadius = this.circleRadius
+               
+                // 把 左边那个求出来
+                this.midpoin = this.getMidpoint(firstPoint, secondPoint)
+                const m = this.midpoin
+                const a = points[1].x - m.x
                 const b = points[0].y - m.y
+
                 this.geometryEllipse(ctx, m.x, m.y, a, b)
             } else
             // 圆形
@@ -1643,22 +1647,64 @@ export default {
             } else if (geometry == 4) {
                 // 圆形可以当做正方形来做  圆心就是 中间  半径就是 边长 /
                 //  圆心
-                     
-                let firstPoint, secondPoint
-                // ----------------
-                if (points.length == 2 || this.index == 3 || this.index == 0) {
-                    firstPoint = points[0]
-                    secondPoint = points[3] ? points[3] : points[1]
+                // 算出来  是以 长度为 半径 还是 宽度
+                if (points.length == 2) {
+                    const { minX, minY, maxX, maxY } = this.getCritica(points, 0)
+                    const height = (maxY - minY) / 2
+                    const width = (maxX - minX) / 2
+                    let x = 0
+                    let y = 0
+    
+                    //   4 中情况
+                    if (width > height) {
+                       
+                        if (points[1].y > points[0].y) {
+                            y = points[0].y + width
+                        } else {
+                            y = points[0].y - width
+                        }
+    
+    
+                        if (points[1].x > points[0].x) {
+                            x = points[0].x + width
+                        } else {
+                            x = points[0].x - width
+                        }
+    
+                        this.circleRadius = width
+                    } else {
+                        if (points[1].y > points[0].y) {
+                            y = points[0].y + height
+                        } else {
+                            y = points[0].y - height
+                        }
+    
+    
+                        if (points[1].x > points[0].x) {
+                            x = points[0].x + height
+                        } else {
+                            x = points[0].x - height
+                        }
+                        this.circleRadius = height
+                    }
+                    this.circleMidpoin = { x, y }
+                } else {
+                    //  搞不懂 -为啥会移动
+                    let firstPoint, secondPoint
+                    // ----------------
+                    // console.log(this.index)
+                    if (points.length == 2 || this.index == 0 || this.index == 1) {
+                        firstPoint = points[0]
+                        secondPoint = points[2] ? points[2] : points[1]
+                    } else {
+                        firstPoint = points[1]
+                        secondPoint = points[3]
+                    }
+                    const midpoin = this.circleMidpoin = this.getMidpoint(firstPoint, secondPoint)
+                    this.circleRadius = this.getDistance({ pageX: firstPoint.x, pageY: firstPoint.y }, { pageX: midpoin.x, pageY: midpoin.y })
                 }
-                else {
-                    firstPoint = points[2]
-                    secondPoint = points[1]
-                }
-                const midpoin = this.circleMidpoin = this.getMidpoint(firstPoint, secondPoint)
-                const radius = this.circleRadius = this.getDistance({ pageX: firstPoint.x, pageY: firstPoint.y }, { pageX: midpoin.x, pageY: midpoin.y })
 
-                this.geometryArc(ctx, midpoin, radius)
-             
+                this.geometryArc(ctx, this.circleMidpoin, this.circleRadius)
             } else {
                 // 多边形
                 //  测试 两个循环快-- 线越多 越明显
@@ -1675,6 +1721,7 @@ export default {
             // 辅助线
             if (isAuxiliary && geometry !== 5) { //  箭头是没有控制点的
                 this.rectControlPoint = this.getControlPoint(points)
+                // console.log(this.rectControlPoint)
                 // 画4个控制点
                 for (let index = 0; index < this.rectControlPoint.length; index++) {
                     const item = this.rectControlPoint[index]
@@ -1705,11 +1752,12 @@ export default {
                 // 圆形 都要特殊处理
                 const midpoin = this.circleMidpoin
                 const circleRadius = this.circleRadius
+                // coo
                 const arr = [
                     { x: midpoin.x, y: midpoin.y - circleRadius, width: radius * 2, height: radius * 2 },
                     { x: midpoin.x + circleRadius, y: midpoin.y, width: radius * 2, height: radius * 2 },
-                    { x: midpoin.x - circleRadius, y: midpoin.y, width: radius * 2, height: radius * 2 },
-                    { x: midpoin.x, y: midpoin.y + circleRadius, width: radius * 2, height: radius * 2 }
+                    { x: midpoin.x, y: midpoin.y + circleRadius, width: radius * 2, height: radius * 2 },
+                    { x: midpoin.x - circleRadius, y: midpoin.y, width: radius * 2, height: radius * 2 }
                 ]
                 this.pointLine = arr
                 return arr
@@ -1723,7 +1771,8 @@ export default {
                 return [
                     {
                         x: this.getInt(points[0].x + Math.cos(startAngle) * this.circleRadius),
-                        y: this.getInt(points[0].y + Math.sin(startAngle) * this.circleRadius), // 注意此处是“-”号，因为我们要得到的Y是相对于（0,0）而言的。
+                        y: this.getInt(points[0].y + Math.sin(startAngle) * this.circleRadius),
+                        // 注意此处是“-”号，因为我们要得到的Y是相对于（0,0）而言的。
                         width: radius * 2,
                         height: radius * 2
                     }
@@ -1737,11 +1786,6 @@ export default {
         },
         //  画辅助线
         drawAuxiliaryLine(ctx, points, geometry) {
-
-            // import okIcon from './img/ok.png'
-            // import cancelIcon from './img/cancel.png'
-            //  怎么用上这个矩形  能不根据 矩形 反推 图形
-
             // 弧形
             if (geometry == 9) {
                 // 构造point
@@ -1750,16 +1794,7 @@ export default {
                 let start = this.angle + degrees //  可能会出现负值
                 let end = this.angle - degrees
                 const center = points[0]
-                // if (start < end) {
-                //     const temp = start
-                //     // 变成负数了
-                //     start = end
-                //     end = temp
-                // }
-                console.log('变化的角度：=%d' + degrees)
-                // console.log('====================%d', degrees)
-                // console.log('start: %d,  end: %d', start, end)
-                for (let index = end; index <= start; index++) {
+                for (let index = end; index <= start; index += 0.5) {
                     arr.push({
                         x: center.x + Math.cos(index * Math.PI / 180) * this.circleRadius,
                         y: center.y + Math.sin(index * Math.PI / 180) * this.circleRadius // 注意此处是“-”号，因为我们要得到的Y是相对于（0,0）而言的。
@@ -1772,10 +1807,11 @@ export default {
 
             // 弧形
             if (geometry == 9) {
-                const minWidth = 34
+                //  解决 弧度很小  确定取消重合
+                const minWidth = 48
                 const width = maxX - minX
                 if (width < minWidth) {
-                    const offset = minWidth - width
+                    const offset = (minWidth - width) / 2
                     minX -= offset
                     maxX += offset
                 }
@@ -1789,7 +1825,12 @@ export default {
                 height: maxY - minY
             }
             // 不符合最小 矩形
-            if ((AL.width < 46 || ((geometry != 6) && AL.height < 46)) && geometry != 9) {
+            if (this.circleRadius < 46 && geometry == 9) {
+                this.recoveryThree()
+                return
+            }
+            
+            if (geometry != 9 && (AL.width < 46 || ((geometry != 6) && AL.height < 46))) {
                 // 当前已经是  end 后了
                 this.recoveryThree()
                 return
@@ -1840,10 +1881,10 @@ export default {
                 }
             }
             return {
-                maxX: maxX + offset,
-                maxY: maxY + offset,
-                minX: minX - offset,
-                minY: minY - offset
+                maxX: this.getInt(maxX + offset),
+                maxY: this.getInt(maxY + offset),
+                minX: this.getInt(minX - offset),
+                minY: this.getInt(minY - offset)
             }
         },
         /**
@@ -2083,8 +2124,14 @@ export default {
             // const 、、、、
 
                     
-            // 1三角 2四边 3梯形
+            // if (geometry == 8) {
+            //     //  椭圆
+            //     // 控制点 动一个 改三个
+                
+            // } else
             if (geometry == 9) {
+
+                // 橡皮  先计算角度  在计算 到圆心得距离
                 //  曲线 修改他的 最大值
                 // this.degrees += 1
                 // 当前角度
@@ -2098,17 +2145,18 @@ export default {
                 //     360 - this.angle
                     
                 // }
-                const finalaAgle = this.getAngle(this.circleMidpoin, { x, y }) - this.angle
-                // const finalaAgle = this.getAngle(this.circleMidpoin, { x, y }) - this.angle
-                // 如果 可能是负值
-                console.log(finalaAgle)
-                console.log('曲线初始指向角度：=' + this.angle)
-                if (finalaAgle > 180 && this.angle <= 180) {
-                    // 第3 4  象限
-                    // return
-                    // 对 180 不管了 还是等于以前的角度
+                let angle = this.getAngle(this.circleMidpoin, { x, y })
+                
+                if (this.angle > 180 && angle < 180) {
+                    angle += 360
                 }
-                this.degrees = this.limit(finalaAgle, 10, 180)
+                const finalaAgle = angle - this.angle
+                if (finalaAgle > 185 || finalaAgle < 5) {
+                    return
+                }
+                //  这肯定是没有错的
+                this.degrees = this.limit(finalaAgle, 5, 180)
+                
             } else if (geometry == 7) {
                 const circleMidpoin = this.circleMidpoin
                 switch (this.index) {
@@ -2142,7 +2190,7 @@ export default {
                 }
                 // const y = this.circleMidpoin.y // y 是不会变的
                 this.pointLine.splice(this.index, 1, changePoint)
-            } else if (geometry == 4) {
+            } else if (geometry == 4 || geometry == 8) {
                 // console.log(this.geometry)
                 // 这个圆形和 四边形一样的逻辑
                 const currentPoint = this.pointLine[this.index]
@@ -2182,15 +2230,18 @@ export default {
                 //     }
                 // }
 
-
-                if (this.index == 3 || this.index == 0) {
+                // console.log(this.index)
+                if (this.index == 0 || this.index == 2) {
                     this.pointLine.splice(this.index, 1, { x: currentPoint.x, y: point.y })
                 } else {
                     this.pointLine.splice(this.index, 1, { x: point.x, y: currentPoint.y })
                 }
-                    
+            }
+            // if (geometry == 4) {
+            //     //  圆形  一个点动-- 三个点改变
 
-            } else if (geometry == 2 || geometry == 3) {
+            // }
+            else if (geometry == 2 || geometry == 3) {
                 //  || this.geometry == 4
                 //  相邻 两个控制点 要变
                 // 2 3   矩形 梯形
