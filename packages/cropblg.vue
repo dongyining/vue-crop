@@ -5,7 +5,7 @@
  * @Author: banlangen
  * @Date: 2019-12-06 13:28:23
  * @LastEditors  : banlangen
- * @LastEditTime : 2019-12-24 09:04:09
+ * @LastEditTime : 2019-12-24 13:32:49
  -->
 
 <style lang="scss">
@@ -1108,11 +1108,9 @@ export default {
 
                     points = [firstPoint, point]
                     break
-               
+                case 8:
                 case 6: // 数轴
-                case 7: // 坐标轴轴
-                case 8: {
-                    // 椭圆
+                case 7: { // 坐标轴轴
                     const midpoint = this.getMidpoint(firstPoint, point)
                     points = [
                         { x: midpoint.x, y: firstPoint.y },
@@ -1598,16 +1596,28 @@ export default {
                 this.compasses(ctx, firstPoint, radius, startAngle, endAngle, secondPoint)
             } else
             if (geometry == 8) {
-                const firstPoint = points[3]
-                const secondPoint = points[1]
-                // const midpoin = this.circleMidpoin
-                // const circleRadius = this.circleRadius
+
+                if (points.length == 2) {
+                    points = [
+                        
+                    ]
+                }
+                let firstPoint, secondPoint
+                if (this.index == 0 || this.index == 2) {
+                    firstPoint = points[0]
+                    secondPoint = points[2]
+                } else {
+                    firstPoint = points[1]
+                    secondPoint = points[3]
+                }
                
                 // 把 左边那个求出来
                 this.midpoin = this.getMidpoint(firstPoint, secondPoint)
                 const m = this.midpoin
-                const a = points[1].x - m.x
-                const b = points[0].y - m.y
+                
+                const a = firstPoint.x - m.x
+                const b = firstPoint.y - m.y
+
 
                 this.geometryEllipse(ctx, m.x, m.y, a, b)
             } else
@@ -1698,9 +1708,9 @@ export default {
                     secondPoint = points[3]
                 }
                 // 解决有一个点  会移动
-                const circularControl = firstPoint == points[this.index] ? secondPoint : firstPoint
-                const midpoin = this.circleMidpoin = this.getMidpoint(firstPoint, secondPoint)
-                this.circleRadius = this.getDistance({ pageX: circularControl.x, pageY: circularControl.y }, { pageX: midpoin.x, pageY: midpoin.y })
+                // const circularControl = firstPoint == points[this.index] ? secondPoint : firstPoint
+                this.circleMidpoin = this.getMidpoint(firstPoint, secondPoint)
+                this.circleRadius = this.getDistance({ pageX: firstPoint.x, pageY: firstPoint.y }, { pageX: secondPoint.x, pageY: secondPoint.y }) / 2
                 // }
 
                 this.geometryArc(ctx, this.circleMidpoin, this.circleRadius)
@@ -1829,7 +1839,7 @@ export default {
                 return
             }
             
-            if (geometry != 9 && (AL.width < 46 || ((geometry != 6) && AL.height < 46))) {
+            if (geometry != 1 && geometry != 9 && (AL.width < 46 || ((geometry != 6) && AL.height < 46))) {
                 // 当前已经是  end 后了
                 this.recoveryThree()
                 return
@@ -3153,10 +3163,6 @@ export default {
         readyCanvas(cWidth, cHeight) {
             let canvsWidht = 0
             const { clientWidth, clientHeight } = this.$el
-            // console.log(mountNode)
-            // 录屏 不能 写死
-            console.log('mountNode 宽高')
-            console.log({ clientWidth, clientHeight })
             if (this.type == 2) {
                 this.options = { width: clientWidth, height: clientHeight }
                 canvsWidht = clientWidth
