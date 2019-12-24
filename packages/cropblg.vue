@@ -5,7 +5,7 @@
  * @Author: banlangen
  * @Date: 2019-12-06 13:28:23
  * @LastEditors  : banlangen
- * @LastEditTime : 2019-12-23 17:36:50
+ * @LastEditTime : 2019-12-24 09:04:09
  -->
 
 <style lang="scss">
@@ -1648,61 +1648,60 @@ export default {
                 // 圆形可以当做正方形来做  圆心就是 中间  半径就是 边长 /
                 //  圆心
                 // 算出来  是以 长度为 半径 还是 宽度
-                if (points.length == 2) {
-                    const { minX, minY, maxX, maxY } = this.getCritica(points, 0)
-                    const height = (maxY - minY) / 2
-                    const width = (maxX - minX) / 2
-                    let x = 0
-                    let y = 0
+                // if (points.length == 2) {
+                //     const { minX, minY, maxX, maxY } = this.getCritica(points, 0)
+                //     const height = (maxY - minY) / 2
+                //     const width = (maxX - minX) / 2
+                //     let x = 0
+                //     let y = 0
     
-                    //   4 中情况
-                    if (width > height) {
+                //     //   4 中情况
+                //     if (width > height) {
                        
-                        if (points[1].y > points[0].y) {
-                            y = points[0].y + width
-                        } else {
-                            y = points[0].y - width
-                        }
+                //         if (points[1].y > points[0].y) {
+                //             y = points[0].y + width
+                //         } else {
+                //             y = points[0].y - width
+                //         }
     
     
-                        if (points[1].x > points[0].x) {
-                            x = points[0].x + width
-                        } else {
-                            x = points[0].x - width
-                        }
+                //         if (points[1].x > points[0].x) {
+                //             x = points[0].x + width
+                //         } else {
+                //             x = points[0].x - width
+                //         }
     
-                        this.circleRadius = width
-                    } else {
-                        if (points[1].y > points[0].y) {
-                            y = points[0].y + height
-                        } else {
-                            y = points[0].y - height
-                        }
+                //         this.circleRadius = width
+                //     } else {
+                //         if (points[1].y > points[0].y) {
+                //             y = points[0].y + height
+                //         } else {
+                //             y = points[0].y - height
+                //         }
     
     
-                        if (points[1].x > points[0].x) {
-                            x = points[0].x + height
-                        } else {
-                            x = points[0].x - height
-                        }
-                        this.circleRadius = height
-                    }
-                    this.circleMidpoin = { x, y }
+                //         if (points[1].x > points[0].x) {
+                //             x = points[0].x + height
+                //         } else {
+                //             x = points[0].x - height
+                //         }
+                //         this.circleRadius = height
+                //     }
+                //     this.circleMidpoin = { x, y }
+                // } else {
+                let firstPoint, secondPoint
+                if (points.length == 2 || this.index == 0 || this.index == 2) {
+                    firstPoint = points[0]
+                    secondPoint = points[2] ? points[2] : points[1]
                 } else {
-                    //  搞不懂 -为啥会移动
-                    let firstPoint, secondPoint
-                    // ----------------
-                    // console.log(this.index)
-                    if (points.length == 2 || this.index == 0 || this.index == 1) {
-                        firstPoint = points[0]
-                        secondPoint = points[2] ? points[2] : points[1]
-                    } else {
-                        firstPoint = points[1]
-                        secondPoint = points[3]
-                    }
-                    const midpoin = this.circleMidpoin = this.getMidpoint(firstPoint, secondPoint)
-                    this.circleRadius = this.getDistance({ pageX: firstPoint.x, pageY: firstPoint.y }, { pageX: midpoin.x, pageY: midpoin.y })
+                    firstPoint = points[1]
+                    secondPoint = points[3]
                 }
+                // 解决有一个点  会移动
+                const circularControl = firstPoint == points[this.index] ? secondPoint : firstPoint
+                const midpoin = this.circleMidpoin = this.getMidpoint(firstPoint, secondPoint)
+                this.circleRadius = this.getDistance({ pageX: circularControl.x, pageY: circularControl.y }, { pageX: midpoin.x, pageY: midpoin.y })
+                // }
 
                 this.geometryArc(ctx, this.circleMidpoin, this.circleRadius)
             } else {
@@ -2907,7 +2906,7 @@ export default {
             }
         },
         formatAndroidData() {
-            // 为什么  是三层 逐渐消失 -- 用
+            // 为什么  是三层    第三层逐渐消失 -- 用
             // 解析数据
             // http://play.yunzuoye.net/public/aliplayer.html?src=https://xhfs2.oss-cn-hangzhou.aliyuncs.com/SB103013/smartclass/20191216/741b1600050a4078bda608b7fdcdc688.cwp&md5=E3AF927699F80A0B8CF2F390FEED2008
             
