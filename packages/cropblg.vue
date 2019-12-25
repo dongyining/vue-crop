@@ -5,7 +5,7 @@
  * @Author: banlangen
  * @Date: 2019-12-06 13:28:23
  * @LastEditors  : banlangen
- * @LastEditTime : 2019-12-25 15:07:43
+ * @LastEditTime : 2019-12-25 18:46:56
  -->
 
 <style lang="scss">
@@ -2538,7 +2538,9 @@ export default {
         },
 
         sendData(e = {}, actionTypes, value) {
-
+            // if (this.changeDrawAction == -1) {
+            //     return false
+            // }
             /**
                  *  类型：
                  *  1. 读权限 不做任何操作 不会发送 socket ( 不做橡皮检测  不做缩放检测)  原生操作要全部屏蔽掉
@@ -2557,7 +2559,7 @@ export default {
             // 缩放 和 删除 是没有 e.type
 
             // 屏蔽原生 操作 展示
-            if (e.type) { // 是原生事件
+            if (e.type && this.changeDrawAction != -1) { // 是原生事件
                 e.preventDefault()
             } else {
                 return true // 是读 不需要 发送数据 但是需要 继续往下走
