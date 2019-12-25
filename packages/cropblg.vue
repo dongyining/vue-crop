@@ -5,7 +5,7 @@
  * @Author: banlangen
  * @Date: 2019-12-06 13:28:23
  * @LastEditors  : banlangen
- * @LastEditTime : 2019-12-24 13:32:49
+ * @LastEditTime : 2019-12-25 15:07:43
  -->
 
 <style lang="scss">
@@ -476,6 +476,8 @@ export default {
                
             // }
 
+            
+            // 格式化数据
             this.formatAndroidData()
 
             // this.replay()
@@ -616,6 +618,8 @@ export default {
                     // 解决 就行闭合  棱角不尖锐
                     ctx.closePath()
                 }
+                // 处理完成变为 实线
+                // ctx.setLineDash([]) // 实线
                 ctx.stroke()
             }
         },
@@ -1083,22 +1087,35 @@ export default {
                     // 四边形
                     points = [
                         //  {x: firstPoint.x, y: firstPoint.y },
+                        { x: firstPoint.x, y: firstPoint.y },
                         { x: point.x, y: firstPoint.y },
                         { x: point.x, y: point.y },
-                        { x: firstPoint.x, y: point.y },
-                        { x: firstPoint.x, y: firstPoint.y }
+                        { x: firstPoint.x, y: point.y }
                     ]
                     break
                 case 3: {
                     // 梯形
-                    const rectLength = (point.x - firstPoint.x) / 3
-                    points = [
-                        // {x: firstPoint.x, y: firstPoint.y },
-                        { x: point.x - rectLength, y: firstPoint.y },
-                        { x: point.x, y: point.y },
-                        { x: firstPoint.x - rectLength, y: point.y },
-                        { x: firstPoint.x, y: firstPoint.y }
-                    ]
+                    const rectLength = (point.x - firstPoint.x) / 4
+                    if (point.y > firstPoint.y) {
+
+                        //  都是以  first 为边界得
+                        points = [
+                            { x: firstPoint.x + rectLength, y: firstPoint.y },
+                            { x: point.x - rectLength, y: firstPoint.y },
+                            { x: point.x, y: point.y },
+                            { x: firstPoint.x, y: point.y },
+                        ]
+                    } else {
+                        //  为了和  客户端同步
+                        // const rectLength = (point.x - firstPoint.x) / 3
+                        points = [
+                            { x: firstPoint.x + rectLength, y: point.y },
+                            { x: point.x - rectLength, y: point.y },
+                            { x: point.x, y: firstPoint.y },
+                            { x: firstPoint.x, y: firstPoint.y }
+                        ]
+                    }
+                   
                 }
                            
                     break
@@ -1111,7 +1128,7 @@ export default {
                 case 8:
                 case 6: // 数轴
                 case 7: { // 坐标轴轴
-                    const midpoint = this.getMidpoint(firstPoint, point)
+                    const midpoint = this.midpoin = this.getMidpoint(firstPoint, point)
                     points = [
                         { x: midpoint.x, y: firstPoint.y },
                         { x: point.x, y: midpoint.y },
@@ -1203,13 +1220,17 @@ export default {
             if (this.changeDrawAction == 3) {
 
                 if (this.geometry == 5) {
+                    // 箭头
                     this.clearCtx2()
                     this.addNewData(true)
                     this.renderCanvas()
                     return
                 }
+
+  
                 // 4个点 得 坐标 数轴 圆形
                 const fourPoint = [7, 6]
+                // console.log(this.pointSort(this.pointLine))
                 if (fourPoint.includes(this.geometry)) {
                     // 坐标轴  和  数轴大量 一样
                     const left = this.pointLine[3]
@@ -1226,10 +1247,10 @@ export default {
                         arr[3] = right
                         arr[1] = left
                     }
+                    
                     // 更新 偏移量
-                    this.offsetLeft = this.circleMidpoin.x - this.pointLine[3].x
+                    this.offsetLeft = this.circleMidpoin.x - arr[3].x
                     // 6  7  公共部分
-
                     if (this.geometry == 6) {
                         // 数轴 2个控制点
                         this.pointLine = [arr[3], arr[1]]
@@ -1244,6 +1265,8 @@ export default {
                         }
                         this.pointLine = arr
                     }
+
+
                 }
                 //  待确认状态
                 this.changeDrawAction = 4
@@ -1594,31 +1617,14 @@ export default {
                 const startAngle = (angle + degrees) * oneAngle
                 const endAngle = (angle - degrees) * oneAngle
                 this.compasses(ctx, firstPoint, radius, startAngle, endAngle, secondPoint)
-            } else
-            if (geometry == 8) {
+            } else if (geometry == 8) {
+                // 椭圆
 
-                if (points.length == 2) {
-                    points = [
-                        
-                    ]
-                }
-                let firstPoint, secondPoint
-                if (this.index == 0 || this.index == 2) {
-                    firstPoint = points[0]
-                    secondPoint = points[2]
-                } else {
-                    firstPoint = points[1]
-                    secondPoint = points[3]
-                }
-               
-                // 把 左边那个求出来
-                this.midpoin = this.getMidpoint(firstPoint, secondPoint)
                 const m = this.midpoin
                 
-                const a = firstPoint.x - m.x
-                const b = firstPoint.y - m.y
-
-
+                const b = points[0].y - m.y
+                const a = points[3].x - m.x
+                
                 this.geometryEllipse(ctx, m.x, m.y, a, b)
             } else
             // 圆形
@@ -1844,6 +1850,7 @@ export default {
                 this.recoveryThree()
                 return
             }
+            console.log('1213')
             
             //  绘制 辅助线
             ctx.setLineDash([5, 10])
@@ -2199,7 +2206,24 @@ export default {
                 }
                 // const y = this.circleMidpoin.y // y 是不会变的
                 this.pointLine.splice(this.index, 1, changePoint)
-            } else if (geometry == 4 || geometry == 8) {
+            } else if (geometry == 8) {
+                const currentPoint = this.pointLine[this.index]
+                if (this.index == 0 || this.index == 2) {
+                    this.pointLine.splice(this.index, 1, { x: currentPoint.x, y: point.y })
+                    this.midpoin = this.getMidpoint(this.pointLine[0], this.pointLine[2])
+                    // 上下
+                    this.pointLine.splice(1, 1, { y: this.midpoin.y, x: this.pointLine[1].x })
+                    this.pointLine.splice(3, 1, { y: this.midpoin.y, x: this.pointLine[3].x })
+                } else {
+                    // 左右
+                    this.pointLine.splice(this.index, 1, { x: point.x, y: currentPoint.y })
+                    this.midpoin = this.getMidpoint(this.pointLine[1], this.pointLine[3])
+                    
+                    this.pointLine.splice(0, 1, { x: this.midpoin.x, y: this.pointLine[0].y })
+                    this.pointLine.splice(2, 1, { x: this.midpoin.x, y: this.pointLine[2].y })
+                    
+                }
+            } else if (geometry == 4) {
                 // console.log(this.geometry)
                 // 这个圆形和 四边形一样的逻辑
                 const currentPoint = this.pointLine[this.index]
@@ -2279,43 +2303,43 @@ export default {
 
                 const before = this.pointLine[beforeIndex]
                 const after = this.pointLine[afterIndex]
+
                 
+                // console.log(this.index)
                 //  新加 最小 面条代码   数组需要 矫正  上下 左右
-                const distance = 30
-                if (this.index == 0) {
-                    point = {
-                        x: this.limit(point.x, before.x + distance, width),
-                        y: this.limit(point.y, 0, after.y - distance)
-                    }
-                }
+                // const distance = 30
+                // if (this.index == 0) {
+                //     point = {
+                //         x: this.limit(point.x, 0, after.x - distance),
+                //         y: this.limit(point.y, 0, before.y - distance)
+                //     }
+                // }
 
-                if (this.index == 1) {
-                    point = {
-                        x: this.limit(point.x, after.x + distance, width),
-                        y: this.limit(point.y, before.y + distance, height)
-                    }
-                }
+                // if (this.index == 1) {
+                    
+                //     point = {
+                //         x: this.limit(point.x, before.x + distance, width),
+                //         y: this.limit(point.y, 0, after.y - distance)
+                //     }
+                // }
 
-                if (this.index == 2) {
-                    point = {
-                        x: this.limit(point.x, 0, before.x - distance),
-                        y: this.limit(point.y, after.y + distance, height)
-                    }
-                }
+                // if (this.index == 2) {
+                //     point = {
+                //         x: this.limit(point.x, after.x + distance, width),
+                //         y: this.limit(point.y, before.y + distance, height)
+                //     }
+                // }
 
-                if (this.index == 3) {
-                    point = {
-                        x: this.limit(point.x, 0, after.x - distance),
-                        y: this.limit(point.y, 0, before.y - distance)
-                    }
-                }
+                // if (this.index == 3) {
+                //     point = {
+                //         x: this.limit(point.x, 0, before.x - distance),
+                //         y: this.limit(point.y, after.y + distance, height)
+                //     }
+                    
+                // }
 
                 // 面条代码
-                if (this.index == 2 || this.index == 0) {
-                    // point = {
-                    //     x: this.limit(x, before.x + 50, width - 9),
-                    //     y: this.limit(y, after.y + 50, height - 9)
-                    // }
+                if (this.index == 1 || this.index == 3) {
                     if (geometry == 2) {
                         this.pointLine.splice(afterIndex, 1, { x: point.x, y: after.y })
                     }
@@ -2379,6 +2403,9 @@ export default {
             }
             // relativePoint  //  每个点的 相对于 虚线的位置
             this.pointLine = this.relativePoint.map(e => ({ x: e.x + newAL.x, y: e.y + newAL.y }))
+            if (this.geometry == 8) {
+                this.midpoin = this.getMidpoint(this.pointLine[1], this.pointLine[3])
+            }
             this.renderGeometry(this.pointLine, 8, true, this.geometry)
         },
         // 求两点的中点
