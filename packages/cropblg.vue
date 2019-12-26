@@ -5,7 +5,7 @@
  * @Author: banlangen
  * @Date: 2019-12-06 13:28:23
  * @LastEditors  : banlangen
- * @LastEditTime : 2019-12-25 18:46:56
+ * @LastEditTime : 2019-12-26 20:56:20
  -->
 
 <style lang="scss">
@@ -2444,7 +2444,7 @@ export default {
             // const angle = (180 +  * 180 / Math.PI + 360) % 360
 
             // 全部返回正整数
-            const angle = this.getInt(Math.atan2(-y, -x) / (Math.PI / 180)) // 返回的是 °
+            const angle = Math.atan2(-y, -x) / (Math.PI / 180) // 返回的是 °  //  不能取整  不然抖动太厉害  椭圆动都 大概也是这个问题
             if (angle < 0) {
                 return 360 - angle * -1
             }
