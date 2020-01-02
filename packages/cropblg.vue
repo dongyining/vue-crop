@@ -5,7 +5,7 @@
  * @Author: banlangen
  * @Date: 2019-12-06 13:28:23
  * @LastEditors  : banlangen
- * @LastEditTime : 2019-12-26 20:56:20
+ * @LastEditTime : 2020-01-02 16:14:22
  -->
 
 <style lang="scss">
@@ -140,7 +140,7 @@
         // left: 0;
         position: absolute;
         min-width: 100%;
-        min-height: 200vh; // 3968px;  // 太长会 很卡 很卡
+        min-height: 100vh; // 3968px;  // 太长会 很卡 很卡
     }
     .pptIframe {
         position: absolute;
@@ -534,6 +534,17 @@ export default {
                 if (geometry) {
                     ctx.fillStyle = el.color
                 }
+
+
+                if (geometry && geometry == 8) {
+                    // console.log(points)
+                    // 椭圆
+                    const m = el.centra
+                    const b = points[0].y - m.y
+                    const a = points[3].x - m.x
+                    this.geometryEllipse(ctx, m.x, m.y, a, b)
+                    continue
+                }
                 if (geometry && geometry == 4) {
                     const maxX = el.maxX
                     const minX = el.minX
@@ -608,6 +619,7 @@ export default {
                         }
                         ctx.quadraticCurveTo(originPointFirst.x, originPointFirst.y, ctrlPoint.x, ctrlPoint.y)
                     } else if (i < numPoints - 1) {
+                        // 最后一个点
                         const originPointSecond = points[i + 1]
                         ctx.quadraticCurveTo(originPointFirst.x, originPointFirst.y, originPointSecond.x, originPointSecond.y)
                     }
@@ -986,6 +998,23 @@ export default {
                         }
                         continue
                     }
+                    //  椭圆 删除
+                    if (geometry && geometry == 8) {
+                        const O = element.centra
+                        const b = pointLine[0].y - O.y
+                        const a = pointLine[3].x - O.x
+                        const F = (x - O.x) * (x - O.x) / (a * a) + (y - O.y) * (y - O.y) / (b * b)
+                        // console.log(F - 1)
+                        if (Math.abs(F - 1) < 0.1) {
+                            this.removeLine(index)
+                            this.sendData(e, 4, index)
+                        }
+                        continue
+                    }
+
+                    //  const m = el.centra
+                    // const b = points[0].y - m.y
+                    // const a = points[3].x - m.x
                     //  坐标轴
                     if (geometry && geometry == 7) {
                         // const points = element.
@@ -1128,12 +1157,12 @@ export default {
                 case 8:
                 case 6: // 数轴
                 case 7: { // 坐标轴轴
-                    const midpoint = this.midpoin = this.getMidpoint(firstPoint, point)
+                    const circleMidpoin = this.circleMidpoin = this.getMidpoint(firstPoint, point)
                     points = [
-                        { x: midpoint.x, y: firstPoint.y },
-                        { x: point.x, y: midpoint.y },
-                        { x: midpoint.x, y: point.y },
-                        { x: firstPoint.x, y: midpoint.y }
+                        { x: circleMidpoin.x, y: firstPoint.y },
+                        { x: point.x, y: circleMidpoin.y },
+                        { x: circleMidpoin.x, y: point.y },
+                        { x: firstPoint.x, y: circleMidpoin.y }
                     ]
                 }
                     break
@@ -1276,16 +1305,23 @@ export default {
             }
             // 搜集点 进入画笔
             // this.log(this.pointLine)
-            if ((this.writing == 1 || this.writing == 3) && this.changeDrawAction == 1 && this.pointLine.length > 2) {
+            if ((this.writing == 1 || this.writing == 3) && this.changeDrawAction == 1 && this.pointLine.length > 3) {
                 // this.writing == 2 || this.writing == 4
                 //  不是曲线不用走这里
                 const ctx = this.ctx
-                const points = this.pointLine.slice(-2)
+                const lastTwoPoints = this.pointLine.slice(-2)
+                const controlPoint = lastTwoPoints[0]
+                const endPoint = lastTwoPoints[1]
 
                 
-                ctx.quadraticCurveTo(points[0].x, points[0].y, points[1].x, points[1].y)
+                // const drawPoint = this.drawPoint
+                // ctx.beginPath()
+                // ctx.moveTo(drawPoint.x, drawPoint.y)
+                ctx.quadraticCurveTo(controlPoint.x, controlPoint.y, endPoint.x, endPoint.y)
                 ctx.stroke()
+                ctx.closePath()
                 // this.followPenStyle.left = -100 + 'px'
+
                 this.addNewData()
             }
 
@@ -1347,7 +1383,7 @@ export default {
                 const geometry = this.geometry
                 pointObj.geometry = geometry
 
-                if (geometry == 4 || geometry == 6 || geometry == 7) {
+                if (geometry == 4 || geometry == 6 || geometry == 7 || geometry == 8) {
                     pointObj.centra = {
                         x: this.circleMidpoin.x,
                         y: this.circleMidpoin.y
@@ -1620,7 +1656,7 @@ export default {
             } else if (geometry == 8) {
                 // 椭圆
 
-                const m = this.midpoin
+                const m = this.circleMidpoin
                 
                 const b = points[0].y - m.y
                 const a = points[3].x - m.x
@@ -1850,7 +1886,6 @@ export default {
                 this.recoveryThree()
                 return
             }
-            console.log('1213')
             
             //  绘制 辅助线
             ctx.setLineDash([5, 10])
@@ -2210,17 +2245,17 @@ export default {
                 const currentPoint = this.pointLine[this.index]
                 if (this.index == 0 || this.index == 2) {
                     this.pointLine.splice(this.index, 1, { x: currentPoint.x, y: point.y })
-                    this.midpoin = this.getMidpoint(this.pointLine[0], this.pointLine[2])
+                    this.circleMidpoin = this.getMidpoint(this.pointLine[0], this.pointLine[2])
                     // 上下
-                    this.pointLine.splice(1, 1, { y: this.midpoin.y, x: this.pointLine[1].x })
-                    this.pointLine.splice(3, 1, { y: this.midpoin.y, x: this.pointLine[3].x })
+                    this.pointLine.splice(1, 1, { y: this.circleMidpoin.y, x: this.pointLine[1].x })
+                    this.pointLine.splice(3, 1, { y: this.circleMidpoin.y, x: this.pointLine[3].x })
                 } else {
                     // 左右
                     this.pointLine.splice(this.index, 1, { x: point.x, y: currentPoint.y })
-                    this.midpoin = this.getMidpoint(this.pointLine[1], this.pointLine[3])
+                    this.circleMidpoin = this.getMidpoint(this.pointLine[1], this.pointLine[3])
                     
-                    this.pointLine.splice(0, 1, { x: this.midpoin.x, y: this.pointLine[0].y })
-                    this.pointLine.splice(2, 1, { x: this.midpoin.x, y: this.pointLine[2].y })
+                    this.pointLine.splice(0, 1, { x: this.circleMidpoin.x, y: this.pointLine[0].y })
+                    this.pointLine.splice(2, 1, { x: this.circleMidpoin.x, y: this.pointLine[2].y })
                     
                 }
             } else if (geometry == 4) {
@@ -2404,7 +2439,7 @@ export default {
             // relativePoint  //  每个点的 相对于 虚线的位置
             this.pointLine = this.relativePoint.map(e => ({ x: e.x + newAL.x, y: e.y + newAL.y }))
             if (this.geometry == 8) {
-                this.midpoin = this.getMidpoint(this.pointLine[1], this.pointLine[3])
+                this.circleMidpoin = this.getMidpoint(this.pointLine[1], this.pointLine[3])
             }
             this.renderGeometry(this.pointLine, 8, true, this.geometry)
         },
@@ -2788,6 +2823,7 @@ export default {
                 break
             case 21:
                 this.log('直画几何图形', '#f60rrr', 3)
+                console.log('直画几何图形')
                 console.log(value.pointLine)
                 this.pointLine = value.pointLine
                 this.geometry = value.geometry
@@ -2950,7 +2986,7 @@ export default {
             // http://play.yunzuoye.net/public/aliplayer.html?src=https://xhfs2.oss-cn-hangzhou.aliyuncs.com/SB103013/smartclass/20191216/741b1600050a4078bda608b7fdcdc688.cwp&md5=E3AF927699F80A0B8CF2F390FEED2008
             
             // http://xhfs2.oss-cn-hangzhou.aliyuncs.com/SB103013/smartclass/20191219/49ea340cfa0044b787cf6691327646a5.cwp
-            const originNativeData = require('./jq7.json').data
+            const originNativeData = require('./jq9.json').data
             // console.log(originNativeData.handWritingUrl)
             this.commitData = []
             const arrs = originNativeData.handWritingUrl.split(/\n/)
@@ -2984,7 +3020,7 @@ export default {
                 switch (arr[0]) {
                 case 'WM_GEOMETRIC_VIEW': {
                     
-                    console.log(arr[8])
+                    
                     // this.pointLine = value.pointLine
                     // this.geometry = value.geometry
                     // this.circleMidpoin = value.circleMidpoin || null
@@ -2999,8 +3035,9 @@ export default {
                             x: Number(point[0]),
                             y: Number(point[1])
                         }
-                        
                     })
+                    console.log(arr)
+                    console.log(pointLine)
                     if (arr[8] == '11' || arr[8] == '12' || arr[8] == '13') { // 矩形
                         // 4个点坐标
                         
@@ -3067,8 +3104,20 @@ export default {
                             }
                         })
 
+                    } else if (arr[8] == '14') {
+                        const circleMidpoin = this.getMidpoint(pointLine[0], pointLine[2])
+                        this.commitData.push({
+                            time: arr[13],
+                            data: {
+                                value: {
+                                    pointLine,
+                                    geometry: 8,
+                                    circleMidpoin
+                                },
+                                actionTypes: 21
+                            }
+                        })
                     }
-
                 }
                     // 没有过程
                     break
